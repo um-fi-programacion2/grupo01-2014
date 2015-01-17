@@ -1,0 +1,9 @@
+<aspectj>
+<aspects>
+<aspect name="ar.edu.um.canarium.domain.ConfiguracionIntegrationTest_Roo_Configurable"/>
+<aspect name="ar.edu.um.canarium.domain.ConfiguracionIntegrationTest_Roo_IntegrationTest"/>
+<aspect name="ar.edu.um.canarium.domain.ConfiguracionDataOnDemand_Roo_DataOnDemand"/>
+<aspect name="ar.edu.um.canarium.domain.ConfiguracionDataOnDemand_Roo_Configurable"/>
+</aspects>
+</aspectj>
+
