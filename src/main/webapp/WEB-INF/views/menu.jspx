@@ -7,5 +7,29 @@
             <menu:item id="i_configuracion_new" messageCode="global_menu_new" url="/configuracions?form" z="ub7ZReiU5j/GDKreJWShsy9YRFw="/>
             <menu:item id="i_configuracion_list" messageCode="global_menu_list" url="/configuracions?page=1&amp;size=${empty param.size ? 10 : param.size}" z="DNpqHgH3ndQAwVtsjfy3jEhqqjc="/>
         </menu:category>
+        <menu:category id="c_mensajeprivado" z="hFLzpT38Eh1g/y371CDokmA/dEY=">
+            <menu:item id="i_mensajeprivado_new" messageCode="global_menu_new" url="/mensajeprivadoes?form" z="J1LBW1GnzHK6x/8Aj/ro7oEcbmo="/>
+            <menu:item id="i_mensajeprivado_list" messageCode="global_menu_list" url="/mensajeprivadoes?page=1&amp;size=${empty param.size ? 10 : param.size}" z="EbYzIEN6gZBDcTPMrKTffiDSS1Y="/>
+        </menu:category>
+        <menu:category id="c_persona" z="HGx10uPnaEw3eOO50fIb9qf5jiI=">
+            <menu:item id="i_persona_new" messageCode="global_menu_new" url="/personae?form" z="7Y0KdFKrjpWljePDcf4RoDAeOUA="/>
+            <menu:item id="i_persona_list" messageCode="global_menu_list" url="/personae?page=1&amp;size=${empty param.size ? 10 : param.size}" z="/MWcaTHST1kjwDWGXluGyXbYCJo="/>
+        </menu:category>
+        <menu:category id="c_relacion" z="a6Czd0t6QhDkwccFPPk7dOzBCds=">
+            <menu:item id="i_relacion_new" messageCode="global_menu_new" url="/relacions?form" z="FoAHS0gEqP6/U5vfV+M7stHz08U="/>
+            <menu:item id="i_relacion_list" messageCode="global_menu_list" url="/relacions?page=1&amp;size=${empty param.size ? 10 : param.size}" z="Wvr9LHa0UK3u8PqOlNItycMSNFA="/>
+        </menu:category>
+        <menu:category id="c_republicado" z="Xk3dz6aNSEEOy8dHkqQmRhf70oU=">
+            <menu:item id="i_republicado_new" messageCode="global_menu_new" url="/republicadoes?form" z="oEwDAvJSHVImB5+veICdQ6suCmA="/>
+            <menu:item id="i_republicado_list" messageCode="global_menu_list" url="/republicadoes?page=1&amp;size=${empty param.size ? 10 : param.size}" z="CTfvhBxqRnhH88airl2YFHlNyMU="/>
+        </menu:category>
+        <menu:category id="c_tag" z="zbrDBteXk3LlkQMQy3xXpSv2428=">
+            <menu:item id="i_tag_new" messageCode="global_menu_new" url="/tags?form" z="c2MR5d7dttBSgnPxMMH7oOEDl6Q="/>
+            <menu:item id="i_tag_list" messageCode="global_menu_list" url="/tags?page=1&amp;size=${empty param.size ? 10 : param.size}" z="HsTcxZ80PNENgslZ1+b/pv8MYug="/>
+        </menu:category>
+        <menu:category id="c_mensaje" z="/z8EFX6PBUJoSZKfzMJGTros24c=">
+            <menu:item id="i_mensaje_new" messageCode="global_menu_new" url="/mensajes?form" z="Bg8B78AtOSfZx35jXtE44AL2luU="/>
+            <menu:item id="i_mensaje_list" messageCode="global_menu_list" url="/mensajes?page=1&amp;size=${empty param.size ? 10 : param.size}" z="Vei5khNLhkoZkntvP1llgv4HP2w="/>
+        </menu:category>
     </menu:menu>
 </div>

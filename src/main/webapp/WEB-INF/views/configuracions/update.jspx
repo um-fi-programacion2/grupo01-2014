@@ -3,7 +3,7 @@
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
     <form:update id="fu_ar_edu_um_canarium_domain_Configuracion" modelAttribute="configuracion" path="/configuracions" versionField="Version" z="L8pHopHV/G35uecOqtQk8GQJy5c=">
-        <field:input field="atributo" id="c_ar_edu_um_canarium_domain_Configuracion_atributo" required="true" z="ACwjMdFQSPoBhTQpEOlG2KZnCpI="/>
-        <field:input field="valor" id="c_ar_edu_um_canarium_domain_Configuracion_valor" required="true" z="nLl54aOtvnDpqttphYLYQI/wSbs="/>
+        <field:textarea field="atributo" id="c_ar_edu_um_canarium_domain_Configuracion_atributo" required="true" z="78CAtwC9F7fmy9Ai7pYwO21eRE8="/>
+        <field:textarea field="valor" id="c_ar_edu_um_canarium_domain_Configuracion_valor" required="true" z="MRbp6tJM0BGRGMjC4Hgcmao+pS4="/>
     </form:update>
 </div>

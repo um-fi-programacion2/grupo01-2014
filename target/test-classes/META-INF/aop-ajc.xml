@@ -1,9 +1,33 @@
 <aspectj>
 <aspects>
-<aspect name="ar.edu.um.canarium.domain.ConfiguracionIntegrationTest_Roo_Configurable"/>
+<aspect name="ar.edu.um.canarium.domain.TagDataOnDemand_Roo_DataOnDemand"/>
+<aspect name="ar.edu.um.canarium.domain.RepublicadoIntegrationTest_Roo_Configurable"/>
+<aspect name="ar.edu.um.canarium.domain.TagIntegrationTest_Roo_IntegrationTest"/>
+<aspect name="ar.edu.um.canarium.domain.RelacionIntegrationTest_Roo_IntegrationTest"/>
+<aspect name="ar.edu.um.canarium.domain.PersonaIntegrationTest_Roo_Configurable"/>
+<aspect name="ar.edu.um.canarium.domain.PersonaIntegrationTest_Roo_IntegrationTest"/>
 <aspect name="ar.edu.um.canarium.domain.ConfiguracionIntegrationTest_Roo_IntegrationTest"/>
+<aspect name="ar.edu.um.canarium.domain.MensajePrivadoIntegrationTest_Roo_Configurable"/>
+<aspect name="ar.edu.um.canarium.domain.MensajeIntegrationTest_Roo_Configurable"/>
+<aspect name="ar.edu.um.canarium.domain.RepublicadoDataOnDemand_Roo_Configurable"/>
+<aspect name="ar.edu.um.canarium.domain.PersonaDataOnDemand_Roo_DataOnDemand"/>
+<aspect name="ar.edu.um.canarium.domain.RelacionDataOnDemand_Roo_DataOnDemand"/>
+<aspect name="ar.edu.um.canarium.domain.MensajeDataOnDemand_Roo_Configurable"/>
+<aspect name="ar.edu.um.canarium.domain.RepublicadoIntegrationTest_Roo_IntegrationTest"/>
+<aspect name="ar.edu.um.canarium.domain.MensajeIntegrationTest_Roo_IntegrationTest"/>
+<aspect name="ar.edu.um.canarium.domain.RelacionIntegrationTest_Roo_Configurable"/>
+<aspect name="ar.edu.um.canarium.domain.RepublicadoDataOnDemand_Roo_DataOnDemand"/>
+<aspect name="ar.edu.um.canarium.domain.ConfiguracionIntegrationTest_Roo_Configurable"/>
 <aspect name="ar.edu.um.canarium.domain.ConfiguracionDataOnDemand_Roo_DataOnDemand"/>
+<aspect name="ar.edu.um.canarium.domain.TagDataOnDemand_Roo_Configurable"/>
 <aspect name="ar.edu.um.canarium.domain.ConfiguracionDataOnDemand_Roo_Configurable"/>
+<aspect name="ar.edu.um.canarium.domain.TagIntegrationTest_Roo_Configurable"/>
+<aspect name="ar.edu.um.canarium.domain.MensajePrivadoDataOnDemand_Roo_Configurable"/>
+<aspect name="ar.edu.um.canarium.domain.MensajePrivadoIntegrationTest_Roo_IntegrationTest"/>
+<aspect name="ar.edu.um.canarium.domain.MensajeDataOnDemand_Roo_DataOnDemand"/>
+<aspect name="ar.edu.um.canarium.domain.RelacionDataOnDemand_Roo_Configurable"/>
+<aspect name="ar.edu.um.canarium.domain.MensajePrivadoDataOnDemand_Roo_DataOnDemand"/>
+<aspect name="ar.edu.um.canarium.domain.PersonaDataOnDemand_Roo_Configurable"/>
 </aspects>
 </aspectj>
 

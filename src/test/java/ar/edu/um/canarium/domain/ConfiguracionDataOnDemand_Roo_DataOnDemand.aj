@@ -31,11 +31,17 @@ privileged aspect ConfiguracionDataOnDemand_Roo_DataOnDemand {
     
     public void ConfiguracionDataOnDemand.setAtributo(Configuracion obj, int index) {
         String atributo = "atributo_" + index;
+        if (atributo.length() > 45) {
+            atributo = atributo.substring(0, 45);
+        }
         obj.setAtributo(atributo);
     }
     
     public void ConfiguracionDataOnDemand.setValor(Configuracion obj, int index) {
         String valor = "valor_" + index;
+        if (valor.length() > 45) {
+            valor = valor.substring(0, 45);
+        }
         obj.setValor(valor);
     }
     

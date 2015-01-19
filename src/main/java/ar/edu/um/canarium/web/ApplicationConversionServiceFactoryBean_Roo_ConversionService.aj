@@ -4,6 +4,12 @@
 package ar.edu.um.canarium.web;
 
 import ar.edu.um.canarium.domain.Configuracion;
+import ar.edu.um.canarium.domain.Mensaje;
+import ar.edu.um.canarium.domain.MensajePrivado;
+import ar.edu.um.canarium.domain.Persona;
+import ar.edu.um.canarium.domain.Relacion;
+import ar.edu.um.canarium.domain.Republicado;
+import ar.edu.um.canarium.domain.Tag;
 import ar.edu.um.canarium.web.ApplicationConversionServiceFactoryBean;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.core.convert.converter.Converter;
@@ -37,10 +43,172 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         };
     }
     
+    public Converter<Mensaje, String> ApplicationConversionServiceFactoryBean.getMensajeToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<ar.edu.um.canarium.domain.Mensaje, java.lang.String>() {
+            public String convert(Mensaje mensaje) {
+                return new StringBuilder().append(mensaje.getDescripcion()).append(' ').append(mensaje.getFecha()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, Mensaje> ApplicationConversionServiceFactoryBean.getIdToMensajeConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, ar.edu.um.canarium.domain.Mensaje>() {
+            public ar.edu.um.canarium.domain.Mensaje convert(java.lang.Long id) {
+                return Mensaje.findMensaje(id);
+            }
+        };
+    }
+    
+    public Converter<String, Mensaje> ApplicationConversionServiceFactoryBean.getStringToMensajeConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, ar.edu.um.canarium.domain.Mensaje>() {
+            public ar.edu.um.canarium.domain.Mensaje convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), Mensaje.class);
+            }
+        };
+    }
+    
+    public Converter<MensajePrivado, String> ApplicationConversionServiceFactoryBean.getMensajePrivadoToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<ar.edu.um.canarium.domain.MensajePrivado, java.lang.String>() {
+            public String convert(MensajePrivado mensajePrivado) {
+                return new StringBuilder().append(mensajePrivado.getDescripcion()).append(' ').append(mensajePrivado.getFecha()).append(' ').append(mensajePrivado.getIdPersonaDestino()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, MensajePrivado> ApplicationConversionServiceFactoryBean.getIdToMensajePrivadoConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, ar.edu.um.canarium.domain.MensajePrivado>() {
+            public ar.edu.um.canarium.domain.MensajePrivado convert(java.lang.Long id) {
+                return MensajePrivado.findMensajePrivado(id);
+            }
+        };
+    }
+    
+    public Converter<String, MensajePrivado> ApplicationConversionServiceFactoryBean.getStringToMensajePrivadoConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, ar.edu.um.canarium.domain.MensajePrivado>() {
+            public ar.edu.um.canarium.domain.MensajePrivado convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), MensajePrivado.class);
+            }
+        };
+    }
+    
+    public Converter<Persona, String> ApplicationConversionServiceFactoryBean.getPersonaToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<ar.edu.um.canarium.domain.Persona, java.lang.String>() {
+            public String convert(Persona persona) {
+                return new StringBuilder().append(persona.getNombre()).append(' ').append(persona.getApellido()).append(' ').append(persona.getPassword()).append(' ').append(persona.getFoto()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, Persona> ApplicationConversionServiceFactoryBean.getIdToPersonaConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, ar.edu.um.canarium.domain.Persona>() {
+            public ar.edu.um.canarium.domain.Persona convert(java.lang.Long id) {
+                return Persona.findPersona(id);
+            }
+        };
+    }
+    
+    public Converter<String, Persona> ApplicationConversionServiceFactoryBean.getStringToPersonaConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, ar.edu.um.canarium.domain.Persona>() {
+            public ar.edu.um.canarium.domain.Persona convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), Persona.class);
+            }
+        };
+    }
+    
+    public Converter<Relacion, String> ApplicationConversionServiceFactoryBean.getRelacionToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<ar.edu.um.canarium.domain.Relacion, java.lang.String>() {
+            public String convert(Relacion relacion) {
+                return new StringBuilder().append(relacion.getIdSeguido()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, Relacion> ApplicationConversionServiceFactoryBean.getIdToRelacionConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, ar.edu.um.canarium.domain.Relacion>() {
+            public ar.edu.um.canarium.domain.Relacion convert(java.lang.Long id) {
+                return Relacion.findRelacion(id);
+            }
+        };
+    }
+    
+    public Converter<String, Relacion> ApplicationConversionServiceFactoryBean.getStringToRelacionConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, ar.edu.um.canarium.domain.Relacion>() {
+            public ar.edu.um.canarium.domain.Relacion convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), Relacion.class);
+            }
+        };
+    }
+    
+    public Converter<Republicado, String> ApplicationConversionServiceFactoryBean.getRepublicadoToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<ar.edu.um.canarium.domain.Republicado, java.lang.String>() {
+            public String convert(Republicado republicado) {
+                return new StringBuilder().append(republicado.getFecha()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, Republicado> ApplicationConversionServiceFactoryBean.getIdToRepublicadoConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, ar.edu.um.canarium.domain.Republicado>() {
+            public ar.edu.um.canarium.domain.Republicado convert(java.lang.Long id) {
+                return Republicado.findRepublicado(id);
+            }
+        };
+    }
+    
+    public Converter<String, Republicado> ApplicationConversionServiceFactoryBean.getStringToRepublicadoConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, ar.edu.um.canarium.domain.Republicado>() {
+            public ar.edu.um.canarium.domain.Republicado convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), Republicado.class);
+            }
+        };
+    }
+    
+    public Converter<Tag, String> ApplicationConversionServiceFactoryBean.getTagToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<ar.edu.um.canarium.domain.Tag, java.lang.String>() {
+            public String convert(Tag tag) {
+                return new StringBuilder().append(tag.getDescripcion()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, Tag> ApplicationConversionServiceFactoryBean.getIdToTagConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, ar.edu.um.canarium.domain.Tag>() {
+            public ar.edu.um.canarium.domain.Tag convert(java.lang.Long id) {
+                return Tag.findTag(id);
+            }
+        };
+    }
+    
+    public Converter<String, Tag> ApplicationConversionServiceFactoryBean.getStringToTagConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, ar.edu.um.canarium.domain.Tag>() {
+            public ar.edu.um.canarium.domain.Tag convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), Tag.class);
+            }
+        };
+    }
+    
     public void ApplicationConversionServiceFactoryBean.installLabelConverters(FormatterRegistry registry) {
         registry.addConverter(getConfiguracionToStringConverter());
         registry.addConverter(getIdToConfiguracionConverter());
         registry.addConverter(getStringToConfiguracionConverter());
+        registry.addConverter(getMensajeToStringConverter());
+        registry.addConverter(getIdToMensajeConverter());
+        registry.addConverter(getStringToMensajeConverter());
+        registry.addConverter(getMensajePrivadoToStringConverter());
+        registry.addConverter(getIdToMensajePrivadoConverter());
+        registry.addConverter(getStringToMensajePrivadoConverter());
+        registry.addConverter(getPersonaToStringConverter());
+        registry.addConverter(getIdToPersonaConverter());
+        registry.addConverter(getStringToPersonaConverter());
+        registry.addConverter(getRelacionToStringConverter());
+        registry.addConverter(getIdToRelacionConverter());
+        registry.addConverter(getStringToRelacionConverter());
+        registry.addConverter(getRepublicadoToStringConverter());
+        registry.addConverter(getIdToRepublicadoConverter());
+        registry.addConverter(getStringToRepublicadoConverter());
+        registry.addConverter(getTagToStringConverter());
+        registry.addConverter(getIdToTagConverter());
+        registry.addConverter(getStringToTagConverter());
     }
     
     public void ApplicationConversionServiceFactoryBean.afterPropertiesSet() {

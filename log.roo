@@ -8,3 +8,63 @@ field string --fieldName atributo --notNull
 field string --fieldName valor --notNull
 web mvc setup
 web mvc all --package ~.web
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2015-01-18 11:32:26
+entity jpa --class ~.domain.MensajePrivado --testAutomatically true
+field string --fieldName descripcion --notNull --sizeMax 140 
+field date --fieldName fecha --type java.util.Date --notNull
+field number --fieldName idPersonaDestino --type java.lang.Integer --notNull --min 0
+// [failed] field reference --fieldName idPersona --type ~.domain.Persona --cardinality MANY_TO_ONE
+entity jpa --class ~.domain.Persona --testAutomatically true 
+entity jpa --class ~.domain.Republicado --testAutomatically true 
+entity jpa --class ~.domain.Relacion --testAutomatically true 
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2015-01-19 09:56:51
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2015-01-19 17:44:09
+// [failed] focus --class Persona
+// [failed] field string --fieldName nombre --notNull --sizeMax 45
+focus --class ~.domain.Persona
+field string --fieldName nombre --notNull --sizeMax 45
+field string --fieldName apellido --notNull --sizeMax 45
+field string --fieldName email --notNull --sizeMax 200
+field string --fieldName usuario --notNull --sizeMax 15
+field string --fieldName foto --notNull --sizeMax 255
+field string --fieldName password --notNull --sizeMax 45
+// [failed] field string --fieldName foto  --sizeMax 45
+field string --fieldName foto  --sizeMax 255
+// [failed] field string --fieldName email --notNull --sizeMax 200 --unique 
+field string --fieldName email --notNull --sizeMax 200 --unique 
+field string --fieldName usuario --notNull --sizeMax 15 --unique
+field string --fieldName descripcion --sizeMax 500
+field boolean --fieldName activo --notNull
+field date --fieldName fecha --type java.util.Date
+enum type --class ~.domain.Sexo
+enum constant --name masculino
+enum constant --name femenino
+focus --class ~.domain.Persona
+field enum --fieldName sexo --type ~.domain.Sexo --notNull
+field date --fieldName fecha --type java.util.Date --notNull
+web mvc all --package ~.web
+// [failed] focus --class ~.domain.Mensaje
+focus --class ~.domain.Relacion
+field number --fieldName idSeguido --type java.lang.Long --notNull 
+field number --fieldName idSeguido --type java.lang.Long --notNull --decimalMin 0
+focus --class ~.domain.Republicado
+field date --fieldName fecha --type java.util.Date
+field date --fieldName fecha --type java.util.Date --notNull
+entity jpa --class ~.domain.Mensaje --testAutomatically true
+entity jpa --class ~.domain.Tag --testAutomatically true
+field string --fieldName descripcion --sizeMax 45
+field string --fieldName descripcion --sizeMax 45 --notNull
+focus --class ~.domain.Mensaje
+field string --fieldName descripcion --sizeMax 140 --notNull
+field date --fieldName fecha --type java.util.Date --notNull
+focus --class ~.domain.Tag
+// [failed] field string --fieldName descripcion --sizeMax 45 --notNull --unique 
+field string --fieldName descripcion --sizeMax 45 --notNull --unique 
+focus --class ~.domain.Configuracion
+field string --fieldName atributo --sizeMax 45 --notNull
+field string --fieldName valor --sizeMax 45 --notNull
+focus --class ~.domain.MensajePrivado
+// [failed] field number --fieldName idPersonaDestino --type java.lang.Long --notNull 
+field number --fieldName idPersonaDestino --type java.lang.Long --notNull 
+field number --fieldName idPersonaDestino --type java.lang.Long --notNull --decimalMin 0
+web mvc all --package ~.web
