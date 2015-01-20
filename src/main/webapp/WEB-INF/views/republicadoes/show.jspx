@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_ar_edu_um_canarium_domain_Republicado" object="${republicado}" path="/republicadoes" z="TlaXrIq4am1H1UcqH0K7UwkSu2I=">
+        <field:display date="true" dateTimePattern="${republicado_fecha_date_format}" field="fecha" id="s_ar_edu_um_canarium_domain_Republicado_fecha" object="${republicado}" z="hsQtVtutQb4QhBcVURBZCUChf9E="/>
+        <field:display field="persona" id="s_ar_edu_um_canarium_domain_Republicado_persona" object="${republicado}" z="xXvJtnO6secQ49ujgt1KBtxfWZY="/>
+        <field:display field="mensaje" id="s_ar_edu_um_canarium_domain_Republicado_mensaje" object="${republicado}" z="/5EHIjTfW2lUJ1UPicEoAOFSEp8="/>
+    </page:show>
+</div>

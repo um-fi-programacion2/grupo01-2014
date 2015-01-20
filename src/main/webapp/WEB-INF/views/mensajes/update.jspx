@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_ar_edu_um_canarium_domain_Mensaje" modelAttribute="mensaje" path="/mensajes" versionField="Version" z="e6+6osjK6NJgtEEiEulW7wOvlLc=">
+        <field:textarea field="descripcion" id="c_ar_edu_um_canarium_domain_Mensaje_descripcion" required="true" z="ILERzB9Ca9/xwO32fVtBt+AcTBw="/>
+        <field:datetime dateTimePattern="${mensaje_fecha_date_format}" field="fecha" id="c_ar_edu_um_canarium_domain_Mensaje_fecha" required="true" z="TU4UdaQg9m+hAn2XZrDZS+wmznw="/>
+        <field:select field="persona" id="c_ar_edu_um_canarium_domain_Mensaje_persona" itemValue="id" items="${personae}" path="/personae" required="true" z="zet5GVHnsgO3qzTOkURASD/KOq8="/>
+        <field:simple field="republicados" id="c_ar_edu_um_canarium_domain_Mensaje_republicados" messageCode="entity_reference_not_managed" messageCodeAttribute="Republicado" z="gADeLo9P/2fI4mGOjIn6WEAOS2w="/>
+        <field:select field="tags" id="c_ar_edu_um_canarium_domain_Mensaje_tags" itemValue="id" items="${tags}" multiple="true" path="/tags" z="u3jAN/s1QVnhfMxWGiiKma3AnX4="/>
+    </form:update>
+</div>

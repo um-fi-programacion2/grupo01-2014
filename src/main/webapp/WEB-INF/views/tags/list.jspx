@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_ar_edu_um_canarium_domain_Tag" items="${tags}" z="RzS1l6H8GokCPxBhdOqGxbxlwZw=">
+        <table:table data="${tags}" id="l_ar_edu_um_canarium_domain_Tag" path="/tags" z="t1ieond7YM0NQx/ecZ+6/MnYXYo=">
+            <table:column id="c_ar_edu_um_canarium_domain_Tag_descripcion" property="descripcion" z="YB+fRMY+549O9vS08TIE65qqa9Y="/>
+            <table:column id="c_ar_edu_um_canarium_domain_Tag_mensajes" property="mensajes" z="VtgkayjSe9PCfR52imZitrYeRow="/>
+        </table:table>
+    </page:list>
+</div>

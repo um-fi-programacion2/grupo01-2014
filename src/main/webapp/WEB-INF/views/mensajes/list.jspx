@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/form/fields" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:list id="pl_ar_edu_um_canarium_domain_Mensaje" items="${mensajes}" z="mxy02I+suK+12l1MJeEK/Y3h1gk=">
+        <table:table data="${mensajes}" id="l_ar_edu_um_canarium_domain_Mensaje" path="/mensajes" z="mVCnQM2d9sM5ngP+fMcnjdESOME=">
+            <table:column id="c_ar_edu_um_canarium_domain_Mensaje_descripcion" property="descripcion" z="mrpefbOlNI6PsbMRmCH214TVFkU="/>
+            <table:column date="true" dateTimePattern="${mensaje_fecha_date_format}" id="c_ar_edu_um_canarium_domain_Mensaje_fecha" property="fecha" z="fErhu69svNMpWcvRNtUVFj7kVWo="/>
+            <table:column id="c_ar_edu_um_canarium_domain_Mensaje_persona" property="persona" z="7zB0DOFSygRBOZhhSMEO7qMWk6s="/>
+            <table:column id="c_ar_edu_um_canarium_domain_Mensaje_tags" property="tags" z="SfEXRfKaXONbvzoJC7xjoGYauyk="/>
+        </table:table>
+    </page:list>
+</div>

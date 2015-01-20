@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_ar_edu_um_canarium_domain_MensajePrivado" object="${mensajeprivado}" path="/mensajeprivadoes" z="SCvhQiPm3KykZstGwAFcrnj5Mxs=">
+        <field:display field="descripcion" id="s_ar_edu_um_canarium_domain_MensajePrivado_descripcion" object="${mensajeprivado}" z="WsdJi8OOoTdLvUe2mZeqE+ugdM0="/>
+        <field:display date="true" dateTimePattern="${mensajePrivado_fecha_date_format}" field="fecha" id="s_ar_edu_um_canarium_domain_MensajePrivado_fecha" object="${mensajeprivado}" z="f67OJkTlwoy6lNHfGBo3La9YZOo="/>
+        <field:display field="idPersonaDestino" id="s_ar_edu_um_canarium_domain_MensajePrivado_idPersonaDestino" object="${mensajeprivado}" z="BQ4WXBg2dIq4ufxwd8/22lNa5js="/>
+        <field:display field="persona" id="s_ar_edu_um_canarium_domain_MensajePrivado_persona" object="${mensajeprivado}" z="TZqPqXrYYwwiNYLhB5kpr11eimY="/>
+    </page:show>
+</div>

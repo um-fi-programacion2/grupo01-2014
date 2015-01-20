@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_ar_edu_um_canarium_domain_Persona" object="${persona}" path="/personae" z="J821zWf7LwPjWP7yu03Ppt1veZg=">
+        <field:display field="nombre" id="s_ar_edu_um_canarium_domain_Persona_nombre" object="${persona}" z="oMnMOhOm9pRxOsYTN5fMQUZgeak="/>
+        <field:display field="apellido" id="s_ar_edu_um_canarium_domain_Persona_apellido" object="${persona}" z="wm2xuMkEFPBiNKMNkvFHg8SpY2w="/>
+        <field:display field="password" id="s_ar_edu_um_canarium_domain_Persona_password" object="${persona}" z="DBIPQ5bI6wfEmg+uZBEpsgij+ek="/>
+        <field:display field="foto" id="s_ar_edu_um_canarium_domain_Persona_foto" object="${persona}" z="gM9FDQJlJk9B9Vi82lbji9FCN84="/>
+        <field:display field="email" id="s_ar_edu_um_canarium_domain_Persona_email" object="${persona}" z="kIi6IS7/d3DKMlsPfiHBwmF6Mfw="/>
+        <field:display field="usuario" id="s_ar_edu_um_canarium_domain_Persona_usuario" object="${persona}" z="iuf8/u8+/Fe0gE7n7/t6Tiv1/l8="/>
+        <field:display field="descripcion" id="s_ar_edu_um_canarium_domain_Persona_descripcion" object="${persona}" z="twXqnnScPLgs0PX0LU7udnq1J+k="/>
+        <field:display field="activo" id="s_ar_edu_um_canarium_domain_Persona_activo" object="${persona}" z="yRemBnSV06LPYhvJpC4QZVh8VPI="/>
+        <field:display field="sexo" id="s_ar_edu_um_canarium_domain_Persona_sexo" object="${persona}" z="C2aIJvP5yK69JeyjIswicJdW2II="/>
+        <field:display date="true" dateTimePattern="${persona_fecha_date_format}" field="fecha" id="s_ar_edu_um_canarium_domain_Persona_fecha" object="${persona}" z="+Vam6ZT8XeVlugKNsFdPg4mNXFE="/>
+    </page:show>
+</div>

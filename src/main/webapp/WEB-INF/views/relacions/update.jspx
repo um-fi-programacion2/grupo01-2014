@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_ar_edu_um_canarium_domain_Relacion" modelAttribute="relacion" path="/relacions" versionField="Version" z="rhZScWY87H8d7+Z6o+1GBRMu9fQ=">
+        <field:input decimalMin="0" field="idSeguido" id="c_ar_edu_um_canarium_domain_Relacion_idSeguido" required="true" validationMessageCode="field_invalid_integer" z="yW9SQ4LzsB1dhVxfhQpZPTIBil8="/>
+        <field:select field="persona" id="c_ar_edu_um_canarium_domain_Relacion_persona" itemValue="id" items="${personae}" path="/personae" required="true" z="D9SXfkeENiIxQTwAiRULtFFOgkA="/>
+    </form:update>
+</div>

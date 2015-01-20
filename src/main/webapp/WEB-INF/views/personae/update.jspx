@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:update id="fu_ar_edu_um_canarium_domain_Persona" modelAttribute="persona" path="/personae" versionField="Version" z="1FjTZFsb9mkoqHTpUVyUFjutxbs=">
+        <field:textarea field="nombre" id="c_ar_edu_um_canarium_domain_Persona_nombre" required="true" z="QWtH7A21OTgmv2hl+mCALUBsVvA="/>
+        <field:textarea field="apellido" id="c_ar_edu_um_canarium_domain_Persona_apellido" required="true" z="JH+apS3Gjt85nT/NvNjCIW7mbZc="/>
+        <field:textarea field="password" id="c_ar_edu_um_canarium_domain_Persona_password" required="true" z="GURZz+5TcNGzeQEFYpPW1Wh0URo="/>
+        <field:textarea field="foto" id="c_ar_edu_um_canarium_domain_Persona_foto" z="PXpF4ASuxH/x9RaSvMi7tWklUH0="/>
+        <field:textarea field="email" id="c_ar_edu_um_canarium_domain_Persona_email" required="true" validationMessageCode="field_invalid_email" z="oPjKH+W+rrF5Ix0FKXZQ6+gT0pM="/>
+        <field:input field="usuario" id="c_ar_edu_um_canarium_domain_Persona_usuario" max="15" required="true" z="bP5dCWPfcvZ6tKske6vzY5RNows="/>
+        <field:textarea field="descripcion" id="c_ar_edu_um_canarium_domain_Persona_descripcion" z="4/9o8IvdZ5CR+/9TTaExLr//VIQ="/>
+        <field:checkbox field="activo" id="c_ar_edu_um_canarium_domain_Persona_activo" z="4RPR6l1mu9qKNJbux0Ke7O7SakY="/>
+        <field:select field="sexo" id="c_ar_edu_um_canarium_domain_Persona_sexo" items="${sexoes}" path="sexoes" required="true" z="efJVf3n4jEdBUTN1rylBGsRcqcc="/>
+        <field:datetime dateTimePattern="${persona_fecha_date_format}" field="fecha" id="c_ar_edu_um_canarium_domain_Persona_fecha" required="true" z="FOG6QAjWp06hCtGdDrW/C95H1V8="/>
+        <field:simple field="mensajesPrivado" id="c_ar_edu_um_canarium_domain_Persona_mensajesPrivado" messageCode="entity_reference_not_managed" messageCodeAttribute="Mensaje Privado" z="E9Tfwmu8VcX9BIy+b7FPH88soF0="/>
+        <field:simple field="relaciones" id="c_ar_edu_um_canarium_domain_Persona_relaciones" messageCode="entity_reference_not_managed" messageCodeAttribute="Relacion" z="9/RyKq9Am7fzBme78nrfglGKWno="/>
+        <field:simple field="republicados" id="c_ar_edu_um_canarium_domain_Persona_republicados" messageCode="entity_reference_not_managed" messageCodeAttribute="Republicado" z="ltoL5myVg//7WNmD76sfrzhuePE="/>
+        <field:simple field="mensajes" id="c_ar_edu_um_canarium_domain_Persona_mensajes" messageCode="entity_reference_not_managed" messageCodeAttribute="Mensaje" z="tosG2PFys1xK8R1f4lu409YaCVY="/>
+    </form:update>
+</div>
