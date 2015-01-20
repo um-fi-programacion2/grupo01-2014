@@ -68,3 +68,40 @@ focus --class ~.domain.MensajePrivado
 field number --fieldName idPersonaDestino --type java.lang.Long --notNull 
 field number --fieldName idPersonaDestino --type java.lang.Long --notNull --decimalMin 0
 web mvc all --package ~.web
+focus --class ~.domain.MensajePrivado
+field reference --fieldName persona --type ~.domain.Persona --notNull --cardinality MANY_TO_ONE
+focus --class ~.domain.Persona
+// [failed] field set --fieldName mensajes --type ~.domain.Mensajes --cardinality ONE_TO_MANY --mappedBy persona
+field set --fieldName mensajes --type ~.domain.Mensaje --cardinality ONE_TO_MANY --mappedBy persona
+field set --fieldName mensajesPrivado --type ~.domain.MensajePrivado --cardinality ONE_TO_MANY --mappedBy persona
+focus --class ~.domain.MensajePrivado
+field reference --fieldName persona --type ~.domain.Persona --notNull --cardinality MANY_TO_ONE
+web mvc all --package ~.web
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2015-01-19 21:06:37
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2015-01-20 15:26:38
+focus --class ~domain.Persona
+field set --fieldName relaciones --type ~.domain.Relacion --cardinality ONE_TO_MANY --mappedBy persona
+focus --class ~.domain.Relacion
+field reference --fieldName persona --type ~.domain.Persona --notNull --cardinality MANY_TO_ONE
+focus --class ~.domain.Persona
+field set --fieldName republicados --type ~.domain.Republicado --cardinality ONE_TO_MANY --mappedBy persona
+focus --class ~.domain.Republicado
+field reference --fieldName persona --type ~.domain.Persona --notNull --cardinality MANY_TO_ONE
+focus --class ~.domain.Persona
+field set --fieldName mensajes --type ~.domain.Mensaje --cardinality ONE_TO_MANY --mappedBy persona
+focus --class ~.domain.Mensaje
+field reference --fieldName persona --type ~.domain.Persona --notNull --cardinality MANY_TO_ONE
+field set --fieldName republicados --type ~.domain.Republicado --cardinality ONE_TO_MANY --mappedBy mensaje
+focus --class ~.domain.Republicado
+field reference --fieldName mensaje --type ~.domain.Mensaje --cardinality MANY_TO_ONE --notNull 
+focus --class ~.domain.Tag
+field set --fieldName mensajes --type ~.domain.Mensaje --cardinality MANY_TO_MANY 
+focus --class ~.domain.Mensaje
+field set --fieldName tags --type ~.domain.Tag --cardinality MANY_TO_MANY --mappedBy mensajes
+web mvc all --package ~.web
+focus --class ~.domain.Tag
+focus --class ~.domain.Mensaje
+field set --fieldName tags --type ~.domain.Tag --cardinality MANY_TO_MANY 
+focus --class ~.domain.Tag
+field set --fieldName mensajes --type ~.domain.Mensaje --cardinality MANY_TO_MANY --mappedBy tags
+web mvc all --package ~.web
