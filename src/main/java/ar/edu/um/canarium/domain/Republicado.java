@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 
 @RooJavaBean
 @RooToString
-@RooJpaActiveRecord
+@RooJpaActiveRecord(finders = { "findRepublicadoesByPersona", "findRepublicadoesByMensaje", "findRepublicadoesByFechaBetween" })
 public class Republicado {
 
     /**

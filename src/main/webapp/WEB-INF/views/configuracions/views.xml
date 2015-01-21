@@ -13,4 +13,7 @@
 <definition extends="default" name="configuracions/update">
         <put-attribute name="body" value="/WEB-INF/views/configuracions/update.jspx"/>
     </definition>
+<definition extends="default" name="configuracions/findConfiguracionsByAtributoLike">
+        <put-attribute name="body" value="/WEB-INF/views/configuracions/findConfiguracionsByAtributoLike.jspx"/>
+    </definition>
 </tiles-definitions>

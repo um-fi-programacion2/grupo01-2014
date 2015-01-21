@@ -13,4 +13,19 @@
 <definition extends="default" name="mensajes/update">
         <put-attribute name="body" value="/WEB-INF/views/mensajes/update.jspx"/>
     </definition>
+<definition extends="default" name="mensajes/findMensajesByDescripcionLike">
+        <put-attribute name="body" value="/WEB-INF/views/mensajes/findMensajesByDescripcionLike.jspx"/>
+    </definition>
+<definition extends="default" name="mensajes/findMensajesByFechaBetween">
+        <put-attribute name="body" value="/WEB-INF/views/mensajes/findMensajesByFechaBetween.jspx"/>
+    </definition>
+<definition extends="default" name="mensajes/findMensajesByFechaGreaterThan">
+        <put-attribute name="body" value="/WEB-INF/views/mensajes/findMensajesByFechaGreaterThan.jspx"/>
+    </definition>
+<definition extends="default" name="mensajes/findMensajesByFechaLessThan">
+        <put-attribute name="body" value="/WEB-INF/views/mensajes/findMensajesByFechaLessThan.jspx"/>
+    </definition>
+<definition extends="default" name="mensajes/findMensajesByPersona">
+        <put-attribute name="body" value="/WEB-INF/views/mensajes/findMensajesByPersona.jspx"/>
+    </definition>
 </tiles-definitions>
