@@ -17,7 +17,7 @@ import javax.persistence.ManyToMany;
 
 @RooJavaBean
 @RooToString
-@RooJpaActiveRecord(finders = { "findMensajesByDescripcionLike", "findMensajesByFechaBetween", "findMensajesByFechaGreaterThan", "findMensajesByFechaLessThan", "findMensajesByPersona" })
+@RooJpaActiveRecord
 public class Mensaje {
 
     /**

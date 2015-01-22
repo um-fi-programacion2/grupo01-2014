@@ -17,7 +17,7 @@ import javax.persistence.OneToMany;
 
 @RooJavaBean
 @RooToString
-@RooJpaActiveRecord(finders = { "findPersonaeByActivoNot", "findPersonaeByApellidoEquals", "findPersonaeByApellidoLike", "findPersonaeByEmailLike", "findPersonaeByPasswordEquals", "findPersonaeByUsuarioEquals" })
+@RooJpaActiveRecord
 public class Persona {
 
     /**

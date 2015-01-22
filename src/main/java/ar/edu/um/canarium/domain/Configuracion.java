@@ -7,7 +7,7 @@ import javax.validation.constraints.Size;
 
 @RooJavaBean
 @RooToString
-@RooJpaActiveRecord(finders = { "findConfiguracionsByAtributoLike" })
+@RooJpaActiveRecord
 public class Configuracion {
 
     /**

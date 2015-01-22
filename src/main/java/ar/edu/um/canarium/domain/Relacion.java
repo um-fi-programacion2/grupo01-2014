@@ -8,7 +8,7 @@ import javax.persistence.ManyToOne;
 
 @RooJavaBean
 @RooToString
-@RooJpaActiveRecord(finders = { "findRelacionsByIdSeguidoEquals", "findRelacionsByPersona" })
+@RooJpaActiveRecord
 public class Relacion {
 
     /**

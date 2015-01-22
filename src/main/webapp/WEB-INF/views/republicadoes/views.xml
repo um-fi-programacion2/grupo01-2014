@@ -13,13 +13,4 @@
 <definition extends="default" name="republicadoes/update">
         <put-attribute name="body" value="/WEB-INF/views/republicadoes/update.jspx"/>
     </definition>
-<definition extends="default" name="republicadoes/findRepublicadoesByFechaBetween">
-        <put-attribute name="body" value="/WEB-INF/views/republicadoes/findRepublicadoesByFechaBetween.jspx"/>
-    </definition>
-<definition extends="default" name="republicadoes/findRepublicadoesByMensaje">
-        <put-attribute name="body" value="/WEB-INF/views/republicadoes/findRepublicadoesByMensaje.jspx"/>
-    </definition>
-<definition extends="default" name="republicadoes/findRepublicadoesByPersona">
-        <put-attribute name="body" value="/WEB-INF/views/republicadoes/findRepublicadoesByPersona.jspx"/>
-    </definition>
 </tiles-definitions>

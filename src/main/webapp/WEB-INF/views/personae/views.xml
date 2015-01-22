@@ -13,22 +13,4 @@
 <definition extends="default" name="personae/update">
         <put-attribute name="body" value="/WEB-INF/views/personae/update.jspx"/>
     </definition>
-<definition extends="default" name="personae/findPersonaeByActivoNot">
-        <put-attribute name="body" value="/WEB-INF/views/personae/findPersonaeByActivoNot.jspx"/>
-    </definition>
-<definition extends="default" name="personae/findPersonaeByApellidoEquals">
-        <put-attribute name="body" value="/WEB-INF/views/personae/findPersonaeByApellidoEquals.jspx"/>
-    </definition>
-<definition extends="default" name="personae/findPersonaeByApellidoLike">
-        <put-attribute name="body" value="/WEB-INF/views/personae/findPersonaeByApellidoLike.jspx"/>
-    </definition>
-<definition extends="default" name="personae/findPersonaeByEmailLike">
-        <put-attribute name="body" value="/WEB-INF/views/personae/findPersonaeByEmailLike.jspx"/>
-    </definition>
-<definition extends="default" name="personae/findPersonaeByPasswordEquals">
-        <put-attribute name="body" value="/WEB-INF/views/personae/findPersonaeByPasswordEquals.jspx"/>
-    </definition>
-<definition extends="default" name="personae/findPersonaeByUsuarioEquals">
-        <put-attribute name="body" value="/WEB-INF/views/personae/findPersonaeByUsuarioEquals.jspx"/>
-    </definition>
 </tiles-definitions>

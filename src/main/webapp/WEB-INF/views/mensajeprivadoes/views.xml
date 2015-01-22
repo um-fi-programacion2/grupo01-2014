@@ -13,10 +13,4 @@
 <definition extends="default" name="mensajeprivadoes/update">
         <put-attribute name="body" value="/WEB-INF/views/mensajeprivadoes/update.jspx"/>
     </definition>
-<definition extends="default" name="mensajeprivadoes/findMensajePrivadoesByIdPersonaDestinoEquals">
-        <put-attribute name="body" value="/WEB-INF/views/mensajeprivadoes/findMensajePrivadoesByIdPersonaDestinoEquals.jspx"/>
-    </definition>
-<definition extends="default" name="mensajeprivadoes/findMensajePrivadoesByPersona">
-        <put-attribute name="body" value="/WEB-INF/views/mensajeprivadoes/findMensajePrivadoesByPersona.jspx"/>
-    </definition>
 </tiles-definitions>

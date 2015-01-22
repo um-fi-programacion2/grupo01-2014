@@ -6,51 +6,30 @@
         <menu:category id="c_configuracion" z="Ocr0mjFEPTUxPCBdasw5CnezQHk=">
             <menu:item id="i_configuracion_new" messageCode="global_menu_new" url="/configuracions?form" z="ub7ZReiU5j/GDKreJWShsy9YRFw="/>
             <menu:item id="i_configuracion_list" messageCode="global_menu_list" url="/configuracions?page=1&amp;size=${empty param.size ? 10 : param.size}" z="DNpqHgH3ndQAwVtsjfy3jEhqqjc="/>
-            <menu:item id="fi_configuracion_atributolike" messageCode="global_menu_find" url="/configuracions?find=ByAtributoLike&amp;form" z="iwovo5xZgGUxV3eoFmxXXRDAQX4="/>
         </menu:category>
         <menu:category id="c_mensajeprivado" z="hFLzpT38Eh1g/y371CDokmA/dEY=">
             <menu:item id="i_mensajeprivado_new" messageCode="global_menu_new" url="/mensajeprivadoes?form" z="J1LBW1GnzHK6x/8Aj/ro7oEcbmo="/>
             <menu:item id="i_mensajeprivado_list" messageCode="global_menu_list" url="/mensajeprivadoes?page=1&amp;size=${empty param.size ? 10 : param.size}" z="EbYzIEN6gZBDcTPMrKTffiDSS1Y="/>
-            <menu:item id="fi_mensajeprivado_idpersonadestinoequals" messageCode="global_menu_find" url="/mensajeprivadoes?find=ByIdPersonaDestinoEquals&amp;form" z="XIED9kjkgjF0qsOgFMSFf67IF/8="/>
-            <menu:item id="fi_mensajeprivado_persona" messageCode="global_menu_find" url="/mensajeprivadoes?find=ByPersona&amp;form" z="BpBQGEzazwi+TELoJFM4Wg4DHLM="/>
         </menu:category>
         <menu:category id="c_persona" z="HGx10uPnaEw3eOO50fIb9qf5jiI=">
             <menu:item id="i_persona_new" messageCode="global_menu_new" url="/personae?form" z="7Y0KdFKrjpWljePDcf4RoDAeOUA="/>
             <menu:item id="i_persona_list" messageCode="global_menu_list" url="/personae?page=1&amp;size=${empty param.size ? 10 : param.size}" z="/MWcaTHST1kjwDWGXluGyXbYCJo="/>
-            <menu:item id="fi_persona_activonot" messageCode="global_menu_find" url="/personae?find=ByActivoNot&amp;form" z="r7rjwAy9rBCn9rSTHDpCaFSnI/o="/>
-            <menu:item id="fi_persona_apellidoequals" messageCode="global_menu_find" url="/personae?find=ByApellidoEquals&amp;form" z="jadCgzVhdKyyM0gkHtbdhw+EJ9A="/>
-            <menu:item id="fi_persona_apellidolike" messageCode="global_menu_find" url="/personae?find=ByApellidoLike&amp;form" z="lIPdBVinSWz5tPH8lgUtlTUshOA="/>
-            <menu:item id="fi_persona_emaillike" messageCode="global_menu_find" url="/personae?find=ByEmailLike&amp;form" z="6QCTGxizc2I+zfre2T798uZEsYo="/>
-            <menu:item id="fi_persona_passwordequals" messageCode="global_menu_find" url="/personae?find=ByPasswordEquals&amp;form" z="7OgP4hggSMSouhL1tYL1Ll/+7UM="/>
-            <menu:item id="fi_persona_usuarioequals" messageCode="global_menu_find" url="/personae?find=ByUsuarioEquals&amp;form" z="KX4S7x+nSITxXmusSHMTFthNGc8="/>
         </menu:category>
         <menu:category id="c_relacion" z="a6Czd0t6QhDkwccFPPk7dOzBCds=">
             <menu:item id="i_relacion_new" messageCode="global_menu_new" url="/relacions?form" z="FoAHS0gEqP6/U5vfV+M7stHz08U="/>
             <menu:item id="i_relacion_list" messageCode="global_menu_list" url="/relacions?page=1&amp;size=${empty param.size ? 10 : param.size}" z="Wvr9LHa0UK3u8PqOlNItycMSNFA="/>
-            <menu:item id="fi_relacion_idseguidoequals" messageCode="global_menu_find" url="/relacions?find=ByIdSeguidoEquals&amp;form" z="I4ZF0k9oySi/vD60Rch1htYq9Oc="/>
-            <menu:item id="fi_relacion_persona" messageCode="global_menu_find" url="/relacions?find=ByPersona&amp;form" z="/dG0z3MlMRW/+82Daj3uBnNiD40="/>
         </menu:category>
         <menu:category id="c_republicado" z="Xk3dz6aNSEEOy8dHkqQmRhf70oU=">
             <menu:item id="i_republicado_new" messageCode="global_menu_new" url="/republicadoes?form" z="oEwDAvJSHVImB5+veICdQ6suCmA="/>
             <menu:item id="i_republicado_list" messageCode="global_menu_list" url="/republicadoes?page=1&amp;size=${empty param.size ? 10 : param.size}" z="CTfvhBxqRnhH88airl2YFHlNyMU="/>
-            <menu:item id="fi_republicado_fechabetween" messageCode="global_menu_find" url="/republicadoes?find=ByFechaBetween&amp;form" z="6tYBPFEITI8araf5Up+lzDuDftQ="/>
-            <menu:item id="fi_republicado_mensaje" messageCode="global_menu_find" url="/republicadoes?find=ByMensaje&amp;form" z="uK+bbxTF+Ha7pwCUgNPZataOlXw="/>
-            <menu:item id="fi_republicado_persona" messageCode="global_menu_find" url="/republicadoes?find=ByPersona&amp;form" z="YSN82idcKFy7JeJqCQGwWmxRek8="/>
         </menu:category>
         <menu:category id="c_tag" z="zbrDBteXk3LlkQMQy3xXpSv2428=">
             <menu:item id="i_tag_new" messageCode="global_menu_new" url="/tags?form" z="c2MR5d7dttBSgnPxMMH7oOEDl6Q="/>
             <menu:item id="i_tag_list" messageCode="global_menu_list" url="/tags?page=1&amp;size=${empty param.size ? 10 : param.size}" z="HsTcxZ80PNENgslZ1+b/pv8MYug="/>
-            <menu:item id="fi_tag_descripcionequals" messageCode="global_menu_find" url="/tags?find=ByDescripcionEquals&amp;form" z="sNucuO3rtxnADF4MZ99UqyYhVJc="/>
-            <menu:item id="fi_tag_mensajes" messageCode="global_menu_find" url="/tags?find=ByMensajes&amp;form" z="jwIDaqA1wHgPq/26zZpaox0FjsE="/>
         </menu:category>
         <menu:category id="c_mensaje" z="/z8EFX6PBUJoSZKfzMJGTros24c=">
             <menu:item id="i_mensaje_new" messageCode="global_menu_new" url="/mensajes?form" z="Bg8B78AtOSfZx35jXtE44AL2luU="/>
             <menu:item id="i_mensaje_list" messageCode="global_menu_list" url="/mensajes?page=1&amp;size=${empty param.size ? 10 : param.size}" z="Vei5khNLhkoZkntvP1llgv4HP2w="/>
-            <menu:item id="fi_mensaje_descripcionlike" messageCode="global_menu_find" url="/mensajes?find=ByDescripcionLike&amp;form" z="N18/CIhLIBiPH8HOwc+IcyVeyuQ="/>
-            <menu:item id="fi_mensaje_fechabetween" messageCode="global_menu_find" url="/mensajes?find=ByFechaBetween&amp;form" z="F2j3D+RLrf1zrnPy9X2bqdN2EXw="/>
-            <menu:item id="fi_mensaje_fechagreaterthan" messageCode="global_menu_find" url="/mensajes?find=ByFechaGreaterThan&amp;form" z="jVDHrj0L4q/13+F7cyxCkqSyvDA="/>
-            <menu:item id="fi_mensaje_fechalessthan" messageCode="global_menu_find" url="/mensajes?find=ByFechaLessThan&amp;form" z="YamrYXPx65So+xvBpCiJdZZvKBs="/>
-            <menu:item id="fi_mensaje_persona" messageCode="global_menu_find" url="/mensajes?find=ByPersona&amp;form" z="H4+ZHCS1LyAsVenx33Hxxv+4MCY="/>
         </menu:category>
     </menu:menu>
 </div>
