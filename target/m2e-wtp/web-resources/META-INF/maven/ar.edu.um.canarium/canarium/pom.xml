@@ -30,6 +30,11 @@
             <name>Spring Roo Repository</name>
             <url>http://spring-roo-repository.springsource.org/release</url>
         </repository>
+    <repository>
+            <id>gvNIX Add-on repository</id>
+            <url>https://gvnix.googlecode.com/svn/repo</url>
+            <name>gvNIX Add-on repository</name>
+        </repository>
     </repositories>
     <pluginRepositories>
         <pluginRepository>
@@ -284,6 +289,12 @@
             <groupId>org.apache.tiles</groupId>
             <artifactId>tiles-jsp</artifactId>
             <version>2.2.2</version>
+        </dependency>
+    <dependency>
+            <groupId>org.gvnix</groupId>
+            <artifactId>org.gvnix.addon.web.mvc</artifactId>
+            <version>1.3.1-RELEASE</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
     <build>

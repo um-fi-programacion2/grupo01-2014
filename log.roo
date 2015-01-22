@@ -143,3 +143,8 @@ finder add findTagsByMensajes
 web mvc all --package ~.web
 web mvc finder all
 web mvc language --code es
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2015-01-22 00:14:13
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2015-01-22 00:18:58
+web mvc jquery setup
+web mvc bootstrap setup
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2015-01-22 00:22:02
