@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:find finderName="ByIdPersonaDestinoEquals" id="ff_ar_edu_um_canarium_domain_MensajePrivado" path="/mensajeprivadoes" z="8hdHISpFIop1lkBuY+1OfilfgCw=">
+        <field:input decimalMin="0" disableFormBinding="true" field="idPersonaDestino" id="f_ar_edu_um_canarium_domain_MensajePrivado_idPersonaDestino" required="true" validationMessageCode="field_invalid_integer" z="g5Gx2RVb7CJY75YM1DXIMjydn3w="/>
+    </form:find>
+</div>

@@ -13,4 +13,10 @@
 <definition extends="default" name="tags/update">
         <put-attribute name="body" value="/WEB-INF/views/tags/update.jspx"/>
     </definition>
+<definition extends="default" name="tags/findTagsByDescripcionEquals">
+        <put-attribute name="body" value="/WEB-INF/views/tags/findTagsByDescripcionEquals.jspx"/>
+    </definition>
+<definition extends="default" name="tags/findTagsByMensajes">
+        <put-attribute name="body" value="/WEB-INF/views/tags/findTagsByMensajes.jspx"/>
+    </definition>
 </tiles-definitions>

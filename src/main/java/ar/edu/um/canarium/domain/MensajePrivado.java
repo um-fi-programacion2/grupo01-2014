@@ -13,7 +13,7 @@ import javax.persistence.ManyToOne;
 
 @RooJavaBean
 @RooToString
-@RooJpaActiveRecord
+@RooJpaActiveRecord(finders = { "findMensajePrivadoesByIdPersonaDestinoEquals", "findMensajePrivadoesByPersona" })
 public class MensajePrivado {
 
     /**

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:find finderName="ByMensajes" id="ff_ar_edu_um_canarium_domain_Tag" path="/tags" z="h8jfdWePKiiQGYHXYMXII64hbVM=">
+        <field:select disableFormBinding="true" field="mensajes" id="f_ar_edu_um_canarium_domain_Tag_mensajes" itemValue="id" items="${mensajes}" multiple="true" path="/mensajes" required="true" z="kePCtY7AHHyCHY+NUsMo7f0zcPA="/>
+    </form:find>
+</div>

@@ -12,7 +12,7 @@ import javax.persistence.ManyToMany;
 
 @RooJavaBean
 @RooToString
-@RooJpaActiveRecord
+@RooJpaActiveRecord(finders = { "findTagsByDescripcionEquals", "findTagsByMensajes" })
 public class Tag {
 
     /**

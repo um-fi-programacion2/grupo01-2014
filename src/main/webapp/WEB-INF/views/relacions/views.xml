@@ -13,4 +13,10 @@
 <definition extends="default" name="relacions/update">
         <put-attribute name="body" value="/WEB-INF/views/relacions/update.jspx"/>
     </definition>
+<definition extends="default" name="relacions/findRelacionsByIdSeguidoEquals">
+        <put-attribute name="body" value="/WEB-INF/views/relacions/findRelacionsByIdSeguidoEquals.jspx"/>
+    </definition>
+<definition extends="default" name="relacions/findRelacionsByPersona">
+        <put-attribute name="body" value="/WEB-INF/views/relacions/findRelacionsByPersona.jspx"/>
+    </definition>
 </tiles-definitions>
