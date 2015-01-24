@@ -9,7 +9,10 @@ import ar.edu.um.canarium.domain.MensajePrivado;
 import ar.edu.um.canarium.domain.Persona;
 import ar.edu.um.canarium.domain.Relacion;
 import ar.edu.um.canarium.domain.Republicado;
+import ar.edu.um.canarium.domain.Role;
 import ar.edu.um.canarium.domain.Tag;
+import ar.edu.um.canarium.domain.User;
+import ar.edu.um.canarium.domain.UserRole;
 import ar.edu.um.canarium.web.ApplicationConversionServiceFactoryBean;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.core.convert.converter.Converter;
@@ -163,6 +166,30 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         };
     }
     
+    public Converter<Role, String> ApplicationConversionServiceFactoryBean.getRoleToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<ar.edu.um.canarium.domain.Role, java.lang.String>() {
+            public String convert(Role role) {
+                return new StringBuilder().append(role.getRoleName()).append(' ').append(role.getRoleDescription()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, Role> ApplicationConversionServiceFactoryBean.getIdToRoleConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, ar.edu.um.canarium.domain.Role>() {
+            public ar.edu.um.canarium.domain.Role convert(java.lang.Long id) {
+                return Role.findRole(id);
+            }
+        };
+    }
+    
+    public Converter<String, Role> ApplicationConversionServiceFactoryBean.getStringToRoleConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, ar.edu.um.canarium.domain.Role>() {
+            public ar.edu.um.canarium.domain.Role convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), Role.class);
+            }
+        };
+    }
+    
     public Converter<Tag, String> ApplicationConversionServiceFactoryBean.getTagToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<ar.edu.um.canarium.domain.Tag, java.lang.String>() {
             public String convert(Tag tag) {
@@ -187,6 +214,54 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         };
     }
     
+    public Converter<User, String> ApplicationConversionServiceFactoryBean.getUserToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<ar.edu.um.canarium.domain.User, java.lang.String>() {
+            public String convert(User user) {
+                return new StringBuilder().append(user.getFirstName()).append(' ').append(user.getLastName()).append(' ').append(user.getEmailAddress()).append(' ').append(user.getPassword()).toString();
+            }
+        };
+    }
+    
+    public Converter<Long, User> ApplicationConversionServiceFactoryBean.getIdToUserConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, ar.edu.um.canarium.domain.User>() {
+            public ar.edu.um.canarium.domain.User convert(java.lang.Long id) {
+                return User.findUser(id);
+            }
+        };
+    }
+    
+    public Converter<String, User> ApplicationConversionServiceFactoryBean.getStringToUserConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, ar.edu.um.canarium.domain.User>() {
+            public ar.edu.um.canarium.domain.User convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), User.class);
+            }
+        };
+    }
+    
+    public Converter<UserRole, String> ApplicationConversionServiceFactoryBean.getUserRoleToStringConverter() {
+        return new org.springframework.core.convert.converter.Converter<ar.edu.um.canarium.domain.UserRole, java.lang.String>() {
+            public String convert(UserRole userRole) {
+                return "(no displayable fields)";
+            }
+        };
+    }
+    
+    public Converter<Long, UserRole> ApplicationConversionServiceFactoryBean.getIdToUserRoleConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.Long, ar.edu.um.canarium.domain.UserRole>() {
+            public ar.edu.um.canarium.domain.UserRole convert(java.lang.Long id) {
+                return UserRole.findUserRole(id);
+            }
+        };
+    }
+    
+    public Converter<String, UserRole> ApplicationConversionServiceFactoryBean.getStringToUserRoleConverter() {
+        return new org.springframework.core.convert.converter.Converter<java.lang.String, ar.edu.um.canarium.domain.UserRole>() {
+            public ar.edu.um.canarium.domain.UserRole convert(String id) {
+                return getObject().convert(getObject().convert(id, Long.class), UserRole.class);
+            }
+        };
+    }
+    
     public void ApplicationConversionServiceFactoryBean.installLabelConverters(FormatterRegistry registry) {
         registry.addConverter(getConfiguracionToStringConverter());
         registry.addConverter(getIdToConfiguracionConverter());
@@ -206,9 +281,18 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
         registry.addConverter(getRepublicadoToStringConverter());
         registry.addConverter(getIdToRepublicadoConverter());
         registry.addConverter(getStringToRepublicadoConverter());
+        registry.addConverter(getRoleToStringConverter());
+        registry.addConverter(getIdToRoleConverter());
+        registry.addConverter(getStringToRoleConverter());
         registry.addConverter(getTagToStringConverter());
         registry.addConverter(getIdToTagConverter());
         registry.addConverter(getStringToTagConverter());
+        registry.addConverter(getUserToStringConverter());
+        registry.addConverter(getIdToUserConverter());
+        registry.addConverter(getStringToUserConverter());
+        registry.addConverter(getUserRoleToStringConverter());
+        registry.addConverter(getIdToUserRoleConverter());
+        registry.addConverter(getStringToUserRoleConverter());
     }
     
     public void ApplicationConversionServiceFactoryBean.afterPropertiesSet() {

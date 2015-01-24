@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/form" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <form:create id="fc_ar_edu_um_canarium_domain_Role" modelAttribute="role" path="/roles" render="${empty dependencies}" z="TjGfvBEok6qfESnNRfMkxhdsm84=">
+        <field:input field="roleName" id="c_ar_edu_um_canarium_domain_Role_roleName" min="1" required="true" z="g7Ce9wXYBmj/Fa/o63qYq1B5qus="/>
+        <field:textarea field="roleDescription" id="c_ar_edu_um_canarium_domain_Role_roleDescription" required="true" z="WvzemdwjrKm8WoUh69DGQAvpEJI="/>
+    </form:create>
+    <form:dependency dependencies="${dependencies}" id="d_ar_edu_um_canarium_domain_Role" render="${not empty dependencies}" z="g7Q0cLb6Kyx1pKiNWStTK2joCqc="/>
+</div>

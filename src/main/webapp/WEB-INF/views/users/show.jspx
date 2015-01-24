@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<div xmlns:field="urn:jsptagdir:/WEB-INF/tags/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/form" version="2.0">
+    <jsp:directive.page contentType="text/html;charset=UTF-8"/>
+    <jsp:output omit-xml-declaration="yes"/>
+    <page:show id="ps_ar_edu_um_canarium_domain_User" object="${user}" path="/users" z="FYfQHfE+/tMYP66CGNbMiIb6ExI=">
+        <field:display field="firstName" id="s_ar_edu_um_canarium_domain_User_firstName" object="${user}" z="/r9lUn75lgb7wUsgGiFp3AMAYPw="/>
+        <field:display field="lastName" id="s_ar_edu_um_canarium_domain_User_lastName" object="${user}" z="mff0+e3UL2gmPW6IAXEhhHcSeF0="/>
+        <field:display field="emailAddress" id="s_ar_edu_um_canarium_domain_User_emailAddress" object="${user}" z="2yRKEttiyhczk1X/YSrwDFN1iiU="/>
+        <field:display field="password" id="s_ar_edu_um_canarium_domain_User_password" object="${user}" z="wiPy5yUhrqB6xT9IxZXkNLDtf/c="/>
+        <field:display date="true" dateTimePattern="${user_activationdate_date_format}" field="activationDate" id="s_ar_edu_um_canarium_domain_User_activationDate" object="${user}" z="UxZABxBmORz+VwbyQyV1b/RuA9Q="/>
+        <field:display field="activationKey" id="s_ar_edu_um_canarium_domain_User_activationKey" object="${user}" z="6+3Jkkbfvjg/+AqXEiA2+VbB9VM="/>
+        <field:display field="enabled" id="s_ar_edu_um_canarium_domain_User_enabled" object="${user}" z="BVnrgKOv4XdkCCjLclIqBy2nQ5A="/>
+        <field:display field="locked" id="s_ar_edu_um_canarium_domain_User_locked" object="${user}" z="IzWcEoTZ+QhaoBT8RdcmlfRT/Ac="/>
+    </page:show>
+</div>
