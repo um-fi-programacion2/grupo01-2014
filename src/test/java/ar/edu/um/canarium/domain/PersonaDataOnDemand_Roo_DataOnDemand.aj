@@ -6,6 +6,7 @@ package ar.edu.um.canarium.domain;
 import ar.edu.um.canarium.domain.Persona;
 import ar.edu.um.canarium.domain.PersonaDataOnDemand;
 import ar.edu.um.canarium.domain.Sexo;
+import ar.edu.um.canarium.domain.UserDataOnDemand;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -16,6 +17,7 @@ import java.util.List;
 import java.util.Random;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 privileged aspect PersonaDataOnDemand_Roo_DataOnDemand {
@@ -26,32 +28,17 @@ privileged aspect PersonaDataOnDemand_Roo_DataOnDemand {
     
     private List<Persona> PersonaDataOnDemand.data;
     
+    @Autowired
+    UserDataOnDemand PersonaDataOnDemand.userDataOnDemand;
+    
     public Persona PersonaDataOnDemand.getNewTransientPersona(int index) {
         Persona obj = new Persona();
-        setActivo(obj, index);
-        setApellido(obj, index);
         setDescripcion(obj, index);
-        setEmail(obj, index);
         setFecha(obj, index);
         setFoto(obj, index);
-        setNombre(obj, index);
-        setPassword(obj, index);
         setSexo(obj, index);
         setUsuario(obj, index);
         return obj;
-    }
-    
-    public void PersonaDataOnDemand.setActivo(Persona obj, int index) {
-        Boolean activo = Boolean.TRUE;
-        obj.setActivo(activo);
-    }
-    
-    public void PersonaDataOnDemand.setApellido(Persona obj, int index) {
-        String apellido = "apellido_" + index;
-        if (apellido.length() > 45) {
-            apellido = apellido.substring(0, 45);
-        }
-        obj.setApellido(apellido);
     }
     
     public void PersonaDataOnDemand.setDescripcion(Persona obj, int index) {
@@ -60,14 +47,6 @@ privileged aspect PersonaDataOnDemand_Roo_DataOnDemand {
             descripcion = descripcion.substring(0, 500);
         }
         obj.setDescripcion(descripcion);
-    }
-    
-    public void PersonaDataOnDemand.setEmail(Persona obj, int index) {
-        String email = "foo" + index + "@bar.com";
-        if (email.length() > 200) {
-            email = new Random().nextInt(10) + email.substring(1, 200);
-        }
-        obj.setEmail(email);
     }
     
     public void PersonaDataOnDemand.setFecha(Persona obj, int index) {
@@ -81,22 +60,6 @@ privileged aspect PersonaDataOnDemand_Roo_DataOnDemand {
             foto = foto.substring(0, 255);
         }
         obj.setFoto(foto);
-    }
-    
-    public void PersonaDataOnDemand.setNombre(Persona obj, int index) {
-        String nombre = "nombre_" + index;
-        if (nombre.length() > 45) {
-            nombre = nombre.substring(0, 45);
-        }
-        obj.setNombre(nombre);
-    }
-    
-    public void PersonaDataOnDemand.setPassword(Persona obj, int index) {
-        String password = "password_" + index;
-        if (password.length() > 45) {
-            password = password.substring(0, 45);
-        }
-        obj.setPassword(password);
     }
     
     public void PersonaDataOnDemand.setSexo(Persona obj, int index) {

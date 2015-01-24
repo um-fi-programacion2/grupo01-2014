@@ -11,6 +11,7 @@
         <field:input field="activationKey" id="c_ar_edu_um_canarium_domain_User_activationKey" z="yBWdCGubxVCQSWNZQV/8cqpIAqQ="/>
         <field:checkbox field="enabled" id="c_ar_edu_um_canarium_domain_User_enabled" z="FasStyDMeww0dF5ThCQXu4XWBTI="/>
         <field:checkbox field="locked" id="c_ar_edu_um_canarium_domain_User_locked" z="QoZJTw2Uz38TB/uEeRqXtvGeUyo="/>
+        <field:select field="persona" id="c_ar_edu_um_canarium_domain_User_persona" itemValue="id" items="${personae}" path="/personae" z="nIuLt3inkOhBwx577ePLOlZkU8U="/>
     </form:create>
     <form:dependency dependencies="${dependencies}" id="d_ar_edu_um_canarium_domain_User" render="${not empty dependencies}" z="TOatWujS2y+LDe6P+BYOJmUxb7Q="/>
 </div>

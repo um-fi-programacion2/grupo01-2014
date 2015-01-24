@@ -9,6 +9,7 @@ import ar.edu.um.canarium.domain.Persona;
 import ar.edu.um.canarium.domain.Relacion;
 import ar.edu.um.canarium.domain.Republicado;
 import ar.edu.um.canarium.domain.Sexo;
+import ar.edu.um.canarium.domain.User;
 import ar.edu.um.canarium.web.PersonaController;
 import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
@@ -106,6 +107,7 @@ privileged aspect PersonaController_Roo_Controller {
         uiModel.addAttribute("relacions", Relacion.findAllRelacions());
         uiModel.addAttribute("republicadoes", Republicado.findAllRepublicadoes());
         uiModel.addAttribute("sexoes", Arrays.asList(Sexo.values()));
+        uiModel.addAttribute("users", User.findAllUsers());
     }
     
     String PersonaController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

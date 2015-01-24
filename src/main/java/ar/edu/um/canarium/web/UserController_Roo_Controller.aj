@@ -3,6 +3,7 @@
 
 package ar.edu.um.canarium.web;
 
+import ar.edu.um.canarium.domain.Persona;
 import ar.edu.um.canarium.domain.User;
 import ar.edu.um.canarium.web.UserController;
 import java.io.UnsupportedEncodingException;
@@ -84,6 +85,7 @@ privileged aspect UserController_Roo_Controller {
     void UserController.populateEditForm(Model uiModel, User user) {
         uiModel.addAttribute("user", user);
         addDateTimeFormatPatterns(uiModel);
+        uiModel.addAttribute("personae", Persona.findAllPersonae());
     }
     
     String UserController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

@@ -17,11 +17,6 @@
         <menu:category id="c_persona" z="HGx10uPnaEw3eOO50fIb9qf5jiI=">
             <menu:item id="i_persona_new" messageCode="global_menu_new" url="/personae?form" z="7Y0KdFKrjpWljePDcf4RoDAeOUA="/>
             <menu:item id="i_persona_list" messageCode="global_menu_list" url="/personae?page=1&amp;size=${empty param.size ? 10 : param.size}" z="/MWcaTHST1kjwDWGXluGyXbYCJo="/>
-            <menu:item id="fi_persona_activonot" messageCode="global_menu_find" url="/personae?find=ByActivoNot&amp;form" z="r7rjwAy9rBCn9rSTHDpCaFSnI/o="/>
-            <menu:item id="fi_persona_apellidolike" messageCode="global_menu_find" url="/personae?find=ByApellidoLike&amp;form" z="lIPdBVinSWz5tPH8lgUtlTUshOA="/>
-            <menu:item id="fi_persona_emaillike" messageCode="global_menu_find" url="/personae?find=ByEmailLike&amp;form" z="6QCTGxizc2I+zfre2T798uZEsYo="/>
-            <menu:item id="fi_persona_passwordequals" messageCode="global_menu_find" url="/personae?find=ByPasswordEquals&amp;form" z="7OgP4hggSMSouhL1tYL1Ll/+7UM="/>
-            <menu:item id="fi_persona_usuarioequals" messageCode="global_menu_find" url="/personae?find=ByUsuarioEquals&amp;form" z="KX4S7x+nSITxXmusSHMTFthNGc8="/>
         </menu:category>
         <menu:category id="c_relacion" z="a6Czd0t6QhDkwccFPPk7dOzBCds=">
             <menu:item id="i_relacion_new" messageCode="global_menu_new" url="/relacions?form" z="FoAHS0gEqP6/U5vfV+M7stHz08U="/>

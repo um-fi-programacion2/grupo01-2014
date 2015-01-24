@@ -14,41 +14,17 @@ import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @RooJavaBean
 @RooToString
-@RooJpaActiveRecord(finders = { "findPersonaeByActivoNot", "findPersonaeByApellidoLike", "findPersonaeByEmailLike", "findPersonaeByPasswordEquals", "findPersonaeByUsuarioEquals" })
+@RooJpaActiveRecord
 public class Persona {
-
-    /**
-     */
-    @NotNull
-    @Size(max = 45)
-    private String nombre;
-
-    /**
-     */
-    @NotNull
-    @Size(max = 45)
-    private String apellido;
-
-    /**
-     */
-    @NotNull
-    @Size(max = 45)
-    private String password;
 
     /**
      */
     @Size(max = 255)
     private String foto;
-
-    /**
-     */
-    @NotNull
-    @Column(unique = true)
-    @Size(max = 200)
-    private String email;
 
     /**
      */
@@ -61,11 +37,6 @@ public class Persona {
      */
     @Size(max = 500)
     private String descripcion;
-
-    /**
-     */
-    @NotNull
-    private Boolean activo;
 
     /**
      */
@@ -99,4 +70,9 @@ public class Persona {
      */
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "persona")
     private Set<Mensaje> mensajes = new HashSet<Mensaje>();
+
+    /**
+     */
+    @OneToOne
+    private User persona;
 }

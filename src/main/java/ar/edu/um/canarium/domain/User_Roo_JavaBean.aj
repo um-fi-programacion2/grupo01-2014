@@ -3,6 +3,7 @@
 
 package ar.edu.um.canarium.domain;
 
+import ar.edu.um.canarium.domain.Persona;
 import ar.edu.um.canarium.domain.User;
 import java.util.Date;
 
@@ -70,6 +71,14 @@ privileged aspect User_Roo_JavaBean {
     
     public void User.setLocked(Boolean locked) {
         this.locked = locked;
+    }
+    
+    public Persona User.getPersona() {
+        return this.persona;
+    }
+    
+    public void User.setPersona(Persona persona) {
+        this.persona = persona;
     }
     
 }

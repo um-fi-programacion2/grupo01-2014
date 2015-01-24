@@ -9,34 +9,11 @@ import ar.edu.um.canarium.domain.Persona;
 import ar.edu.um.canarium.domain.Relacion;
 import ar.edu.um.canarium.domain.Republicado;
 import ar.edu.um.canarium.domain.Sexo;
+import ar.edu.um.canarium.domain.User;
 import java.util.Date;
 import java.util.Set;
 
 privileged aspect Persona_Roo_JavaBean {
-    
-    public String Persona.getNombre() {
-        return this.nombre;
-    }
-    
-    public void Persona.setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-    
-    public String Persona.getApellido() {
-        return this.apellido;
-    }
-    
-    public void Persona.setApellido(String apellido) {
-        this.apellido = apellido;
-    }
-    
-    public String Persona.getPassword() {
-        return this.password;
-    }
-    
-    public void Persona.setPassword(String password) {
-        this.password = password;
-    }
     
     public String Persona.getFoto() {
         return this.foto;
@@ -44,14 +21,6 @@ privileged aspect Persona_Roo_JavaBean {
     
     public void Persona.setFoto(String foto) {
         this.foto = foto;
-    }
-    
-    public String Persona.getEmail() {
-        return this.email;
-    }
-    
-    public void Persona.setEmail(String email) {
-        this.email = email;
     }
     
     public String Persona.getUsuario() {
@@ -68,14 +37,6 @@ privileged aspect Persona_Roo_JavaBean {
     
     public void Persona.setDescripcion(String descripcion) {
         this.descripcion = descripcion;
-    }
-    
-    public Boolean Persona.getActivo() {
-        return this.activo;
-    }
-    
-    public void Persona.setActivo(Boolean activo) {
-        this.activo = activo;
     }
     
     public Sexo Persona.getSexo() {
@@ -124,6 +85,14 @@ privileged aspect Persona_Roo_JavaBean {
     
     public void Persona.setMensajes(Set<Mensaje> mensajes) {
         this.mensajes = mensajes;
+    }
+    
+    public User Persona.getPersona() {
+        return this.persona;
+    }
+    
+    public void Persona.setPersona(User persona) {
+        this.persona = persona;
     }
     
 }

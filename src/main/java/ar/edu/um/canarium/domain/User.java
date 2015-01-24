@@ -9,6 +9,7 @@ import java.util.Date;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.springframework.format.annotation.DateTimeFormat;
+import javax.persistence.OneToOne;
 
 @RooJavaBean
 @RooToString
@@ -57,4 +58,9 @@ public class User {
     /**
      */
     private Boolean locked;
+
+    /**
+     */
+    @OneToOne
+    private Persona persona;
 }

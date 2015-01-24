@@ -185,3 +185,14 @@ finder add findUsersByActivationKeyAndEmailAddress
 focus --class ~.domain.UserRole
 finder add findUserRolesByUserEntry
 // Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2015-01-23 21:03:52
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2015-01-23 23:15:39
+// [failed] focus --class Persona
+// [failed] field reference --fieldName user --type ~.domain.User --cardinality ONE_TO_ONE 
+// [failed] field reference --fieldName user --type ~.domain.User --cardinality ONE_TO_ONE 
+focus --class ~.domain.Persona
+// [failed] field reference --fieldName user --type ~.domain.User --cardinality ONE_TO_ONE 
+field reference --fieldName persona --type ~.domain.User --cardinality ONE_TO_ONE 
+focus --class ~.domain.User
+field reference --fieldName persona --type ~.domain.Persona --cardinality ONE_TO_ONE 
+web mvc all --package ~.web
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2015-01-23 23:38:15

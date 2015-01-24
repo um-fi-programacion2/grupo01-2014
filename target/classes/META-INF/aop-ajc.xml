@@ -40,7 +40,6 @@
 <aspect name="ar.edu.um.canarium.web.PersonaController_Roo_Controller"/>
 <aspect name="ar.edu.um.canarium.domain.Configuracion_Roo_JavaBean"/>
 <aspect name="ar.edu.um.canarium.domain.Republicado_Roo_JavaBean"/>
-<aspect name="ar.edu.um.canarium.web.PersonaController_Roo_Controller_Finder"/>
 <aspect name="ar.edu.um.canarium.domain.MensajePrivado_Roo_ToString"/>
 <aspect name="ar.edu.um.canarium.domain.Tag_Roo_ToString"/>
 <aspect name="ar.edu.um.canarium.web.ConfiguracionController_Roo_Controller_Finder"/>
@@ -65,7 +64,6 @@
 <aspect name="ar.edu.um.canarium.domain.Mensaje_Roo_Jpa_Entity"/>
 <aspect name="ar.edu.um.canarium.domain.Persona_Roo_Jpa_ActiveRecord"/>
 <aspect name="ar.edu.um.canarium.domain.Configuracion_Roo_Jpa_Entity"/>
-<aspect name="ar.edu.um.canarium.domain.Persona_Roo_Finder"/>
 <aspect name="ar.edu.um.canarium.domain.Tag_Roo_JavaBean"/>
 <aspect name="ar.edu.um.canarium.domain.Tag_Roo_Configurable"/>
 <aspect name="ar.edu.um.canarium.domain.Configuracion_Roo_Finder"/>
