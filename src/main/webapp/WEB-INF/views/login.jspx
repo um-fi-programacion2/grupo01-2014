@@ -3,59 +3,51 @@
   <jsp:directive.page contentType="text/html;charset=UTF-8"/>
   <jsp:output omit-xml-declaration="yes"/>
   <spring:message code="security_login_title" htmlEscape="false" var="title"/>
-  <util:panel id="title" title="${title}">
-    <c:if test="${not empty param.login_error}">
-      <div class="errors">
-        <p>
-          <spring:message code="security_login_unsuccessful"/>
-          <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}"/>
-          .
-        </p>
-      </div>
-    </c:if>
-    <c:if test="${empty param.login_error}">
-      <p>
-        <spring:message code="security_login_message"/>
-      </p>
-    </c:if>
-    <spring:url value="/resources/j_spring_security_check" var="form_url"/>
-    <form action="${fn:escapeXml(form_url)}" method="POST" name="f">
-      <div>
-        <label for="j_username">
-          <spring:message code="security_login_form_name"/>
-        </label>
-        <input id="j_username" name="j_username" style="width:150px" type="text"/>
-        <spring:message code="security_login_form_name_message" htmlEscape="false" var="name_msg"/>
-        <script type="text/javascript">
-          <c:set var="sec_name_msg">
-            <spring:escapeBody javaScriptEscape="true">${name_msg}</spring:escapeBody>
-          </c:set>
-          Spring.addDecoration(new Spring.ElementDecoration({elementId : "j_username", widgetType : "dijit.form.ValidationTextBox", widgetAttrs : {promptMessage: "${sec_name_msg}", required : true}})); 
-        </script>
-      </div>
-      <br/>
-      <div>
-        <label for="j_password">
-          <spring:message code="security_login_form_password"/>
-        </label>
-        <input id="j_password" name="j_password" style="width:150px" type="password"/>
-        <spring:message code="security_login_form_password_message" htmlEscape="false" var="pwd_msg"/>
-        <script type="text/javascript">
-          <c:set var="sec_pwd_msg">
-            <spring:escapeBody javaScriptEscape="true">${pwd_msg}</spring:escapeBody>
-          </c:set>
-          Spring.addDecoration(new Spring.ElementDecoration({elementId : "j_password", widgetType : "dijit.form.ValidationTextBox", widgetAttrs : {promptMessage: "${sec_pwd_msg}", required : true}})); 
-        </script>
-      </div>
-      <br/>
-      <div class="submit">
-        <script type="text/javascript">Spring.addDecoration(new Spring.ValidateAllDecoration({elementId:'proceed', event:'onclick'}));</script>
-        <spring:message code="button_submit" htmlEscape="false" var="submit_label"/>
-        <input id="proceed" type="submit" value="${fn:escapeXml(submit_label)}"/>
-        <spring:message code="button_reset" htmlEscape="false" var="reset_label"/>
-        <input id="reset" type="reset" value="${fn:escapeXml(reset_label)}"/>
-      </div>
-    <div>&lt;br/&gt;&lt;a href ="/canarium/forgotpassword/index"&gt;Forgot Password&lt;/a&gt; | Not a User Yet? &lt;a href ="/canarium/signup?form"&gt;Sign Up&lt;/a&gt;</div>
-        </form>
-  </util:panel>
+  <spring:url var="logo_um" value="/resources/images/um.jpg" />
+  <spring:message code="placeholder_user" var="user" />
+  <spring:message code="security_login_form_name_message" htmlEscape="false" var="name_msg"/>
+  <spring:message code="security_login_form_password" var="pass"/>
+  <spring:message code="security_login_form_password_message" htmlEscape="false" var="pwd_msg"/>
+  
+	<div class="row">
+		<div class="col-md-6 front-welcome">
+		    <div class="imagen-um"><img src="${logo_um}" width="100px"/></div>
+		    <h4><strong><spring:message code="bienvenido"/></strong></h4>
+		    <p class="text-primary">
+		    	<spring:message code="eslogan"/>
+	        </p>
+		</div>
+		<div class="col-md-6">
+		    <div class="row">
+		        <div class="col-md-offset-1 col-md-11 front-signin">
+		            <spring:url value="/resources/j_spring_security_check" var="form_url"/>
+		            <form action="${fn:escapeXml(form_url)}" role="form"  method="POST" name="f" class="form-horizontal">
+			            <div class="form-group">
+						    <div class="col-sm-12">
+						    	<input class="form-control input-sm" type="text" placeholder="${user}" autofocus="autofocus" id="j_username" name="j_username" data-required="true" data-original-title="${name_msg}" />
+	   					    </div>
+						</div>
+						 <div class="form-group">
+		                     <div class="col-sm-8">
+	                            <input type="password" class="form-control input-sm" placeholder="${pass}" id="j_password" name="j_password" data-required="true" data-original-title="${pwd_msg}" />                    
+				        	 	<div class="restablecer-contraseña">&lt;a href ="/canarium/forgotpassword/index"&gt;Reestablecer contraseña&lt;/a&gt;</div>
+				        	 </div>
+		                     <div class="col-sm-4 boton-login">
+										<script type="text/javascript">Spring.addDecoration(new Spring.ValidateAllDecoration({elementId:'proceed', event:'onclick'}));</script>							        <spring:message code="button_submit" htmlEscape="false" var="submit_label"/>
+								        <input id="proceed" type="submit" class="btn btn-primary btn-sm pull-right" value="${fn:escapeXml(submit_label)}"/>
+		                     </div>
+		                 </div>
+		            </form>
+		        </div>
+		    </div>
+		    <div class="row">
+		         <div class="col-md-offset-1 col-md-11 front-signup">
+		             <p class="text-primary">
+				    	<spring:message code="eslogan"/>
+			        </p>
+		         </div>
+     		</div>
+	    </div>
+
+	</div>
 </div>

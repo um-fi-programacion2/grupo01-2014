@@ -1,0 +1,545 @@
+body
+{
+    background-image: url(../images/bg.gif);
+    background-position: left 40px;
+    background-attachment: fixed;
+    background-repeat: repeat;
+    background-color: #131516;
+    font-family: 'Helvetica Neue', 'Arial', 'sans-serif' !important;
+    font-size: 12px !important;
+}
+
+body.login
+{
+    background-image: url(../images/mdzinvierno.jpg);
+    background-position: center top;
+    background-size: 100% auto;
+}
+
+.container
+{
+    width: 870px !important;
+    font-style: normal !important;
+}
+
+.wrapper
+{
+    padding-bottom: 10px !important;
+    position: relative;
+    min-height: 100%;
+    padding: 20px 14px 15px;
+    margin: 0 auto;
+}
+
+.white
+{
+    background-image: url(../images/wash-white-30.png);
+}
+
+/*------------------------------------MENU----------------------------------*/
+
+.navbar
+{
+    background-image: url(../images/twitter_web_sprite_bgs.png);
+    background-repeat: repeat-x;
+    height: 40px !important;
+    min-height: 40px !important;
+    border-radius: 0px !important;
+    border: 0px !important;
+    margin-bottom: 0px !important;
+    font-size: 13px;
+    font-weight: bold;
+    text-shadow: 0 -1px 1px rgba(0,0,0,0.75);
+}
+
+.navbar-header
+{
+    height: 40px !important;
+}
+
+.navbar-brand
+{
+    padding: 0px 15px !important;
+    padding-top: 10px !important; 
+}
+
+.navbar-nav>li>a
+{
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+}
+
+.nav .active a, .nav>.open>a  {
+    color: #bbb !important;
+    text-shadow: 0 1px 1px rgba(0,0,0,0.5) !important;
+    background-color: #222 !important;
+    -webkit-box-shadow: inset 0 5px 10px rgba(0,0,0,0.5) !important;
+    box-shadow: inset 0 5px 10px rgba(0,0,0,0.5) !important;
+}
+
+.navbar-right a
+{
+    text-shadow: none !important;
+    font-size: 12px !important;
+}
+
+.navbar-right a:hover
+{
+    color: #000 !important;
+}
+
+.nav a:hover
+{
+    color: #bbb !important;
+}
+
+a:hover .icono-menu {
+    color: #fff !important;
+}
+
+.nav .active a:hover .icono-menu{
+    color: #fff !important;
+}
+
+.glyphicon
+{
+    font-size: 130%;
+}
+
+.label-icono-menu
+{
+    margin-top: -28% !important;
+    margin-left: 25px !important;
+}
+
+.caret
+{
+    margin-top: -28% !important;
+}
+
+.dropdown-menu
+{
+    font-size: 12px !important;
+}
+
+.dropdown-menu li a:hover
+{
+    background-color: #009999 !important;
+    color: white !important;
+}
+
+.dropdown-menu>li>a
+{
+    margin: 5px 0px 5px 0px;
+}
+
+
+.dropdown-menu li a .nombre_completo, .dropdown-menu li a .perfil_link
+{
+    padding-left: 25px;
+}
+
+.dropdown-menu li a:hover .nombre_completo, .dropdown-menu li a:hover .perfil_link
+{
+    color: white !important;
+}
+
+.dropdown-menu li a .avatar
+{
+    margin: 5px 5px;
+}
+
+
+/*---------------------------------------------------------------------------*/
+/*------------------------------------LOGIN----------------------------------*/
+body.login
+{
+    background-image: url(../images/mdzinvierno.jpg);
+    background-position: center top;
+    background-size: 100% auto;
+} 
+.front-wapper
+{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    height: 328px;
+    width: 838px;
+    margin: -154px 0 0 -418px;
+}
+
+.front-welcome
+{
+    border-radius: 4px;
+    background: white;
+    padding: 45px 24px;
+    height: 279px;
+    border: 1px solid #6fa3c4;
+    -webkit-box-shadow: 0 0 125px rgba(255,255,255,.35);
+    -moz-box-shadow: 0 0 125px rgba(255,255,255,.35);
+    box-shadow: 0 0 125px rgba(255,255,255,.35);
+}
+
+.front-signin
+{
+    border-radius: 4px;
+    background: white;
+    padding: 10px;
+    height: 109px;
+    border: 1px solid #6fa3c4;
+    -webkit-box-shadow: 0 0 125px rgba(255,255,255,.35);
+    -moz-box-shadow: 0 0 125px rgba(255,255,255,.35);
+    box-shadow: 0 0 125px rgba(255,255,255,.35);
+}
+
+.front-signup
+{
+    border-radius: 4px;
+    background: white;
+    padding: 10px;
+    height: 100%;
+    min-height: 160px;
+    border: 1px solid #6fa3c4;
+    -webkit-box-shadow: 0 0 125px rgba(255,255,255,.35);
+    -moz-box-shadow: 0 0 125px rgba(255,255,255,.35);
+    box-shadow: 0 0 125px rgba(255,255,255,.35);
+    margin-top: 10px;
+}
+
+.front-signin .form-group, .front-signup .form-group
+{
+    margin-bottom: 5px !important;
+}
+
+.padding-top-min
+{
+    margin-top: -10px !important;
+}
+
+.front-signup h2
+{
+    border-bottom: 1px solid #e2e2e2;
+    -webkit-box-shadow: 0 1px 0 #fff;
+    box-shadow: 0 1px 0 #fff;
+    color: #777;
+    display: block;
+    font-size: 16px;
+    font-weight: 300;
+    margin-bottom: 12px;
+    //padding: 10px 12px;
+    position: relative;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.6);
+    margin-top: 0px !important;
+}
+
+.imagen-um
+{
+    position: absolute;
+    z-index: 100;
+    left: 70%;
+    top: -10%;
+}
+
+.color-red
+{
+    background-color: red;
+}
+
+
+.form-control {
+    font-size: 12px !important;
+}
+
+.boton-login
+{
+    text-align: right;
+}
+
+.error-mensaje
+{
+    color: red;
+    padding-left: 10px;
+}
+
+.restablecer-contraseña
+{
+	position: absolute;
+	top: 35px;
+}
+
+/*----------------------------------------------------------------------------*/
+/*----------------------------------INDEX-------------------------------------*/
+.bloque {
+    position: relative;
+    margin-bottom: 10px;
+    line-height: 16px;
+    border-radius: 6px;
+    background-clip: padding-box;
+    background-color: white;
+    text-shadow: 0 1px 0 #fff;
+    border: 1px solid rgba(0,0,0,0.1);
+}
+
+.cuenta
+{
+    padding: 12px;
+}
+
+.informacion_cuenta
+{
+    position: relative;
+    display: block;
+    min-height: 32px;
+}
+
+.contenido_cuenta
+{
+    margin-right: 20px;
+    margin-left: 42px;
+}
+
+.avatar
+{
+    width: 32px;
+    height: 32px;
+    border-radius: 4px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.nombre_completo
+{
+    font-weight: bold;
+    display: block;
+    font-size: 14px;
+    color: #333;
+}
+
+a:hover, a:hover strong, a:hover .nombre_completo
+{
+    text-decoration: none;
+    color: #009999 !important;
+}
+
+.perfil_link
+{
+    color: #999;
+}
+
+.estado_pefil
+{
+    
+}
+
+.estado_perfil_caja
+{
+    display: block;
+    list-style-type: disc;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    -webkit-padding-start: 40px;
+    overflow: hidden;
+    border-top: 1px solid #e8e8e8;
+    border-bottom: 1px solid #e8e8e8;
+}
+
+ul
+{
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none !important;
+}
+
+.estado_perfil_caja a 
+{
+    float: left;
+    padding: 7px 12px;
+    color: #999;
+    font-size: 10px;
+    line-height: 16px;
+    text-transform: uppercase;
+    border-left: 1px solid #e8e8e8;
+}
+
+.estado_perfil_caja a strong
+{
+    display: block;
+    color: #333;
+    font-size: 14px;
+}
+
+.caja_tweet
+{
+    padding: 10px 12px;
+    background-color: #f5f5f5;
+    border-radius: 0 0 5px 5px;
+}
+
+.footer
+{
+    padding: 12px;
+}
+
+.footer-universidad
+{
+    color: #999;
+}
+
+.alumno
+{
+    font-weight: bold;
+    padding-left: 36px;
+}
+
+/*Tweet*/
+
+.contenido-tweet
+{
+    border-radius: 6px;
+}
+
+.contenido-header
+{
+    border: 1px solid #eee;
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 6px 6px 0 0;
+    background-clip: padding-box;
+    min-height: 20px;
+    padding: 12px;
+    background-color: #fff;
+    border-bottom: 1px solid #e8e8e8;
+    border-radius: 5px 5px 0 0;
+}
+
+.header-titulo
+{
+    font-size: 18px !important;
+    font-weight: bold !important;
+    line-height: 20px !important;
+    color: #333 !important;
+    margin: 0 !important;
+    text-rendering: optimizeLegibility !important;
+}
+
+.mensajes
+{
+    position: relative;
+    margin-left: 0;
+    list-style: none;
+}
+
+ol
+{
+    display: block;
+    list-style-type: decimal;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    -webkit-padding-start: 40px;
+    margin: 0;
+    padding: 0;
+}
+
+li
+{
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+
+li.mensaje-item
+{
+    line-height: inherit;
+}
+
+.mensaje-item
+{
+    background: #fff;
+    border-left: 1px solid #e8e8e8;
+    border-left: 1px solid rgba(0,0,0,.1);
+    border-right: 1px solid #e8e8e8;
+    border-right: 1px solid rgba(0,0,0,.1);
+    background-clip: padding-box;
+    list-style: none;
+    border-bottom: 1px solid #e8e8e8;
+}
+
+.mensaje-contenido
+{
+    position: relative;
+    min-height: 100px;
+    padding: 9px 12px;
+    margin-left: 58px;
+}
+
+.mensaje-contenido-header
+{
+    width: auto;
+    text-align: left;
+    
+}
+
+.mensaje-contenido-header .mensaje-avatar
+{
+    width: 48px;
+    height: 48px;
+    border-radius: 5px;
+    -moz-force-broken-image-icon: 1;
+    float: left;
+    margin-top: 3px;
+    margin-left: -58px;
+}
+
+img
+{
+    border: 0px none;
+}
+
+.nombre_usuario
+{
+    direction: ltr;
+    unicode-bidi: embed;
+    font-size: 12px;
+    color: rgb(153, 153, 153);
+}
+
+.mensaje-contenido-header .nombre_completo
+{
+    display: inline;
+}
+
+.tiempo
+{
+    position: relative;
+    float: right;
+    margin-top: 1px;
+    color: rgb(187, 187, 187);
+    font-size: 12px;
+}
+
+.mensaje-acciones
+{
+    display: inline-block;
+    float: right;
+    padding-left: 5px;
+}
+
+.mensaje-acciones li
+{
+    display: inline;
+    color: #999;
+    font-size: 12px;
+}
+
+.accion
+{
+    margin-left:  15px;
+}
+
+.glyphicon
+{
+    margin-right:  5px !important;
+}

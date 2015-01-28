@@ -2,7 +2,8 @@
 <jsp:root xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:spring="http://www.springframework.org/tags" version="2.0">
 
   <jsp:output omit-xml-declaration="yes"/>
-
+  <spring:url value="/resources/styles/canarium.css" var="custom_css_url" />
+  <link href="${custom_css_url}" media="screen" rel="stylesheet" type="text/css"/>
   <spring:theme code="styleSheet" var="roo_css"/>
   <spring:url value="/${roo_css}" var="roo_css_url"/>
   <spring:url value="/resources/dojo/dojo.js" var="dojo_url"/>
