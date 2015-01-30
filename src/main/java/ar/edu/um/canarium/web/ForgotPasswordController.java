@@ -59,8 +59,8 @@ public class ForgotPasswordController {
         		User.merge();
         		SimpleMailMessage mail = new SimpleMailMessage();
         		mail.setTo(form.getEmailAddress());
-        		mail.setSubject("Password Recover");
-        		mail.setText("Hi "+User.getFirstName()+",\n. You had requested for password recovery. Your password is "+newPassword+". \n Thanks Tyical Security Admin");
+        		mail.setSubject("Recuperar Contraseña");
+        		mail.setText("Hola  "+User.getFirstName()+" "+User.getLastName()+". Usted ha solicitado la recuperación de su contraseña. Su nueva contraseña es "+newPassword+". \n CanariUm.");
         		mailSender.send(mail);
         	}
 
