@@ -4,13 +4,19 @@
     xmlns:spring="http://www.springframework.org/tags" version="2.0">
   <jsp:output omit-xml-declaration="yes"/>
   <script type="text/javascript">dojo.require('dijit.TitlePane');dojo.require('dijit.form.SimpleTextarea');dojo.require('dijit.form.FilteringSelect');</script>
-  <div id="_title_div">
-    
-    <script type="text/javascript">Spring.addDecoration(new Spring.ElementDecoration({elementId : '_title_div', widgetType : 'dijit.TitlePane', widgetAttrs : {title: '${title_msg}'}})); </script>
-    <spring:url value="/forgotpassword" var="form_url"/>
-    Forgot Password
-    <script type="text/javascript">Spring.addDecoration(new Spring.ElementDecoration({elementId : '_title_div', widgetType : 'dijit.TitlePane', widgetAttrs : {title: '${title_msg}'}})); </script>
-    
-    <h3>Your new password is sent to your email address.</h3>
-  </div>
+  
+  
+	<div class="row">
+		<div class="col-md-12 front-forgot">
+		    <spring:url value="/forgotpassword" var="form_url"/>
+		 	<h4><strong><spring:message code="forgot_password"/></strong></h4>
+		
+			    <script type="text/javascript">Spring.addDecoration(new Spring.ElementDecoration({elementId : '_title_div', widgetType : 'dijit.TitlePane', widgetAttrs : {title: '${title_msg}'}})); </script>
+	    		<div class="form-group">
+				    <div class="col-sm-12">
+		 					<h3><spring:message code="password_email"/></h3>
+                     </div>
+				</div>
+		</div>
+	</div>  
 </div>

@@ -180,6 +180,18 @@ body.login
     box-shadow: 0 0 125px rgba(255,255,255,.35);
 }
 
+.front-forgot
+{
+    border-radius: 4px;
+    background: white;
+    padding: 20px 24px;
+    height: 140px;
+    border: 1px solid #6fa3c4;
+    -webkit-box-shadow: 0 0 125px rgba(255,255,255,.35);
+    -moz-box-shadow: 0 0 125px rgba(255,255,255,.35);
+    box-shadow: 0 0 125px rgba(255,255,255,.35);
+}
+
 .front-signin
 {
     border-radius: 4px;
