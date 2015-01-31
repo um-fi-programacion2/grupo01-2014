@@ -30,23 +30,17 @@
 						 <div class="form-group">
 		                     <div class="col-sm-8">
 	                            <input type="password" class="form-control input-sm" placeholder="${pass}" id="j_password" name="j_password" data-required="true" data-original-title="${pwd_msg}" />                    
-				        	 	<div class="restablecer-contraseña">&lt;a href ="/canarium/forgotpassword/index"&gt;Reestablecer contraseña&lt;/a&gt;</div>
+				        	 	<div class="restablecer-contraseña">&lt;a href ="/canarium/forgotpassword/index"&gt;Reestablecer contraseña&lt;/a&gt; | &lt;a href ="/canarium/signup?form"&gt;Registrarse&lt;/a&gt;</div>
 				        	 </div>
 		                     <div class="col-sm-4 boton-login">
-										<script type="text/javascript">Spring.addDecoration(new Spring.ValidateAllDecoration({elementId:'proceed', event:'onclick'}));</script>							        <spring:message code="button_submit" htmlEscape="false" var="submit_label"/>
+										<script type="text/javascript">Spring.addDecoration(new Spring.ValidateAllDecoration({elementId:'proceed', event:'onclick'}));</script>							        
+										<spring:message code="button_submit" htmlEscape="false" var="submit_label"/>
 								        <input id="proceed" type="submit" class="btn btn-primary btn-sm pull-right" value="${fn:escapeXml(submit_label)}"/>
 		                     </div>
 		                 </div>
 		            </form>
 		        </div>
 		    </div>
-		    <div class="row">
-		         <div class="col-md-offset-1 col-md-11 front-signup">
-		             <p class="text-primary">
-				    	<spring:message code="eslogan"/>
-			        </p>
-		         </div>
-     		</div>
 	    </div>
 
 	</div>

@@ -91,9 +91,9 @@ public class SignUpController {
             
             SimpleMailMessage mail = new SimpleMailMessage();
     		mail.setTo(User.getEmailAddress());
-    		mail.setSubject("User Activaton");
+    		mail.setSubject("Activacion de usuario");
     		
-    		mail.setText("Hi "+User.getFirstName()+",\n. You had registered with us. Please click on this link to activate your account - <a href=\"http://__BASE_URL__/signup?emailAddress="+User.getEmailAddress()+"&activate="+activationKey+"\">Activate Link</a>. \n Thanks Tyical Security Admin");
+    		mail.setText("Bienvenido a CanariUM  "+User.getFirstName()+" "+User.getLastName()+"\n. Para completar el registro, por favor haga clic sobre el siguiente link. \n http://localhost:8080/canarium/signup?emailAddress="+User.getEmailAddress()+"&activate="+activationKey+" \n CanariUM");
             mailSender.send(mail);
             return "signup/thanks";
         }
