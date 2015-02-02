@@ -9,6 +9,11 @@ body
     font-size: 12px !important;
 }
 
+body.index
+{
+	padding-top:0px !important;
+}
+
 body.login
 {
     background-image: url(../images/mdzinvierno.jpg);
@@ -20,6 +25,11 @@ body.login
 {
     width: 870px !important;
     font-style: normal !important;
+}
+
+.container.index
+{
+    width: 85% !important;
 }
 
 .wrapper
@@ -34,6 +44,11 @@ body.login
 .white
 {
     background-image: url(../images/wash-white-30.png);
+}
+
+#language
+{
+	padding-left:20px !important;
 }
 
 /*------------------------------------MENU----------------------------------*/
@@ -110,11 +125,6 @@ a:hover .icono-menu {
 {
     margin-top: -28% !important;
     margin-left: 25px !important;
-}
-
-.caret
-{
-    margin-top: -28% !important;
 }
 
 .dropdown-menu

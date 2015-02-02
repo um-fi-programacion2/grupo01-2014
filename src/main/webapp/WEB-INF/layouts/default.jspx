@@ -23,44 +23,93 @@
         </title>
 	</head>
 	
-  	<body class="tundra spring">
-   		<!-- Fixed navbar dropdown -->
-	<header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav">
-		<div class="container">
+  	<body class="index">
+   		
 
-			<div class="navbar-header pull-right">
-				<button type="button" class="navbar-toggle" data-toggle="collapse"
-					data-target=".navbar-collapse">
-					<span class="icon-bar">&#160;</span> <span class="icon-bar">&#160;</span>
-					<span class="icon-bar">&#160;</span>
-				</button>
-			</div>
-			<!-- /navbar-header -->
-
-			<div class="navbar-collapse collapse">
-				<tiles:insertAttribute ignore="true" name="header" />
-				<tiles:insertAttribute ignore="true" name="menu" />
-			</div>
-			<!--/.nav-collapse -->
+	<nav class="navbar navbar-inverse" role="navigation">
+	    <div class="container index span6">
+		    <!-- Brand and toggle get grouped for better mobile display -->
+		        <div class="navbar-header">
+		          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+		            <span class="sr-only">Toggle navigation</span>
+		            <span class="icon-bar"></span>
+		            <span class="icon-bar"></span>
+		            <span class="icon-bar"></span>
+		          </button>
+		          <a class="navbar-brand" href="/canarium/">${app_name}</a>
+		        </div>
+		        
+		       	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		          <ul class="nav navbar-nav navbar-right">
+			        <li class="dropdown">
+			          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><c:out value="${pageContext.request.userPrincipal.name}"/><span class="caret"></span></a>
+			          <ul class="dropdown-menu" role="menu">
+			            <li>
+			            	<a href="/canarium/personae?form"><spring:message code="perfil"/></a>
+			            </li>
+			            <li>
+			            	<a href="/canarium/changepassword/index"><spring:message code="cambiar_contraseña"/></a>
+			            </li>
+			            <li>
+			            	<span id="language">
+						  	<util:language label="English" locale="en"/>
+						    <util:language label="Espanol" locale="es"/>
+						    </span>
+			            </li>
+			            <li class="divider"></li>
+			            <li>
+			            	<spring:url value="/resources/j_spring_security_logout" var="logout"/>
+			            	<a href="${logout}"><spring:message code="cerrar_sesion"/></a>
+			            </li>
+			          </ul>
+			        </li>
+		          </ul>
+		        </div><!-- /.navbar-collapse -->
+    	</div>
+	</nav>
+	<div class="container index wrapper white">
+		<div class="row">
+		
+				<div class="col-xs-6 col-sm-3" id="sidebar" role="navigation">
+		            <div class="bloque">
+		            	<div class="cuenta">
+		            		<a href="#" class="informacion_cuenta">
+		            			<div class="contenido_cuenta">
+		            				<b class="nombre_completo">Federico Baigorria</b>
+		            				<small class="perfil_link">Ver mi pagina de perfil</small>
+		            			</div>
+		            		</a>
+		            	</div>
+		            	<div>
+		            		<ul class="estado_perfil_caja">
+		            			<li>
+		            				<a class="js-nav" href="#" data-element-term="tweet-stats" data-nav="profile"><strong>18</strong>Tweets</a>
+		            			</li>
+		            			<li>
+		            				<a class="js-nav" href="#" data-element-term="tweet-stats" data-nav="profile"><strong>18</strong>Siguiendo</a>
+		            			</li>
+		            			<li>
+		            				<a class="js-nav" href="#" data-element-term="tweet-stats" data-nav="profile"><strong>18</strong>Seguidores</a>
+		            			</li>
+		            		</ul>
+		            	</div>
+		            	<div class="caja_tweet">
+		            		falta poner un formulario
+		            	</div>
+		            </div>
+		            <div class="bloque footer">
+		            	<ul>
+		            		<li class="alumno">Federico Baigorria</li>
+		            	</ul>
+		            	<div class="footer-universidad">2015 - Facultad de Ingenieria - <b>UM</b></div>
+		            </div>
+		        </div>
+           	 	<div class="col-xs-12 col-sm-9">
+		            <tiles:insertAttribute name="body"/>
+		        </div>
 
 		</div>
-		<!-- /container -->
-
-	</header>
-
-	<div class="container">
-		<div id="main">
-			<dialog:message-box />
-			<tiles:insertAttribute name="body" />
-		</div>
-		<!-- /main -->
 	</div>
-	<!--/.container-->
-
-	<!-- Footer
-    	================================================== -->
-	<footer class="bs-footer" role="contentinfo">
-		<tiles:insertAttribute ignore="true" name="footer" />
-	</footer>
+	
 	</body>
 </html>
