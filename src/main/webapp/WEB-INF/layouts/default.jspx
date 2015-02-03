@@ -45,10 +45,13 @@
 			          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><c:out value="${pageContext.request.userPrincipal.name}"/><span class="caret"></span></a>
 			          <ul class="dropdown-menu" role="menu">
 			            <li>
-			            	<a href="/canarium/personae?form"><spring:message code="perfil"/></a>
+			            	<a href="/canarium/personae?form"><spring:message code="change_perfil"/></a>
 			            </li>
 			            <li>
 			            	<a href="/canarium/changepassword/index"><spring:message code="cambiar_contraseña"/></a>
+			            </li>
+			            <li>
+			            	<a href="/canarium/configuracions"><spring:message code="configuracion"/></a>
 			            </li>
 			            <li>
 			            	<span id="language">

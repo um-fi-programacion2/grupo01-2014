@@ -3,7 +3,7 @@
 
 package ar.edu.um.canarium.domain;
 
-import ar.edu.um.canarium.domain.PersonaDataOnDemand;
+import ar.edu.um.canarium.domain.Persona;
 import ar.edu.um.canarium.domain.User;
 import ar.edu.um.canarium.domain.UserDataOnDemand;
 import java.security.SecureRandom;
@@ -16,7 +16,6 @@ import java.util.List;
 import java.util.Random;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 privileged aspect UserDataOnDemand_Roo_DataOnDemand {
@@ -26,9 +25,6 @@ privileged aspect UserDataOnDemand_Roo_DataOnDemand {
     private Random UserDataOnDemand.rnd = new SecureRandom();
     
     private List<User> UserDataOnDemand.data;
-    
-    @Autowired
-    PersonaDataOnDemand UserDataOnDemand.personaDataOnDemand;
     
     public User UserDataOnDemand.getNewTransientUser(int index) {
         User obj = new User();
@@ -40,6 +36,7 @@ privileged aspect UserDataOnDemand_Roo_DataOnDemand {
         setLastName(obj, index);
         setLocked(obj, index);
         setPassword(obj, index);
+        setPersona(obj, index);
         return obj;
     }
     
@@ -81,6 +78,11 @@ privileged aspect UserDataOnDemand_Roo_DataOnDemand {
     public void UserDataOnDemand.setPassword(User obj, int index) {
         String password = "password_" + index;
         obj.setPassword(password);
+    }
+    
+    public void UserDataOnDemand.setPersona(User obj, int index) {
+        Persona persona = null;
+        obj.setPersona(persona);
     }
     
     public User UserDataOnDemand.getSpecificUser(int index) {

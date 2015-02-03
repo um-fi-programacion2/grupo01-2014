@@ -225,6 +225,7 @@ body.login
     -webkit-box-shadow: 0 0 125px rgba(255,255,255,.35);
     -moz-box-shadow: 0 0 125px rgba(255,255,255,.35);
     box-shadow: 0 0 125px rgba(255,255,255,.35);
+    width:520px;
 }
 
 .front-signin .form-group, .front-signup .form-group
