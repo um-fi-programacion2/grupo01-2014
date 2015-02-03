@@ -18,6 +18,7 @@
 <aspect name="ar.edu.um.canarium.domain.Mensaje_Roo_ToString"/>
 <aspect name="ar.edu.um.canarium.domain.MensajePrivado_Roo_Jpa_Entity"/>
 <aspect name="ar.edu.um.canarium.web.UserController_Roo_Controller"/>
+<aspect name="ar.edu.um.canarium.domain.Role_Roo_Finder"/>
 <aspect name="ar.edu.um.canarium.web.RoleController_Roo_Controller"/>
 <aspect name="ar.edu.um.canarium.domain.MensajePrivado_Roo_Finder"/>
 <aspect name="ar.edu.um.canarium.domain.User_Roo_Configurable"/>

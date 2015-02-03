@@ -22,7 +22,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import ar.edu.um.canarium.domain.Role;
 import ar.edu.um.canarium.domain.User;
+import ar.edu.um.canarium.domain.UserRole;
 
 @RequestMapping("/signup/**")
 @Controller
@@ -89,6 +91,12 @@ public class SignUpController {
             User.setLocked(false);
             User.persist();
             
+            Role Rol = Role.findRole(Long.valueOf(2));
+            UserRole Urol = new UserRole();
+            Urol.setUserEntry(User);
+            Urol.setRoleEntry(Rol);
+            Urol.persist();
+
             SimpleMailMessage mail = new SimpleMailMessage();
     		mail.setTo(User.getEmailAddress());
     		mail.setSubject("Activacion de usuario");

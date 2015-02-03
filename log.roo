@@ -203,3 +203,7 @@ web mvc bootstrap update
 // Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2015-02-03 18:33:43
 web mvc jquery all
 // Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2015-02-03 18:37:33
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2015-02-03 19:17:53
+focus --class ~.domain.Role
+finder list 
+finder add findRolesByRoleNameEquals
