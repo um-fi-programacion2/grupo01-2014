@@ -10,10 +10,12 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.gvnix.addon.web.mvc.jquery.GvNIXWebJQuery;
 
 @RooWebScaffold(path = "users", formBackingObject = User.class)
 @RequestMapping("/users")
 @Controller
+@GvNIXWebJQuery
 public class UserController {
 
     @Autowired

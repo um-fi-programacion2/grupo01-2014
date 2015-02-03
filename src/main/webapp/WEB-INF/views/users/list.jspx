@@ -2,14 +2,14 @@
 <div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/jquery/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/jquery/form/fields" version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
-    <page:list id="pl_com_springsource_petclinic_domain_User" items="${users}" z="etUTA2lCn4IS0gecNYowEoSChFA=">
-        <table:table data="${users}" id="l_com_springsource_petclinic_domain_User" path="/users" z="SZHGwwjvloOyDKzn4MPyigTmnu8=">
-            <table:column id="c_com_springsource_petclinic_domain_User_firstName" property="firstName" z="M0gJ0Wp3wFYdnMfgotr+3m922Og="/>
-            <table:column id="c_com_springsource_petclinic_domain_User_lastName" property="lastName" z="adUx0BNP2DL6783rc33pULBOBkE="/>
-            <table:column id="c_com_springsource_petclinic_domain_User_emailAddress" property="emailAddress" z="dlx1zCwAgumOsnN7OtsTDN5f7BA="/>
-            <table:column id="c_com_springsource_petclinic_domain_User_password" property="password" z="m4g47M2fMgyN8UZyKYyEPK9sNao="/>
-            <table:column date="true" dateTimePattern="${user_activationdate_date_format}" id="c_com_springsource_petclinic_domain_User_activationDate" property="activationDate" z="/xqRQKTr0lurOKXLdkS86M/QQb4="/>
-            <table:column id="c_com_springsource_petclinic_domain_User_activationKey" property="activationKey" z="lOxpolosGRq+lsDm1HX80+5dfRE="/>
+    <page:list id="pl_ar_edu_um_canarium_domain_User" items="${users}" z="2i3A3gRvOmn89Y0jw+kqSY8SbjU=">
+        <table:table data="${users}" id="l_ar_edu_um_canarium_domain_User" path="/users" z="lxhRmk+hq7FA/tV+fiXZEz/kB1Q=">
+            <table:column id="c_ar_edu_um_canarium_domain_User_firstName" property="firstName" z="d3enMRCe4RQ0qlNFinE+nh8ovNE="/>
+            <table:column id="c_ar_edu_um_canarium_domain_User_lastName" property="lastName" z="LNHgvQjamJjTXtZK0TIalQ426QQ="/>
+            <table:column id="c_ar_edu_um_canarium_domain_User_emailAddress" property="emailAddress" z="DQ19ebWPeX1RvBuNgQgYvpbD9PM="/>
+            <table:column id="c_ar_edu_um_canarium_domain_User_password" property="password" z="FDNFex16csxbPiVeF5bmJKeglkw="/>
+            <table:column date="true" dateTimePattern="${user_activationdate_date_format}" id="c_ar_edu_um_canarium_domain_User_activationDate" property="activationDate" z="M0buq39fJJSQQ3rDqeATgfVfWyM="/>
+            <table:column id="c_ar_edu_um_canarium_domain_User_activationKey" property="activationKey" z="UVHq2EeFMSJhhaNj76tvWAJ09Mk="/>
         </table:table>
     </page:list>
 </div>

@@ -200,3 +200,5 @@ web mvc all --package ~.web
 // Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2015-02-03 16:58:49
 // Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2015-02-03 17:36:02
 web mvc bootstrap update
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2015-02-03 18:33:43
+web mvc jquery all
