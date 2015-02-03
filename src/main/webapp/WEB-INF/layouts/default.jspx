@@ -54,6 +54,9 @@
 			            	<a href="/canarium/configuracions"><spring:message code="configuracion"/></a>
 			            </li>
 			            <li>
+			            	<a href="/canarium/roles"><spring:message code="roles"/></a>
+			            </li>
+			            <li>
 			            	<span id="language">
 						  	<util:language label="English" locale="en"/>
 						    <util:language label="Espanol" locale="es"/>
