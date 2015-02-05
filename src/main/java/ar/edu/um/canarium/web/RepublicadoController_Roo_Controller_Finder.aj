@@ -31,7 +31,7 @@ privileged aspect RepublicadoController_Roo_Controller_Finder {
     
     @RequestMapping(params = { "find=ByMensaje", "form" }, method = RequestMethod.GET)
     public String RepublicadoController.findRepublicadoesByMensajeForm(Model uiModel) {
-        uiModel.addAttribute("mensajes", Mensaje.findAllMensajes());
+        uiModel.addAttribute("mensajes", mensajeService.findAllMensajes());
         return "republicadoes/findRepublicadoesByMensaje";
     }
     
@@ -43,7 +43,7 @@ privileged aspect RepublicadoController_Roo_Controller_Finder {
     
     @RequestMapping(params = { "find=ByPersona", "form" }, method = RequestMethod.GET)
     public String RepublicadoController.findRepublicadoesByPersonaForm(Model uiModel) {
-        uiModel.addAttribute("personae", Persona.findAllPersonae());
+        uiModel.addAttribute("personae", personaService.findAllPersonae());
         return "republicadoes/findRepublicadoesByPersona";
     }
     

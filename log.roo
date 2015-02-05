@@ -209,3 +209,9 @@ finder list
 finder add findRolesByRoleNameEquals
 // Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2015-02-05 00:39:53
 service all --interfacePackage ~.service
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2015-02-05 12:30:20
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2015-02-05 13:03:50
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2015-02-05 18:33:19
+focus --class ~.domain.Persona
+finder list
+finder add findPersonaeByUsuarioEquals

@@ -27,7 +27,7 @@ privileged aspect TagController_Roo_Controller_Finder {
     
     @RequestMapping(params = { "find=ByMensajes", "form" }, method = RequestMethod.GET)
     public String TagController.findTagsByMensajesForm(Model uiModel) {
-        uiModel.addAttribute("mensajes", Mensaje.findAllMensajes());
+        uiModel.addAttribute("mensajes", mensajeService.findAllMensajes());
         return "tags/findTagsByMensajes";
     }
     

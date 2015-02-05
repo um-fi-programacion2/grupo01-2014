@@ -26,7 +26,7 @@ privileged aspect RelacionController_Roo_Controller_Finder {
     
     @RequestMapping(params = { "find=ByPersona", "form" }, method = RequestMethod.GET)
     public String RelacionController.findRelacionsByPersonaForm(Model uiModel) {
-        uiModel.addAttribute("personae", Persona.findAllPersonae());
+        uiModel.addAttribute("personae", personaService.findAllPersonae());
         return "relacions/findRelacionsByPersona";
     }
     

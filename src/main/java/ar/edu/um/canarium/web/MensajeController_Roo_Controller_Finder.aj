@@ -67,7 +67,7 @@ privileged aspect MensajeController_Roo_Controller_Finder {
     
     @RequestMapping(params = { "find=ByPersona", "form" }, method = RequestMethod.GET)
     public String MensajeController.findMensajesByPersonaForm(Model uiModel) {
-        uiModel.addAttribute("personae", Persona.findAllPersonae());
+        uiModel.addAttribute("personae", personaService.findAllPersonae());
         return "mensajes/findMensajesByPersona";
     }
     

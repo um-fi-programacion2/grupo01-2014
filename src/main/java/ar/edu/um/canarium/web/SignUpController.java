@@ -22,9 +22,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import ar.edu.um.canarium.domain.Persona;
 import ar.edu.um.canarium.domain.Role;
+import ar.edu.um.canarium.domain.Sexo;
 import ar.edu.um.canarium.domain.User;
 import ar.edu.um.canarium.domain.UserRole;
+import ar.edu.um.canarium.servicio.Servicio;
 
 @RequestMapping("/signup/**")
 @Controller
@@ -91,11 +94,13 @@ public class SignUpController {
             User.setLocked(false);
             User.persist();
             
-            Role Rol = Role.findRole(Long.valueOf(2));
-            UserRole Urol = new UserRole();
-            Urol.setUserEntry(User);
-            Urol.setRoleEntry(Rol);
+            /*Asigno el rol por defecto a user*/
+            UserRole Urol = new Servicio().setAsignarRol(User);
             Urol.persist();
+            
+            /*CREA LA PERSONA*/
+            Persona persona = new Servicio().setPersonaUsuario(User);
+            persona.persist();
 
             SimpleMailMessage mail = new SimpleMailMessage();
     		mail.setTo(User.getEmailAddress());
