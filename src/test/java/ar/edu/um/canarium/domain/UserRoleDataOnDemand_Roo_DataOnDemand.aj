@@ -9,6 +9,7 @@ import ar.edu.um.canarium.domain.User;
 import ar.edu.um.canarium.domain.UserDataOnDemand;
 import ar.edu.um.canarium.domain.UserRole;
 import ar.edu.um.canarium.domain.UserRoleDataOnDemand;
+import ar.edu.um.canarium.service.UserRoleService;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -32,6 +33,9 @@ privileged aspect UserRoleDataOnDemand_Roo_DataOnDemand {
     
     @Autowired
     UserDataOnDemand UserRoleDataOnDemand.userDataOnDemand;
+    
+    @Autowired
+    UserRoleService UserRoleDataOnDemand.userRoleService;
     
     public UserRole UserRoleDataOnDemand.getNewTransientUserRole(int index) {
         UserRole obj = new UserRole();
@@ -60,14 +64,14 @@ privileged aspect UserRoleDataOnDemand_Roo_DataOnDemand {
         }
         UserRole obj = data.get(index);
         Long id = obj.getId();
-        return UserRole.findUserRole(id);
+        return userRoleService.findUserRole(id);
     }
     
     public UserRole UserRoleDataOnDemand.getRandomUserRole() {
         init();
         UserRole obj = data.get(rnd.nextInt(data.size()));
         Long id = obj.getId();
-        return UserRole.findUserRole(id);
+        return userRoleService.findUserRole(id);
     }
     
     public boolean UserRoleDataOnDemand.modifyUserRole(UserRole obj) {
@@ -77,7 +81,7 @@ privileged aspect UserRoleDataOnDemand_Roo_DataOnDemand {
     public void UserRoleDataOnDemand.init() {
         int from = 0;
         int to = 10;
-        data = UserRole.findUserRoleEntries(from, to);
+        data = userRoleService.findUserRoleEntries(from, to);
         if (data == null) {
             throw new IllegalStateException("Find entries implementation for 'UserRole' illegally returned null");
         }
@@ -89,7 +93,7 @@ privileged aspect UserRoleDataOnDemand_Roo_DataOnDemand {
         for (int i = 0; i < 10; i++) {
             UserRole obj = getNewTransientUserRole(i);
             try {
-                obj.persist();
+                userRoleService.saveUserRole(obj);
             } catch (final ConstraintViolationException e) {
                 final StringBuilder msg = new StringBuilder();
                 for (Iterator<ConstraintViolation<?>> iter = e.getConstraintViolations().iterator(); iter.hasNext();) {

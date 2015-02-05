@@ -3,19 +3,21 @@
 
 package ar.edu.um.canarium.web;
 
-import ar.edu.um.canarium.domain.Mensaje;
-import ar.edu.um.canarium.domain.MensajePrivado;
 import ar.edu.um.canarium.domain.Persona;
-import ar.edu.um.canarium.domain.Relacion;
-import ar.edu.um.canarium.domain.Republicado;
 import ar.edu.um.canarium.domain.Sexo;
-import ar.edu.um.canarium.domain.User;
+import ar.edu.um.canarium.service.MensajePrivadoService;
+import ar.edu.um.canarium.service.MensajeService;
+import ar.edu.um.canarium.service.PersonaService;
+import ar.edu.um.canarium.service.RelacionService;
+import ar.edu.um.canarium.service.RepublicadoService;
+import ar.edu.um.canarium.service.UserService;
 import ar.edu.um.canarium.web.PersonaController;
 import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import org.joda.time.format.DateTimeFormat;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -28,6 +30,24 @@ import org.springframework.web.util.WebUtils;
 
 privileged aspect PersonaController_Roo_Controller {
     
+    @Autowired
+    PersonaService PersonaController.personaService;
+    
+    @Autowired
+    MensajeService PersonaController.mensajeService;
+    
+    @Autowired
+    MensajePrivadoService PersonaController.mensajePrivadoService;
+    
+    @Autowired
+    RelacionService PersonaController.relacionService;
+    
+    @Autowired
+    RepublicadoService PersonaController.republicadoService;
+    
+    @Autowired
+    UserService PersonaController.userService;
+    
     @RequestMapping(method = RequestMethod.POST, produces = "text/html")
     public String PersonaController.create(@Valid Persona persona, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
@@ -35,7 +55,7 @@ privileged aspect PersonaController_Roo_Controller {
             return "personae/create";
         }
         uiModel.asMap().clear();
-        persona.persist();
+        personaService.savePersona(persona);
         return "redirect:/personae/" + encodeUrlPathSegment(persona.getId().toString(), httpServletRequest);
     }
     
@@ -48,7 +68,7 @@ privileged aspect PersonaController_Roo_Controller {
     @RequestMapping(value = "/{id}", produces = "text/html")
     public String PersonaController.show(@PathVariable("id") Long id, Model uiModel) {
         addDateTimeFormatPatterns(uiModel);
-        uiModel.addAttribute("persona", Persona.findPersona(id));
+        uiModel.addAttribute("persona", personaService.findPersona(id));
         uiModel.addAttribute("itemId", id);
         return "personae/show";
     }
@@ -58,11 +78,11 @@ privileged aspect PersonaController_Roo_Controller {
         if (page != null || size != null) {
             int sizeNo = size == null ? 10 : size.intValue();
             final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
-            uiModel.addAttribute("personae", Persona.findPersonaEntries(firstResult, sizeNo));
-            float nrOfPages = (float) Persona.countPersonae() / sizeNo;
+            uiModel.addAttribute("personae", personaService.findPersonaEntries(firstResult, sizeNo));
+            float nrOfPages = (float) personaService.countAllPersonae() / sizeNo;
             uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
         } else {
-            uiModel.addAttribute("personae", Persona.findAllPersonae());
+            uiModel.addAttribute("personae", personaService.findAllPersonae());
         }
         addDateTimeFormatPatterns(uiModel);
         return "personae/list";
@@ -75,20 +95,20 @@ privileged aspect PersonaController_Roo_Controller {
             return "personae/update";
         }
         uiModel.asMap().clear();
-        persona.merge();
+        personaService.updatePersona(persona);
         return "redirect:/personae/" + encodeUrlPathSegment(persona.getId().toString(), httpServletRequest);
     }
     
     @RequestMapping(value = "/{id}", params = "form", produces = "text/html")
     public String PersonaController.updateForm(@PathVariable("id") Long id, Model uiModel) {
-        populateEditForm(uiModel, Persona.findPersona(id));
+        populateEditForm(uiModel, personaService.findPersona(id));
         return "personae/update";
     }
     
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = "text/html")
     public String PersonaController.delete(@PathVariable("id") Long id, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
-        Persona persona = Persona.findPersona(id);
-        persona.remove();
+        Persona persona = personaService.findPersona(id);
+        personaService.deletePersona(persona);
         uiModel.asMap().clear();
         uiModel.addAttribute("page", (page == null) ? "1" : page.toString());
         uiModel.addAttribute("size", (size == null) ? "10" : size.toString());
@@ -102,12 +122,12 @@ privileged aspect PersonaController_Roo_Controller {
     void PersonaController.populateEditForm(Model uiModel, Persona persona) {
         uiModel.addAttribute("persona", persona);
         addDateTimeFormatPatterns(uiModel);
-        uiModel.addAttribute("mensajes", Mensaje.findAllMensajes());
-        uiModel.addAttribute("mensajeprivadoes", MensajePrivado.findAllMensajePrivadoes());
-        uiModel.addAttribute("relacions", Relacion.findAllRelacions());
-        uiModel.addAttribute("republicadoes", Republicado.findAllRepublicadoes());
+        uiModel.addAttribute("mensajes", mensajeService.findAllMensajes());
+        uiModel.addAttribute("mensajeprivadoes", mensajePrivadoService.findAllMensajePrivadoes());
+        uiModel.addAttribute("relacions", relacionService.findAllRelacions());
+        uiModel.addAttribute("republicadoes", republicadoService.findAllRepublicadoes());
         uiModel.addAttribute("sexoes", Arrays.asList(Sexo.values()));
-        uiModel.addAttribute("users", User.findAllUsers());
+        uiModel.addAttribute("users", userService.findAllUsers());
     }
     
     String PersonaController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

@@ -13,7 +13,18 @@ import ar.edu.um.canarium.domain.Role;
 import ar.edu.um.canarium.domain.Tag;
 import ar.edu.um.canarium.domain.User;
 import ar.edu.um.canarium.domain.UserRole;
+import ar.edu.um.canarium.service.ConfiguracionService;
+import ar.edu.um.canarium.service.MensajePrivadoService;
+import ar.edu.um.canarium.service.MensajeService;
+import ar.edu.um.canarium.service.PersonaService;
+import ar.edu.um.canarium.service.RelacionService;
+import ar.edu.um.canarium.service.RepublicadoService;
+import ar.edu.um.canarium.service.RoleService;
+import ar.edu.um.canarium.service.TagService;
+import ar.edu.um.canarium.service.UserRoleService;
+import ar.edu.um.canarium.service.UserService;
 import ar.edu.um.canarium.web.ApplicationConversionServiceFactoryBean;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.format.FormatterRegistry;
@@ -21,6 +32,36 @@ import org.springframework.format.FormatterRegistry;
 privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService {
     
     declare @type: ApplicationConversionServiceFactoryBean: @Configurable;
+    
+    @Autowired
+    ConfiguracionService ApplicationConversionServiceFactoryBean.configuracionService;
+    
+    @Autowired
+    MensajeService ApplicationConversionServiceFactoryBean.mensajeService;
+    
+    @Autowired
+    MensajePrivadoService ApplicationConversionServiceFactoryBean.mensajePrivadoService;
+    
+    @Autowired
+    PersonaService ApplicationConversionServiceFactoryBean.personaService;
+    
+    @Autowired
+    RelacionService ApplicationConversionServiceFactoryBean.relacionService;
+    
+    @Autowired
+    RepublicadoService ApplicationConversionServiceFactoryBean.republicadoService;
+    
+    @Autowired
+    RoleService ApplicationConversionServiceFactoryBean.roleService;
+    
+    @Autowired
+    TagService ApplicationConversionServiceFactoryBean.tagService;
+    
+    @Autowired
+    UserService ApplicationConversionServiceFactoryBean.userService;
+    
+    @Autowired
+    UserRoleService ApplicationConversionServiceFactoryBean.userRoleService;
     
     public Converter<Configuracion, String> ApplicationConversionServiceFactoryBean.getConfiguracionToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<ar.edu.um.canarium.domain.Configuracion, java.lang.String>() {
@@ -33,7 +74,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<Long, Configuracion> ApplicationConversionServiceFactoryBean.getIdToConfiguracionConverter() {
         return new org.springframework.core.convert.converter.Converter<java.lang.Long, ar.edu.um.canarium.domain.Configuracion>() {
             public ar.edu.um.canarium.domain.Configuracion convert(java.lang.Long id) {
-                return Configuracion.findConfiguracion(id);
+                return configuracionService.findConfiguracion(id);
             }
         };
     }
@@ -57,7 +98,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<Long, Mensaje> ApplicationConversionServiceFactoryBean.getIdToMensajeConverter() {
         return new org.springframework.core.convert.converter.Converter<java.lang.Long, ar.edu.um.canarium.domain.Mensaje>() {
             public ar.edu.um.canarium.domain.Mensaje convert(java.lang.Long id) {
-                return Mensaje.findMensaje(id);
+                return mensajeService.findMensaje(id);
             }
         };
     }
@@ -81,7 +122,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<Long, MensajePrivado> ApplicationConversionServiceFactoryBean.getIdToMensajePrivadoConverter() {
         return new org.springframework.core.convert.converter.Converter<java.lang.Long, ar.edu.um.canarium.domain.MensajePrivado>() {
             public ar.edu.um.canarium.domain.MensajePrivado convert(java.lang.Long id) {
-                return MensajePrivado.findMensajePrivado(id);
+                return mensajePrivadoService.findMensajePrivado(id);
             }
         };
     }
@@ -105,7 +146,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<Long, Persona> ApplicationConversionServiceFactoryBean.getIdToPersonaConverter() {
         return new org.springframework.core.convert.converter.Converter<java.lang.Long, ar.edu.um.canarium.domain.Persona>() {
             public ar.edu.um.canarium.domain.Persona convert(java.lang.Long id) {
-                return Persona.findPersona(id);
+                return personaService.findPersona(id);
             }
         };
     }
@@ -129,7 +170,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<Long, Relacion> ApplicationConversionServiceFactoryBean.getIdToRelacionConverter() {
         return new org.springframework.core.convert.converter.Converter<java.lang.Long, ar.edu.um.canarium.domain.Relacion>() {
             public ar.edu.um.canarium.domain.Relacion convert(java.lang.Long id) {
-                return Relacion.findRelacion(id);
+                return relacionService.findRelacion(id);
             }
         };
     }
@@ -153,7 +194,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<Long, Republicado> ApplicationConversionServiceFactoryBean.getIdToRepublicadoConverter() {
         return new org.springframework.core.convert.converter.Converter<java.lang.Long, ar.edu.um.canarium.domain.Republicado>() {
             public ar.edu.um.canarium.domain.Republicado convert(java.lang.Long id) {
-                return Republicado.findRepublicado(id);
+                return republicadoService.findRepublicado(id);
             }
         };
     }
@@ -177,7 +218,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<Long, Role> ApplicationConversionServiceFactoryBean.getIdToRoleConverter() {
         return new org.springframework.core.convert.converter.Converter<java.lang.Long, ar.edu.um.canarium.domain.Role>() {
             public ar.edu.um.canarium.domain.Role convert(java.lang.Long id) {
-                return Role.findRole(id);
+                return roleService.findRole(id);
             }
         };
     }
@@ -201,7 +242,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<Long, Tag> ApplicationConversionServiceFactoryBean.getIdToTagConverter() {
         return new org.springframework.core.convert.converter.Converter<java.lang.Long, ar.edu.um.canarium.domain.Tag>() {
             public ar.edu.um.canarium.domain.Tag convert(java.lang.Long id) {
-                return Tag.findTag(id);
+                return tagService.findTag(id);
             }
         };
     }
@@ -225,7 +266,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<Long, User> ApplicationConversionServiceFactoryBean.getIdToUserConverter() {
         return new org.springframework.core.convert.converter.Converter<java.lang.Long, ar.edu.um.canarium.domain.User>() {
             public ar.edu.um.canarium.domain.User convert(java.lang.Long id) {
-                return User.findUser(id);
+                return userService.findUser(id);
             }
         };
     }
@@ -249,7 +290,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<Long, UserRole> ApplicationConversionServiceFactoryBean.getIdToUserRoleConverter() {
         return new org.springframework.core.convert.converter.Converter<java.lang.Long, ar.edu.um.canarium.domain.UserRole>() {
             public ar.edu.um.canarium.domain.UserRole convert(java.lang.Long id) {
-                return UserRole.findUserRole(id);
+                return userRoleService.findUserRole(id);
             }
         };
     }

@@ -4,10 +4,12 @@
 package ar.edu.um.canarium.web;
 
 import ar.edu.um.canarium.domain.Role;
+import ar.edu.um.canarium.service.RoleService;
 import ar.edu.um.canarium.web.RoleController;
 import java.io.UnsupportedEncodingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +21,9 @@ import org.springframework.web.util.WebUtils;
 
 privileged aspect RoleController_Roo_Controller {
     
+    @Autowired
+    RoleService RoleController.roleService;
+    
     @RequestMapping(method = RequestMethod.POST, produces = "text/html")
     public String RoleController.create(@Valid Role role, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
@@ -26,7 +31,7 @@ privileged aspect RoleController_Roo_Controller {
             return "roles/create";
         }
         uiModel.asMap().clear();
-        role.persist();
+        roleService.saveRole(role);
         return "redirect:/roles/" + encodeUrlPathSegment(role.getId().toString(), httpServletRequest);
     }
     
@@ -38,7 +43,7 @@ privileged aspect RoleController_Roo_Controller {
     
     @RequestMapping(value = "/{id}", produces = "text/html")
     public String RoleController.show(@PathVariable("id") Long id, Model uiModel) {
-        uiModel.addAttribute("role", Role.findRole(id));
+        uiModel.addAttribute("role", roleService.findRole(id));
         uiModel.addAttribute("itemId", id);
         return "roles/show";
     }
@@ -48,11 +53,11 @@ privileged aspect RoleController_Roo_Controller {
         if (page != null || size != null) {
             int sizeNo = size == null ? 10 : size.intValue();
             final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
-            uiModel.addAttribute("roles", Role.findRoleEntries(firstResult, sizeNo));
-            float nrOfPages = (float) Role.countRoles() / sizeNo;
+            uiModel.addAttribute("roles", roleService.findRoleEntries(firstResult, sizeNo));
+            float nrOfPages = (float) roleService.countAllRoles() / sizeNo;
             uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
         } else {
-            uiModel.addAttribute("roles", Role.findAllRoles());
+            uiModel.addAttribute("roles", roleService.findAllRoles());
         }
         return "roles/list";
     }
@@ -64,20 +69,20 @@ privileged aspect RoleController_Roo_Controller {
             return "roles/update";
         }
         uiModel.asMap().clear();
-        role.merge();
+        roleService.updateRole(role);
         return "redirect:/roles/" + encodeUrlPathSegment(role.getId().toString(), httpServletRequest);
     }
     
     @RequestMapping(value = "/{id}", params = "form", produces = "text/html")
     public String RoleController.updateForm(@PathVariable("id") Long id, Model uiModel) {
-        populateEditForm(uiModel, Role.findRole(id));
+        populateEditForm(uiModel, roleService.findRole(id));
         return "roles/update";
     }
     
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = "text/html")
     public String RoleController.delete(@PathVariable("id") Long id, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
-        Role role = Role.findRole(id);
-        role.remove();
+        Role role = roleService.findRole(id);
+        roleService.deleteRole(role);
         uiModel.asMap().clear();
         uiModel.addAttribute("page", (page == null) ? "1" : page.toString());
         uiModel.addAttribute("size", (size == null) ? "10" : size.toString());

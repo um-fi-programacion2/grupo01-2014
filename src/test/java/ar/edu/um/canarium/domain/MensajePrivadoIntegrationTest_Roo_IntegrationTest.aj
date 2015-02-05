@@ -3,9 +3,9 @@
 
 package ar.edu.um.canarium.domain;
 
-import ar.edu.um.canarium.domain.MensajePrivado;
 import ar.edu.um.canarium.domain.MensajePrivadoDataOnDemand;
 import ar.edu.um.canarium.domain.MensajePrivadoIntegrationTest;
+import ar.edu.um.canarium.service.MensajePrivadoService;
 import java.util.Iterator;
 import java.util.List;
 import javax.validation.ConstraintViolation;
@@ -29,10 +29,13 @@ privileged aspect MensajePrivadoIntegrationTest_Roo_IntegrationTest {
     @Autowired
     MensajePrivadoDataOnDemand MensajePrivadoIntegrationTest.dod;
     
+    @Autowired
+    MensajePrivadoService MensajePrivadoIntegrationTest.mensajePrivadoService;
+    
     @Test
-    public void MensajePrivadoIntegrationTest.testCountMensajePrivadoes() {
+    public void MensajePrivadoIntegrationTest.testCountAllMensajePrivadoes() {
         Assert.assertNotNull("Data on demand for 'MensajePrivado' failed to initialize correctly", dod.getRandomMensajePrivado());
-        long count = MensajePrivado.countMensajePrivadoes();
+        long count = mensajePrivadoService.countAllMensajePrivadoes();
         Assert.assertTrue("Counter for 'MensajePrivado' incorrectly reported there were no entries", count > 0);
     }
     
@@ -42,7 +45,7 @@ privileged aspect MensajePrivadoIntegrationTest_Roo_IntegrationTest {
         Assert.assertNotNull("Data on demand for 'MensajePrivado' failed to initialize correctly", obj);
         Long id = obj.getId();
         Assert.assertNotNull("Data on demand for 'MensajePrivado' failed to provide an identifier", id);
-        obj = MensajePrivado.findMensajePrivado(id);
+        obj = mensajePrivadoService.findMensajePrivado(id);
         Assert.assertNotNull("Find method for 'MensajePrivado' illegally returned null for id '" + id + "'", obj);
         Assert.assertEquals("Find method for 'MensajePrivado' returned the incorrect identifier", id, obj.getId());
     }
@@ -50,9 +53,9 @@ privileged aspect MensajePrivadoIntegrationTest_Roo_IntegrationTest {
     @Test
     public void MensajePrivadoIntegrationTest.testFindAllMensajePrivadoes() {
         Assert.assertNotNull("Data on demand for 'MensajePrivado' failed to initialize correctly", dod.getRandomMensajePrivado());
-        long count = MensajePrivado.countMensajePrivadoes();
+        long count = mensajePrivadoService.countAllMensajePrivadoes();
         Assert.assertTrue("Too expensive to perform a find all test for 'MensajePrivado', as there are " + count + " entries; set the findAllMaximum to exceed this value or set findAll=false on the integration test annotation to disable the test", count < 250);
-        List<MensajePrivado> result = MensajePrivado.findAllMensajePrivadoes();
+        List<MensajePrivado> result = mensajePrivadoService.findAllMensajePrivadoes();
         Assert.assertNotNull("Find all method for 'MensajePrivado' illegally returned null", result);
         Assert.assertTrue("Find all method for 'MensajePrivado' failed to return any data", result.size() > 0);
     }
@@ -60,11 +63,11 @@ privileged aspect MensajePrivadoIntegrationTest_Roo_IntegrationTest {
     @Test
     public void MensajePrivadoIntegrationTest.testFindMensajePrivadoEntries() {
         Assert.assertNotNull("Data on demand for 'MensajePrivado' failed to initialize correctly", dod.getRandomMensajePrivado());
-        long count = MensajePrivado.countMensajePrivadoes();
+        long count = mensajePrivadoService.countAllMensajePrivadoes();
         if (count > 20) count = 20;
         int firstResult = 0;
         int maxResults = (int) count;
-        List<MensajePrivado> result = MensajePrivado.findMensajePrivadoEntries(firstResult, maxResults);
+        List<MensajePrivado> result = mensajePrivadoService.findMensajePrivadoEntries(firstResult, maxResults);
         Assert.assertNotNull("Find entries method for 'MensajePrivado' illegally returned null", result);
         Assert.assertEquals("Find entries method for 'MensajePrivado' returned an incorrect number of entries", count, result.size());
     }
@@ -75,7 +78,7 @@ privileged aspect MensajePrivadoIntegrationTest_Roo_IntegrationTest {
         Assert.assertNotNull("Data on demand for 'MensajePrivado' failed to initialize correctly", obj);
         Long id = obj.getId();
         Assert.assertNotNull("Data on demand for 'MensajePrivado' failed to provide an identifier", id);
-        obj = MensajePrivado.findMensajePrivado(id);
+        obj = mensajePrivadoService.findMensajePrivado(id);
         Assert.assertNotNull("Find method for 'MensajePrivado' illegally returned null for id '" + id + "'", obj);
         boolean modified =  dod.modifyMensajePrivado(obj);
         Integer currentVersion = obj.getVersion();
@@ -84,28 +87,28 @@ privileged aspect MensajePrivadoIntegrationTest_Roo_IntegrationTest {
     }
     
     @Test
-    public void MensajePrivadoIntegrationTest.testMergeUpdate() {
+    public void MensajePrivadoIntegrationTest.testUpdateMensajePrivadoUpdate() {
         MensajePrivado obj = dod.getRandomMensajePrivado();
         Assert.assertNotNull("Data on demand for 'MensajePrivado' failed to initialize correctly", obj);
         Long id = obj.getId();
         Assert.assertNotNull("Data on demand for 'MensajePrivado' failed to provide an identifier", id);
-        obj = MensajePrivado.findMensajePrivado(id);
+        obj = mensajePrivadoService.findMensajePrivado(id);
         boolean modified =  dod.modifyMensajePrivado(obj);
         Integer currentVersion = obj.getVersion();
-        MensajePrivado merged = obj.merge();
+        MensajePrivado merged = mensajePrivadoService.updateMensajePrivado(obj);
         obj.flush();
         Assert.assertEquals("Identifier of merged object not the same as identifier of original object", merged.getId(), id);
         Assert.assertTrue("Version for 'MensajePrivado' failed to increment on merge and flush directive", (currentVersion != null && obj.getVersion() > currentVersion) || !modified);
     }
     
     @Test
-    public void MensajePrivadoIntegrationTest.testPersist() {
+    public void MensajePrivadoIntegrationTest.testSaveMensajePrivado() {
         Assert.assertNotNull("Data on demand for 'MensajePrivado' failed to initialize correctly", dod.getRandomMensajePrivado());
         MensajePrivado obj = dod.getNewTransientMensajePrivado(Integer.MAX_VALUE);
         Assert.assertNotNull("Data on demand for 'MensajePrivado' failed to provide a new transient entity", obj);
         Assert.assertNull("Expected 'MensajePrivado' identifier to be null", obj.getId());
         try {
-            obj.persist();
+            mensajePrivadoService.saveMensajePrivado(obj);
         } catch (final ConstraintViolationException e) {
             final StringBuilder msg = new StringBuilder();
             for (Iterator<ConstraintViolation<?>> iter = e.getConstraintViolations().iterator(); iter.hasNext();) {
@@ -119,15 +122,15 @@ privileged aspect MensajePrivadoIntegrationTest_Roo_IntegrationTest {
     }
     
     @Test
-    public void MensajePrivadoIntegrationTest.testRemove() {
+    public void MensajePrivadoIntegrationTest.testDeleteMensajePrivado() {
         MensajePrivado obj = dod.getRandomMensajePrivado();
         Assert.assertNotNull("Data on demand for 'MensajePrivado' failed to initialize correctly", obj);
         Long id = obj.getId();
         Assert.assertNotNull("Data on demand for 'MensajePrivado' failed to provide an identifier", id);
-        obj = MensajePrivado.findMensajePrivado(id);
-        obj.remove();
+        obj = mensajePrivadoService.findMensajePrivado(id);
+        mensajePrivadoService.deleteMensajePrivado(obj);
         obj.flush();
-        Assert.assertNull("Failed to remove 'MensajePrivado' with identifier '" + id + "'", MensajePrivado.findMensajePrivado(id));
+        Assert.assertNull("Failed to remove 'MensajePrivado' with identifier '" + id + "'", mensajePrivadoService.findMensajePrivado(id));
     }
     
 }

@@ -3,9 +3,9 @@
 
 package ar.edu.um.canarium.domain;
 
-import ar.edu.um.canarium.domain.User;
 import ar.edu.um.canarium.domain.UserDataOnDemand;
 import ar.edu.um.canarium.domain.UserIntegrationTest;
+import ar.edu.um.canarium.service.UserService;
 import java.util.Iterator;
 import java.util.List;
 import javax.validation.ConstraintViolation;
@@ -29,10 +29,13 @@ privileged aspect UserIntegrationTest_Roo_IntegrationTest {
     @Autowired
     UserDataOnDemand UserIntegrationTest.dod;
     
+    @Autowired
+    UserService UserIntegrationTest.userService;
+    
     @Test
-    public void UserIntegrationTest.testCountUsers() {
+    public void UserIntegrationTest.testCountAllUsers() {
         Assert.assertNotNull("Data on demand for 'User' failed to initialize correctly", dod.getRandomUser());
-        long count = User.countUsers();
+        long count = userService.countAllUsers();
         Assert.assertTrue("Counter for 'User' incorrectly reported there were no entries", count > 0);
     }
     
@@ -42,7 +45,7 @@ privileged aspect UserIntegrationTest_Roo_IntegrationTest {
         Assert.assertNotNull("Data on demand for 'User' failed to initialize correctly", obj);
         Long id = obj.getId();
         Assert.assertNotNull("Data on demand for 'User' failed to provide an identifier", id);
-        obj = User.findUser(id);
+        obj = userService.findUser(id);
         Assert.assertNotNull("Find method for 'User' illegally returned null for id '" + id + "'", obj);
         Assert.assertEquals("Find method for 'User' returned the incorrect identifier", id, obj.getId());
     }
@@ -50,9 +53,9 @@ privileged aspect UserIntegrationTest_Roo_IntegrationTest {
     @Test
     public void UserIntegrationTest.testFindAllUsers() {
         Assert.assertNotNull("Data on demand for 'User' failed to initialize correctly", dod.getRandomUser());
-        long count = User.countUsers();
+        long count = userService.countAllUsers();
         Assert.assertTrue("Too expensive to perform a find all test for 'User', as there are " + count + " entries; set the findAllMaximum to exceed this value or set findAll=false on the integration test annotation to disable the test", count < 250);
-        List<User> result = User.findAllUsers();
+        List<User> result = userService.findAllUsers();
         Assert.assertNotNull("Find all method for 'User' illegally returned null", result);
         Assert.assertTrue("Find all method for 'User' failed to return any data", result.size() > 0);
     }
@@ -60,11 +63,11 @@ privileged aspect UserIntegrationTest_Roo_IntegrationTest {
     @Test
     public void UserIntegrationTest.testFindUserEntries() {
         Assert.assertNotNull("Data on demand for 'User' failed to initialize correctly", dod.getRandomUser());
-        long count = User.countUsers();
+        long count = userService.countAllUsers();
         if (count > 20) count = 20;
         int firstResult = 0;
         int maxResults = (int) count;
-        List<User> result = User.findUserEntries(firstResult, maxResults);
+        List<User> result = userService.findUserEntries(firstResult, maxResults);
         Assert.assertNotNull("Find entries method for 'User' illegally returned null", result);
         Assert.assertEquals("Find entries method for 'User' returned an incorrect number of entries", count, result.size());
     }
@@ -75,7 +78,7 @@ privileged aspect UserIntegrationTest_Roo_IntegrationTest {
         Assert.assertNotNull("Data on demand for 'User' failed to initialize correctly", obj);
         Long id = obj.getId();
         Assert.assertNotNull("Data on demand for 'User' failed to provide an identifier", id);
-        obj = User.findUser(id);
+        obj = userService.findUser(id);
         Assert.assertNotNull("Find method for 'User' illegally returned null for id '" + id + "'", obj);
         boolean modified =  dod.modifyUser(obj);
         Integer currentVersion = obj.getVersion();
@@ -84,28 +87,28 @@ privileged aspect UserIntegrationTest_Roo_IntegrationTest {
     }
     
     @Test
-    public void UserIntegrationTest.testMergeUpdate() {
+    public void UserIntegrationTest.testUpdateUserUpdate() {
         User obj = dod.getRandomUser();
         Assert.assertNotNull("Data on demand for 'User' failed to initialize correctly", obj);
         Long id = obj.getId();
         Assert.assertNotNull("Data on demand for 'User' failed to provide an identifier", id);
-        obj = User.findUser(id);
+        obj = userService.findUser(id);
         boolean modified =  dod.modifyUser(obj);
         Integer currentVersion = obj.getVersion();
-        User merged = obj.merge();
+        User merged = userService.updateUser(obj);
         obj.flush();
         Assert.assertEquals("Identifier of merged object not the same as identifier of original object", merged.getId(), id);
         Assert.assertTrue("Version for 'User' failed to increment on merge and flush directive", (currentVersion != null && obj.getVersion() > currentVersion) || !modified);
     }
     
     @Test
-    public void UserIntegrationTest.testPersist() {
+    public void UserIntegrationTest.testSaveUser() {
         Assert.assertNotNull("Data on demand for 'User' failed to initialize correctly", dod.getRandomUser());
         User obj = dod.getNewTransientUser(Integer.MAX_VALUE);
         Assert.assertNotNull("Data on demand for 'User' failed to provide a new transient entity", obj);
         Assert.assertNull("Expected 'User' identifier to be null", obj.getId());
         try {
-            obj.persist();
+            userService.saveUser(obj);
         } catch (final ConstraintViolationException e) {
             final StringBuilder msg = new StringBuilder();
             for (Iterator<ConstraintViolation<?>> iter = e.getConstraintViolations().iterator(); iter.hasNext();) {
@@ -119,15 +122,15 @@ privileged aspect UserIntegrationTest_Roo_IntegrationTest {
     }
     
     @Test
-    public void UserIntegrationTest.testRemove() {
+    public void UserIntegrationTest.testDeleteUser() {
         User obj = dod.getRandomUser();
         Assert.assertNotNull("Data on demand for 'User' failed to initialize correctly", obj);
         Long id = obj.getId();
         Assert.assertNotNull("Data on demand for 'User' failed to provide an identifier", id);
-        obj = User.findUser(id);
-        obj.remove();
+        obj = userService.findUser(id);
+        userService.deleteUser(obj);
         obj.flush();
-        Assert.assertNull("Failed to remove 'User' with identifier '" + id + "'", User.findUser(id));
+        Assert.assertNull("Failed to remove 'User' with identifier '" + id + "'", userService.findUser(id));
     }
     
 }

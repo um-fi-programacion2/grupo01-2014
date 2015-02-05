@@ -3,9 +3,9 @@
 
 package ar.edu.um.canarium.domain;
 
-import ar.edu.um.canarium.domain.Tag;
 import ar.edu.um.canarium.domain.TagDataOnDemand;
 import ar.edu.um.canarium.domain.TagIntegrationTest;
+import ar.edu.um.canarium.service.TagService;
 import java.util.Iterator;
 import java.util.List;
 import javax.validation.ConstraintViolation;
@@ -29,10 +29,13 @@ privileged aspect TagIntegrationTest_Roo_IntegrationTest {
     @Autowired
     TagDataOnDemand TagIntegrationTest.dod;
     
+    @Autowired
+    TagService TagIntegrationTest.tagService;
+    
     @Test
-    public void TagIntegrationTest.testCountTags() {
+    public void TagIntegrationTest.testCountAllTags() {
         Assert.assertNotNull("Data on demand for 'Tag' failed to initialize correctly", dod.getRandomTag());
-        long count = Tag.countTags();
+        long count = tagService.countAllTags();
         Assert.assertTrue("Counter for 'Tag' incorrectly reported there were no entries", count > 0);
     }
     
@@ -42,7 +45,7 @@ privileged aspect TagIntegrationTest_Roo_IntegrationTest {
         Assert.assertNotNull("Data on demand for 'Tag' failed to initialize correctly", obj);
         Long id = obj.getId();
         Assert.assertNotNull("Data on demand for 'Tag' failed to provide an identifier", id);
-        obj = Tag.findTag(id);
+        obj = tagService.findTag(id);
         Assert.assertNotNull("Find method for 'Tag' illegally returned null for id '" + id + "'", obj);
         Assert.assertEquals("Find method for 'Tag' returned the incorrect identifier", id, obj.getId());
     }
@@ -50,9 +53,9 @@ privileged aspect TagIntegrationTest_Roo_IntegrationTest {
     @Test
     public void TagIntegrationTest.testFindAllTags() {
         Assert.assertNotNull("Data on demand for 'Tag' failed to initialize correctly", dod.getRandomTag());
-        long count = Tag.countTags();
+        long count = tagService.countAllTags();
         Assert.assertTrue("Too expensive to perform a find all test for 'Tag', as there are " + count + " entries; set the findAllMaximum to exceed this value or set findAll=false on the integration test annotation to disable the test", count < 250);
-        List<Tag> result = Tag.findAllTags();
+        List<Tag> result = tagService.findAllTags();
         Assert.assertNotNull("Find all method for 'Tag' illegally returned null", result);
         Assert.assertTrue("Find all method for 'Tag' failed to return any data", result.size() > 0);
     }
@@ -60,11 +63,11 @@ privileged aspect TagIntegrationTest_Roo_IntegrationTest {
     @Test
     public void TagIntegrationTest.testFindTagEntries() {
         Assert.assertNotNull("Data on demand for 'Tag' failed to initialize correctly", dod.getRandomTag());
-        long count = Tag.countTags();
+        long count = tagService.countAllTags();
         if (count > 20) count = 20;
         int firstResult = 0;
         int maxResults = (int) count;
-        List<Tag> result = Tag.findTagEntries(firstResult, maxResults);
+        List<Tag> result = tagService.findTagEntries(firstResult, maxResults);
         Assert.assertNotNull("Find entries method for 'Tag' illegally returned null", result);
         Assert.assertEquals("Find entries method for 'Tag' returned an incorrect number of entries", count, result.size());
     }
@@ -75,7 +78,7 @@ privileged aspect TagIntegrationTest_Roo_IntegrationTest {
         Assert.assertNotNull("Data on demand for 'Tag' failed to initialize correctly", obj);
         Long id = obj.getId();
         Assert.assertNotNull("Data on demand for 'Tag' failed to provide an identifier", id);
-        obj = Tag.findTag(id);
+        obj = tagService.findTag(id);
         Assert.assertNotNull("Find method for 'Tag' illegally returned null for id '" + id + "'", obj);
         boolean modified =  dod.modifyTag(obj);
         Integer currentVersion = obj.getVersion();
@@ -84,28 +87,28 @@ privileged aspect TagIntegrationTest_Roo_IntegrationTest {
     }
     
     @Test
-    public void TagIntegrationTest.testMergeUpdate() {
+    public void TagIntegrationTest.testUpdateTagUpdate() {
         Tag obj = dod.getRandomTag();
         Assert.assertNotNull("Data on demand for 'Tag' failed to initialize correctly", obj);
         Long id = obj.getId();
         Assert.assertNotNull("Data on demand for 'Tag' failed to provide an identifier", id);
-        obj = Tag.findTag(id);
+        obj = tagService.findTag(id);
         boolean modified =  dod.modifyTag(obj);
         Integer currentVersion = obj.getVersion();
-        Tag merged = obj.merge();
+        Tag merged = tagService.updateTag(obj);
         obj.flush();
         Assert.assertEquals("Identifier of merged object not the same as identifier of original object", merged.getId(), id);
         Assert.assertTrue("Version for 'Tag' failed to increment on merge and flush directive", (currentVersion != null && obj.getVersion() > currentVersion) || !modified);
     }
     
     @Test
-    public void TagIntegrationTest.testPersist() {
+    public void TagIntegrationTest.testSaveTag() {
         Assert.assertNotNull("Data on demand for 'Tag' failed to initialize correctly", dod.getRandomTag());
         Tag obj = dod.getNewTransientTag(Integer.MAX_VALUE);
         Assert.assertNotNull("Data on demand for 'Tag' failed to provide a new transient entity", obj);
         Assert.assertNull("Expected 'Tag' identifier to be null", obj.getId());
         try {
-            obj.persist();
+            tagService.saveTag(obj);
         } catch (final ConstraintViolationException e) {
             final StringBuilder msg = new StringBuilder();
             for (Iterator<ConstraintViolation<?>> iter = e.getConstraintViolations().iterator(); iter.hasNext();) {
@@ -119,15 +122,15 @@ privileged aspect TagIntegrationTest_Roo_IntegrationTest {
     }
     
     @Test
-    public void TagIntegrationTest.testRemove() {
+    public void TagIntegrationTest.testDeleteTag() {
         Tag obj = dod.getRandomTag();
         Assert.assertNotNull("Data on demand for 'Tag' failed to initialize correctly", obj);
         Long id = obj.getId();
         Assert.assertNotNull("Data on demand for 'Tag' failed to provide an identifier", id);
-        obj = Tag.findTag(id);
-        obj.remove();
+        obj = tagService.findTag(id);
+        tagService.deleteTag(obj);
         obj.flush();
-        Assert.assertNull("Failed to remove 'Tag' with identifier '" + id + "'", Tag.findTag(id));
+        Assert.assertNull("Failed to remove 'Tag' with identifier '" + id + "'", tagService.findTag(id));
     }
     
 }

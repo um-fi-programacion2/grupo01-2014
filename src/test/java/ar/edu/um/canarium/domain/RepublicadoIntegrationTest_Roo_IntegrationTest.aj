@@ -3,9 +3,9 @@
 
 package ar.edu.um.canarium.domain;
 
-import ar.edu.um.canarium.domain.Republicado;
 import ar.edu.um.canarium.domain.RepublicadoDataOnDemand;
 import ar.edu.um.canarium.domain.RepublicadoIntegrationTest;
+import ar.edu.um.canarium.service.RepublicadoService;
 import java.util.Iterator;
 import java.util.List;
 import javax.validation.ConstraintViolation;
@@ -29,10 +29,13 @@ privileged aspect RepublicadoIntegrationTest_Roo_IntegrationTest {
     @Autowired
     RepublicadoDataOnDemand RepublicadoIntegrationTest.dod;
     
+    @Autowired
+    RepublicadoService RepublicadoIntegrationTest.republicadoService;
+    
     @Test
-    public void RepublicadoIntegrationTest.testCountRepublicadoes() {
+    public void RepublicadoIntegrationTest.testCountAllRepublicadoes() {
         Assert.assertNotNull("Data on demand for 'Republicado' failed to initialize correctly", dod.getRandomRepublicado());
-        long count = Republicado.countRepublicadoes();
+        long count = republicadoService.countAllRepublicadoes();
         Assert.assertTrue("Counter for 'Republicado' incorrectly reported there were no entries", count > 0);
     }
     
@@ -42,7 +45,7 @@ privileged aspect RepublicadoIntegrationTest_Roo_IntegrationTest {
         Assert.assertNotNull("Data on demand for 'Republicado' failed to initialize correctly", obj);
         Long id = obj.getId();
         Assert.assertNotNull("Data on demand for 'Republicado' failed to provide an identifier", id);
-        obj = Republicado.findRepublicado(id);
+        obj = republicadoService.findRepublicado(id);
         Assert.assertNotNull("Find method for 'Republicado' illegally returned null for id '" + id + "'", obj);
         Assert.assertEquals("Find method for 'Republicado' returned the incorrect identifier", id, obj.getId());
     }
@@ -50,9 +53,9 @@ privileged aspect RepublicadoIntegrationTest_Roo_IntegrationTest {
     @Test
     public void RepublicadoIntegrationTest.testFindAllRepublicadoes() {
         Assert.assertNotNull("Data on demand for 'Republicado' failed to initialize correctly", dod.getRandomRepublicado());
-        long count = Republicado.countRepublicadoes();
+        long count = republicadoService.countAllRepublicadoes();
         Assert.assertTrue("Too expensive to perform a find all test for 'Republicado', as there are " + count + " entries; set the findAllMaximum to exceed this value or set findAll=false on the integration test annotation to disable the test", count < 250);
-        List<Republicado> result = Republicado.findAllRepublicadoes();
+        List<Republicado> result = republicadoService.findAllRepublicadoes();
         Assert.assertNotNull("Find all method for 'Republicado' illegally returned null", result);
         Assert.assertTrue("Find all method for 'Republicado' failed to return any data", result.size() > 0);
     }
@@ -60,11 +63,11 @@ privileged aspect RepublicadoIntegrationTest_Roo_IntegrationTest {
     @Test
     public void RepublicadoIntegrationTest.testFindRepublicadoEntries() {
         Assert.assertNotNull("Data on demand for 'Republicado' failed to initialize correctly", dod.getRandomRepublicado());
-        long count = Republicado.countRepublicadoes();
+        long count = republicadoService.countAllRepublicadoes();
         if (count > 20) count = 20;
         int firstResult = 0;
         int maxResults = (int) count;
-        List<Republicado> result = Republicado.findRepublicadoEntries(firstResult, maxResults);
+        List<Republicado> result = republicadoService.findRepublicadoEntries(firstResult, maxResults);
         Assert.assertNotNull("Find entries method for 'Republicado' illegally returned null", result);
         Assert.assertEquals("Find entries method for 'Republicado' returned an incorrect number of entries", count, result.size());
     }
@@ -75,7 +78,7 @@ privileged aspect RepublicadoIntegrationTest_Roo_IntegrationTest {
         Assert.assertNotNull("Data on demand for 'Republicado' failed to initialize correctly", obj);
         Long id = obj.getId();
         Assert.assertNotNull("Data on demand for 'Republicado' failed to provide an identifier", id);
-        obj = Republicado.findRepublicado(id);
+        obj = republicadoService.findRepublicado(id);
         Assert.assertNotNull("Find method for 'Republicado' illegally returned null for id '" + id + "'", obj);
         boolean modified =  dod.modifyRepublicado(obj);
         Integer currentVersion = obj.getVersion();
@@ -84,28 +87,28 @@ privileged aspect RepublicadoIntegrationTest_Roo_IntegrationTest {
     }
     
     @Test
-    public void RepublicadoIntegrationTest.testMergeUpdate() {
+    public void RepublicadoIntegrationTest.testUpdateRepublicadoUpdate() {
         Republicado obj = dod.getRandomRepublicado();
         Assert.assertNotNull("Data on demand for 'Republicado' failed to initialize correctly", obj);
         Long id = obj.getId();
         Assert.assertNotNull("Data on demand for 'Republicado' failed to provide an identifier", id);
-        obj = Republicado.findRepublicado(id);
+        obj = republicadoService.findRepublicado(id);
         boolean modified =  dod.modifyRepublicado(obj);
         Integer currentVersion = obj.getVersion();
-        Republicado merged = obj.merge();
+        Republicado merged = republicadoService.updateRepublicado(obj);
         obj.flush();
         Assert.assertEquals("Identifier of merged object not the same as identifier of original object", merged.getId(), id);
         Assert.assertTrue("Version for 'Republicado' failed to increment on merge and flush directive", (currentVersion != null && obj.getVersion() > currentVersion) || !modified);
     }
     
     @Test
-    public void RepublicadoIntegrationTest.testPersist() {
+    public void RepublicadoIntegrationTest.testSaveRepublicado() {
         Assert.assertNotNull("Data on demand for 'Republicado' failed to initialize correctly", dod.getRandomRepublicado());
         Republicado obj = dod.getNewTransientRepublicado(Integer.MAX_VALUE);
         Assert.assertNotNull("Data on demand for 'Republicado' failed to provide a new transient entity", obj);
         Assert.assertNull("Expected 'Republicado' identifier to be null", obj.getId());
         try {
-            obj.persist();
+            republicadoService.saveRepublicado(obj);
         } catch (final ConstraintViolationException e) {
             final StringBuilder msg = new StringBuilder();
             for (Iterator<ConstraintViolation<?>> iter = e.getConstraintViolations().iterator(); iter.hasNext();) {
@@ -119,15 +122,15 @@ privileged aspect RepublicadoIntegrationTest_Roo_IntegrationTest {
     }
     
     @Test
-    public void RepublicadoIntegrationTest.testRemove() {
+    public void RepublicadoIntegrationTest.testDeleteRepublicado() {
         Republicado obj = dod.getRandomRepublicado();
         Assert.assertNotNull("Data on demand for 'Republicado' failed to initialize correctly", obj);
         Long id = obj.getId();
         Assert.assertNotNull("Data on demand for 'Republicado' failed to provide an identifier", id);
-        obj = Republicado.findRepublicado(id);
-        obj.remove();
+        obj = republicadoService.findRepublicado(id);
+        republicadoService.deleteRepublicado(obj);
         obj.flush();
-        Assert.assertNull("Failed to remove 'Republicado' with identifier '" + id + "'", Republicado.findRepublicado(id));
+        Assert.assertNull("Failed to remove 'Republicado' with identifier '" + id + "'", republicadoService.findRepublicado(id));
     }
     
 }

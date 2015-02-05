@@ -3,9 +3,9 @@
 
 package ar.edu.um.canarium.domain;
 
-import ar.edu.um.canarium.domain.Mensaje;
 import ar.edu.um.canarium.domain.MensajeDataOnDemand;
 import ar.edu.um.canarium.domain.MensajeIntegrationTest;
+import ar.edu.um.canarium.service.MensajeService;
 import java.util.Iterator;
 import java.util.List;
 import javax.validation.ConstraintViolation;
@@ -29,10 +29,13 @@ privileged aspect MensajeIntegrationTest_Roo_IntegrationTest {
     @Autowired
     MensajeDataOnDemand MensajeIntegrationTest.dod;
     
+    @Autowired
+    MensajeService MensajeIntegrationTest.mensajeService;
+    
     @Test
-    public void MensajeIntegrationTest.testCountMensajes() {
+    public void MensajeIntegrationTest.testCountAllMensajes() {
         Assert.assertNotNull("Data on demand for 'Mensaje' failed to initialize correctly", dod.getRandomMensaje());
-        long count = Mensaje.countMensajes();
+        long count = mensajeService.countAllMensajes();
         Assert.assertTrue("Counter for 'Mensaje' incorrectly reported there were no entries", count > 0);
     }
     
@@ -42,7 +45,7 @@ privileged aspect MensajeIntegrationTest_Roo_IntegrationTest {
         Assert.assertNotNull("Data on demand for 'Mensaje' failed to initialize correctly", obj);
         Long id = obj.getId();
         Assert.assertNotNull("Data on demand for 'Mensaje' failed to provide an identifier", id);
-        obj = Mensaje.findMensaje(id);
+        obj = mensajeService.findMensaje(id);
         Assert.assertNotNull("Find method for 'Mensaje' illegally returned null for id '" + id + "'", obj);
         Assert.assertEquals("Find method for 'Mensaje' returned the incorrect identifier", id, obj.getId());
     }
@@ -50,9 +53,9 @@ privileged aspect MensajeIntegrationTest_Roo_IntegrationTest {
     @Test
     public void MensajeIntegrationTest.testFindAllMensajes() {
         Assert.assertNotNull("Data on demand for 'Mensaje' failed to initialize correctly", dod.getRandomMensaje());
-        long count = Mensaje.countMensajes();
+        long count = mensajeService.countAllMensajes();
         Assert.assertTrue("Too expensive to perform a find all test for 'Mensaje', as there are " + count + " entries; set the findAllMaximum to exceed this value or set findAll=false on the integration test annotation to disable the test", count < 250);
-        List<Mensaje> result = Mensaje.findAllMensajes();
+        List<Mensaje> result = mensajeService.findAllMensajes();
         Assert.assertNotNull("Find all method for 'Mensaje' illegally returned null", result);
         Assert.assertTrue("Find all method for 'Mensaje' failed to return any data", result.size() > 0);
     }
@@ -60,11 +63,11 @@ privileged aspect MensajeIntegrationTest_Roo_IntegrationTest {
     @Test
     public void MensajeIntegrationTest.testFindMensajeEntries() {
         Assert.assertNotNull("Data on demand for 'Mensaje' failed to initialize correctly", dod.getRandomMensaje());
-        long count = Mensaje.countMensajes();
+        long count = mensajeService.countAllMensajes();
         if (count > 20) count = 20;
         int firstResult = 0;
         int maxResults = (int) count;
-        List<Mensaje> result = Mensaje.findMensajeEntries(firstResult, maxResults);
+        List<Mensaje> result = mensajeService.findMensajeEntries(firstResult, maxResults);
         Assert.assertNotNull("Find entries method for 'Mensaje' illegally returned null", result);
         Assert.assertEquals("Find entries method for 'Mensaje' returned an incorrect number of entries", count, result.size());
     }
@@ -75,7 +78,7 @@ privileged aspect MensajeIntegrationTest_Roo_IntegrationTest {
         Assert.assertNotNull("Data on demand for 'Mensaje' failed to initialize correctly", obj);
         Long id = obj.getId();
         Assert.assertNotNull("Data on demand for 'Mensaje' failed to provide an identifier", id);
-        obj = Mensaje.findMensaje(id);
+        obj = mensajeService.findMensaje(id);
         Assert.assertNotNull("Find method for 'Mensaje' illegally returned null for id '" + id + "'", obj);
         boolean modified =  dod.modifyMensaje(obj);
         Integer currentVersion = obj.getVersion();
@@ -84,28 +87,28 @@ privileged aspect MensajeIntegrationTest_Roo_IntegrationTest {
     }
     
     @Test
-    public void MensajeIntegrationTest.testMergeUpdate() {
+    public void MensajeIntegrationTest.testUpdateMensajeUpdate() {
         Mensaje obj = dod.getRandomMensaje();
         Assert.assertNotNull("Data on demand for 'Mensaje' failed to initialize correctly", obj);
         Long id = obj.getId();
         Assert.assertNotNull("Data on demand for 'Mensaje' failed to provide an identifier", id);
-        obj = Mensaje.findMensaje(id);
+        obj = mensajeService.findMensaje(id);
         boolean modified =  dod.modifyMensaje(obj);
         Integer currentVersion = obj.getVersion();
-        Mensaje merged = obj.merge();
+        Mensaje merged = mensajeService.updateMensaje(obj);
         obj.flush();
         Assert.assertEquals("Identifier of merged object not the same as identifier of original object", merged.getId(), id);
         Assert.assertTrue("Version for 'Mensaje' failed to increment on merge and flush directive", (currentVersion != null && obj.getVersion() > currentVersion) || !modified);
     }
     
     @Test
-    public void MensajeIntegrationTest.testPersist() {
+    public void MensajeIntegrationTest.testSaveMensaje() {
         Assert.assertNotNull("Data on demand for 'Mensaje' failed to initialize correctly", dod.getRandomMensaje());
         Mensaje obj = dod.getNewTransientMensaje(Integer.MAX_VALUE);
         Assert.assertNotNull("Data on demand for 'Mensaje' failed to provide a new transient entity", obj);
         Assert.assertNull("Expected 'Mensaje' identifier to be null", obj.getId());
         try {
-            obj.persist();
+            mensajeService.saveMensaje(obj);
         } catch (final ConstraintViolationException e) {
             final StringBuilder msg = new StringBuilder();
             for (Iterator<ConstraintViolation<?>> iter = e.getConstraintViolations().iterator(); iter.hasNext();) {
@@ -119,15 +122,15 @@ privileged aspect MensajeIntegrationTest_Roo_IntegrationTest {
     }
     
     @Test
-    public void MensajeIntegrationTest.testRemove() {
+    public void MensajeIntegrationTest.testDeleteMensaje() {
         Mensaje obj = dod.getRandomMensaje();
         Assert.assertNotNull("Data on demand for 'Mensaje' failed to initialize correctly", obj);
         Long id = obj.getId();
         Assert.assertNotNull("Data on demand for 'Mensaje' failed to provide an identifier", id);
-        obj = Mensaje.findMensaje(id);
-        obj.remove();
+        obj = mensajeService.findMensaje(id);
+        mensajeService.deleteMensaje(obj);
         obj.flush();
-        Assert.assertNull("Failed to remove 'Mensaje' with identifier '" + id + "'", Mensaje.findMensaje(id));
+        Assert.assertNull("Failed to remove 'Mensaje' with identifier '" + id + "'", mensajeService.findMensaje(id));
     }
     
 }

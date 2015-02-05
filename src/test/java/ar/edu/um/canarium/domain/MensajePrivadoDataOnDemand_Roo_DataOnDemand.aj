@@ -7,6 +7,7 @@ import ar.edu.um.canarium.domain.MensajePrivado;
 import ar.edu.um.canarium.domain.MensajePrivadoDataOnDemand;
 import ar.edu.um.canarium.domain.Persona;
 import ar.edu.um.canarium.domain.PersonaDataOnDemand;
+import ar.edu.um.canarium.service.MensajePrivadoService;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -30,6 +31,9 @@ privileged aspect MensajePrivadoDataOnDemand_Roo_DataOnDemand {
     
     @Autowired
     PersonaDataOnDemand MensajePrivadoDataOnDemand.personaDataOnDemand;
+    
+    @Autowired
+    MensajePrivadoService MensajePrivadoDataOnDemand.mensajePrivadoService;
     
     public MensajePrivado MensajePrivadoDataOnDemand.getNewTransientMensajePrivado(int index) {
         MensajePrivado obj = new MensajePrivado();
@@ -73,14 +77,14 @@ privileged aspect MensajePrivadoDataOnDemand_Roo_DataOnDemand {
         }
         MensajePrivado obj = data.get(index);
         Long id = obj.getId();
-        return MensajePrivado.findMensajePrivado(id);
+        return mensajePrivadoService.findMensajePrivado(id);
     }
     
     public MensajePrivado MensajePrivadoDataOnDemand.getRandomMensajePrivado() {
         init();
         MensajePrivado obj = data.get(rnd.nextInt(data.size()));
         Long id = obj.getId();
-        return MensajePrivado.findMensajePrivado(id);
+        return mensajePrivadoService.findMensajePrivado(id);
     }
     
     public boolean MensajePrivadoDataOnDemand.modifyMensajePrivado(MensajePrivado obj) {
@@ -90,7 +94,7 @@ privileged aspect MensajePrivadoDataOnDemand_Roo_DataOnDemand {
     public void MensajePrivadoDataOnDemand.init() {
         int from = 0;
         int to = 10;
-        data = MensajePrivado.findMensajePrivadoEntries(from, to);
+        data = mensajePrivadoService.findMensajePrivadoEntries(from, to);
         if (data == null) {
             throw new IllegalStateException("Find entries implementation for 'MensajePrivado' illegally returned null");
         }
@@ -102,7 +106,7 @@ privileged aspect MensajePrivadoDataOnDemand_Roo_DataOnDemand {
         for (int i = 0; i < 10; i++) {
             MensajePrivado obj = getNewTransientMensajePrivado(i);
             try {
-                obj.persist();
+                mensajePrivadoService.saveMensajePrivado(obj);
             } catch (final ConstraintViolationException e) {
                 final StringBuilder msg = new StringBuilder();
                 for (Iterator<ConstraintViolation<?>> iter = e.getConstraintViolations().iterator(); iter.hasNext();) {

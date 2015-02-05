@@ -3,9 +3,10 @@
 
 package ar.edu.um.canarium.domain;
 
-import ar.edu.um.canarium.domain.Persona;
+import ar.edu.um.canarium.domain.PersonaDataOnDemand;
 import ar.edu.um.canarium.domain.User;
 import ar.edu.um.canarium.domain.UserDataOnDemand;
+import ar.edu.um.canarium.service.UserService;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -16,6 +17,7 @@ import java.util.List;
 import java.util.Random;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 privileged aspect UserDataOnDemand_Roo_DataOnDemand {
@@ -25,6 +27,12 @@ privileged aspect UserDataOnDemand_Roo_DataOnDemand {
     private Random UserDataOnDemand.rnd = new SecureRandom();
     
     private List<User> UserDataOnDemand.data;
+    
+    @Autowired
+    PersonaDataOnDemand UserDataOnDemand.personaDataOnDemand;
+    
+    @Autowired
+    UserService UserDataOnDemand.userService;
     
     public User UserDataOnDemand.getNewTransientUser(int index) {
         User obj = new User();
@@ -36,7 +44,6 @@ privileged aspect UserDataOnDemand_Roo_DataOnDemand {
         setLastName(obj, index);
         setLocked(obj, index);
         setPassword(obj, index);
-        setPersona(obj, index);
         return obj;
     }
     
@@ -80,11 +87,6 @@ privileged aspect UserDataOnDemand_Roo_DataOnDemand {
         obj.setPassword(password);
     }
     
-    public void UserDataOnDemand.setPersona(User obj, int index) {
-        Persona persona = null;
-        obj.setPersona(persona);
-    }
-    
     public User UserDataOnDemand.getSpecificUser(int index) {
         init();
         if (index < 0) {
@@ -95,14 +97,14 @@ privileged aspect UserDataOnDemand_Roo_DataOnDemand {
         }
         User obj = data.get(index);
         Long id = obj.getId();
-        return User.findUser(id);
+        return userService.findUser(id);
     }
     
     public User UserDataOnDemand.getRandomUser() {
         init();
         User obj = data.get(rnd.nextInt(data.size()));
         Long id = obj.getId();
-        return User.findUser(id);
+        return userService.findUser(id);
     }
     
     public boolean UserDataOnDemand.modifyUser(User obj) {
@@ -112,7 +114,7 @@ privileged aspect UserDataOnDemand_Roo_DataOnDemand {
     public void UserDataOnDemand.init() {
         int from = 0;
         int to = 10;
-        data = User.findUserEntries(from, to);
+        data = userService.findUserEntries(from, to);
         if (data == null) {
             throw new IllegalStateException("Find entries implementation for 'User' illegally returned null");
         }
@@ -124,7 +126,7 @@ privileged aspect UserDataOnDemand_Roo_DataOnDemand {
         for (int i = 0; i < 10; i++) {
             User obj = getNewTransientUser(i);
             try {
-                obj.persist();
+                userService.saveUser(obj);
             } catch (final ConstraintViolationException e) {
                 final StringBuilder msg = new StringBuilder();
                 for (Iterator<ConstraintViolation<?>> iter = e.getConstraintViolations().iterator(); iter.hasNext();) {

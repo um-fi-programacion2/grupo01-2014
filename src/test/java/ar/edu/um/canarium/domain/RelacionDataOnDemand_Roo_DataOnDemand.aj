@@ -7,6 +7,7 @@ import ar.edu.um.canarium.domain.Persona;
 import ar.edu.um.canarium.domain.PersonaDataOnDemand;
 import ar.edu.um.canarium.domain.Relacion;
 import ar.edu.um.canarium.domain.RelacionDataOnDemand;
+import ar.edu.um.canarium.service.RelacionService;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -27,6 +28,9 @@ privileged aspect RelacionDataOnDemand_Roo_DataOnDemand {
     
     @Autowired
     PersonaDataOnDemand RelacionDataOnDemand.personaDataOnDemand;
+    
+    @Autowired
+    RelacionService RelacionDataOnDemand.relacionService;
     
     public Relacion RelacionDataOnDemand.getNewTransientRelacion(int index) {
         Relacion obj = new Relacion();
@@ -55,14 +59,14 @@ privileged aspect RelacionDataOnDemand_Roo_DataOnDemand {
         }
         Relacion obj = data.get(index);
         Long id = obj.getId();
-        return Relacion.findRelacion(id);
+        return relacionService.findRelacion(id);
     }
     
     public Relacion RelacionDataOnDemand.getRandomRelacion() {
         init();
         Relacion obj = data.get(rnd.nextInt(data.size()));
         Long id = obj.getId();
-        return Relacion.findRelacion(id);
+        return relacionService.findRelacion(id);
     }
     
     public boolean RelacionDataOnDemand.modifyRelacion(Relacion obj) {
@@ -72,7 +76,7 @@ privileged aspect RelacionDataOnDemand_Roo_DataOnDemand {
     public void RelacionDataOnDemand.init() {
         int from = 0;
         int to = 10;
-        data = Relacion.findRelacionEntries(from, to);
+        data = relacionService.findRelacionEntries(from, to);
         if (data == null) {
             throw new IllegalStateException("Find entries implementation for 'Relacion' illegally returned null");
         }
@@ -84,7 +88,7 @@ privileged aspect RelacionDataOnDemand_Roo_DataOnDemand {
         for (int i = 0; i < 10; i++) {
             Relacion obj = getNewTransientRelacion(i);
             try {
-                obj.persist();
+                relacionService.saveRelacion(obj);
             } catch (final ConstraintViolationException e) {
                 final StringBuilder msg = new StringBuilder();
                 for (Iterator<ConstraintViolation<?>> iter = e.getConstraintViolations().iterator(); iter.hasNext();) {

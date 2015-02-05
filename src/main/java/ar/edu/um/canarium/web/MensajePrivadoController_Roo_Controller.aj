@@ -5,6 +5,8 @@ package ar.edu.um.canarium.web;
 
 import ar.edu.um.canarium.domain.MensajePrivado;
 import ar.edu.um.canarium.domain.Persona;
+import ar.edu.um.canarium.service.MensajePrivadoService;
+import ar.edu.um.canarium.service.PersonaService;
 import ar.edu.um.canarium.web.MensajePrivadoController;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -12,6 +14,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import org.joda.time.format.DateTimeFormat;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,6 +27,12 @@ import org.springframework.web.util.WebUtils;
 
 privileged aspect MensajePrivadoController_Roo_Controller {
     
+    @Autowired
+    MensajePrivadoService MensajePrivadoController.mensajePrivadoService;
+    
+    @Autowired
+    PersonaService MensajePrivadoController.personaService;
+    
     @RequestMapping(method = RequestMethod.POST, produces = "text/html")
     public String MensajePrivadoController.create(@Valid MensajePrivado mensajePrivado, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
@@ -31,7 +40,7 @@ privileged aspect MensajePrivadoController_Roo_Controller {
             return "mensajeprivadoes/create";
         }
         uiModel.asMap().clear();
-        mensajePrivado.persist();
+        mensajePrivadoService.saveMensajePrivado(mensajePrivado);
         return "redirect:/mensajeprivadoes/" + encodeUrlPathSegment(mensajePrivado.getId().toString(), httpServletRequest);
     }
     
@@ -39,7 +48,7 @@ privileged aspect MensajePrivadoController_Roo_Controller {
     public String MensajePrivadoController.createForm(Model uiModel) {
         populateEditForm(uiModel, new MensajePrivado());
         List<String[]> dependencies = new ArrayList<String[]>();
-        if (Persona.countPersonae() == 0) {
+        if (personaService.countAllPersonae() == 0) {
             dependencies.add(new String[] { "persona", "personae" });
         }
         uiModel.addAttribute("dependencies", dependencies);
@@ -49,7 +58,7 @@ privileged aspect MensajePrivadoController_Roo_Controller {
     @RequestMapping(value = "/{id}", produces = "text/html")
     public String MensajePrivadoController.show(@PathVariable("id") Long id, Model uiModel) {
         addDateTimeFormatPatterns(uiModel);
-        uiModel.addAttribute("mensajeprivado", MensajePrivado.findMensajePrivado(id));
+        uiModel.addAttribute("mensajeprivado", mensajePrivadoService.findMensajePrivado(id));
         uiModel.addAttribute("itemId", id);
         return "mensajeprivadoes/show";
     }
@@ -59,11 +68,11 @@ privileged aspect MensajePrivadoController_Roo_Controller {
         if (page != null || size != null) {
             int sizeNo = size == null ? 10 : size.intValue();
             final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
-            uiModel.addAttribute("mensajeprivadoes", MensajePrivado.findMensajePrivadoEntries(firstResult, sizeNo));
-            float nrOfPages = (float) MensajePrivado.countMensajePrivadoes() / sizeNo;
+            uiModel.addAttribute("mensajeprivadoes", mensajePrivadoService.findMensajePrivadoEntries(firstResult, sizeNo));
+            float nrOfPages = (float) mensajePrivadoService.countAllMensajePrivadoes() / sizeNo;
             uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
         } else {
-            uiModel.addAttribute("mensajeprivadoes", MensajePrivado.findAllMensajePrivadoes());
+            uiModel.addAttribute("mensajeprivadoes", mensajePrivadoService.findAllMensajePrivadoes());
         }
         addDateTimeFormatPatterns(uiModel);
         return "mensajeprivadoes/list";
@@ -76,20 +85,20 @@ privileged aspect MensajePrivadoController_Roo_Controller {
             return "mensajeprivadoes/update";
         }
         uiModel.asMap().clear();
-        mensajePrivado.merge();
+        mensajePrivadoService.updateMensajePrivado(mensajePrivado);
         return "redirect:/mensajeprivadoes/" + encodeUrlPathSegment(mensajePrivado.getId().toString(), httpServletRequest);
     }
     
     @RequestMapping(value = "/{id}", params = "form", produces = "text/html")
     public String MensajePrivadoController.updateForm(@PathVariable("id") Long id, Model uiModel) {
-        populateEditForm(uiModel, MensajePrivado.findMensajePrivado(id));
+        populateEditForm(uiModel, mensajePrivadoService.findMensajePrivado(id));
         return "mensajeprivadoes/update";
     }
     
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = "text/html")
     public String MensajePrivadoController.delete(@PathVariable("id") Long id, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
-        MensajePrivado mensajePrivado = MensajePrivado.findMensajePrivado(id);
-        mensajePrivado.remove();
+        MensajePrivado mensajePrivado = mensajePrivadoService.findMensajePrivado(id);
+        mensajePrivadoService.deleteMensajePrivado(mensajePrivado);
         uiModel.asMap().clear();
         uiModel.addAttribute("page", (page == null) ? "1" : page.toString());
         uiModel.addAttribute("size", (size == null) ? "10" : size.toString());
@@ -103,7 +112,7 @@ privileged aspect MensajePrivadoController_Roo_Controller {
     void MensajePrivadoController.populateEditForm(Model uiModel, MensajePrivado mensajePrivado) {
         uiModel.addAttribute("mensajePrivado", mensajePrivado);
         addDateTimeFormatPatterns(uiModel);
-        uiModel.addAttribute("personae", Persona.findAllPersonae());
+        uiModel.addAttribute("personae", personaService.findAllPersonae());
     }
     
     String MensajePrivadoController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

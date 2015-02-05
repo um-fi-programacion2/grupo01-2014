@@ -5,6 +5,7 @@ package ar.edu.um.canarium.domain;
 
 import ar.edu.um.canarium.domain.Tag;
 import ar.edu.um.canarium.domain.TagDataOnDemand;
+import ar.edu.um.canarium.service.TagService;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -12,6 +13,7 @@ import java.util.List;
 import java.util.Random;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 privileged aspect TagDataOnDemand_Roo_DataOnDemand {
@@ -21,6 +23,9 @@ privileged aspect TagDataOnDemand_Roo_DataOnDemand {
     private Random TagDataOnDemand.rnd = new SecureRandom();
     
     private List<Tag> TagDataOnDemand.data;
+    
+    @Autowired
+    TagService TagDataOnDemand.tagService;
     
     public Tag TagDataOnDemand.getNewTransientTag(int index) {
         Tag obj = new Tag();
@@ -46,14 +51,14 @@ privileged aspect TagDataOnDemand_Roo_DataOnDemand {
         }
         Tag obj = data.get(index);
         Long id = obj.getId();
-        return Tag.findTag(id);
+        return tagService.findTag(id);
     }
     
     public Tag TagDataOnDemand.getRandomTag() {
         init();
         Tag obj = data.get(rnd.nextInt(data.size()));
         Long id = obj.getId();
-        return Tag.findTag(id);
+        return tagService.findTag(id);
     }
     
     public boolean TagDataOnDemand.modifyTag(Tag obj) {
@@ -63,7 +68,7 @@ privileged aspect TagDataOnDemand_Roo_DataOnDemand {
     public void TagDataOnDemand.init() {
         int from = 0;
         int to = 10;
-        data = Tag.findTagEntries(from, to);
+        data = tagService.findTagEntries(from, to);
         if (data == null) {
             throw new IllegalStateException("Find entries implementation for 'Tag' illegally returned null");
         }
@@ -75,7 +80,7 @@ privileged aspect TagDataOnDemand_Roo_DataOnDemand {
         for (int i = 0; i < 10; i++) {
             Tag obj = getNewTransientTag(i);
             try {
-                obj.persist();
+                tagService.saveTag(obj);
             } catch (final ConstraintViolationException e) {
                 final StringBuilder msg = new StringBuilder();
                 for (Iterator<ConstraintViolation<?>> iter = e.getConstraintViolations().iterator(); iter.hasNext();) {

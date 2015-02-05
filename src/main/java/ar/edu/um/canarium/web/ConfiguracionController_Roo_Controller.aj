@@ -4,10 +4,12 @@
 package ar.edu.um.canarium.web;
 
 import ar.edu.um.canarium.domain.Configuracion;
+import ar.edu.um.canarium.service.ConfiguracionService;
 import ar.edu.um.canarium.web.ConfiguracionController;
 import java.io.UnsupportedEncodingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +21,9 @@ import org.springframework.web.util.WebUtils;
 
 privileged aspect ConfiguracionController_Roo_Controller {
     
+    @Autowired
+    ConfiguracionService ConfiguracionController.configuracionService;
+    
     @RequestMapping(method = RequestMethod.POST, produces = "text/html")
     public String ConfiguracionController.create(@Valid Configuracion configuracion, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
@@ -26,7 +31,7 @@ privileged aspect ConfiguracionController_Roo_Controller {
             return "configuracions/create";
         }
         uiModel.asMap().clear();
-        configuracion.persist();
+        configuracionService.saveConfiguracion(configuracion);
         return "redirect:/configuracions/" + encodeUrlPathSegment(configuracion.getId().toString(), httpServletRequest);
     }
     
@@ -38,7 +43,7 @@ privileged aspect ConfiguracionController_Roo_Controller {
     
     @RequestMapping(value = "/{id}", produces = "text/html")
     public String ConfiguracionController.show(@PathVariable("id") Long id, Model uiModel) {
-        uiModel.addAttribute("configuracion", Configuracion.findConfiguracion(id));
+        uiModel.addAttribute("configuracion", configuracionService.findConfiguracion(id));
         uiModel.addAttribute("itemId", id);
         return "configuracions/show";
     }
@@ -48,11 +53,11 @@ privileged aspect ConfiguracionController_Roo_Controller {
         if (page != null || size != null) {
             int sizeNo = size == null ? 10 : size.intValue();
             final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
-            uiModel.addAttribute("configuracions", Configuracion.findConfiguracionEntries(firstResult, sizeNo));
-            float nrOfPages = (float) Configuracion.countConfiguracions() / sizeNo;
+            uiModel.addAttribute("configuracions", configuracionService.findConfiguracionEntries(firstResult, sizeNo));
+            float nrOfPages = (float) configuracionService.countAllConfiguracions() / sizeNo;
             uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
         } else {
-            uiModel.addAttribute("configuracions", Configuracion.findAllConfiguracions());
+            uiModel.addAttribute("configuracions", configuracionService.findAllConfiguracions());
         }
         return "configuracions/list";
     }
@@ -64,20 +69,20 @@ privileged aspect ConfiguracionController_Roo_Controller {
             return "configuracions/update";
         }
         uiModel.asMap().clear();
-        configuracion.merge();
+        configuracionService.updateConfiguracion(configuracion);
         return "redirect:/configuracions/" + encodeUrlPathSegment(configuracion.getId().toString(), httpServletRequest);
     }
     
     @RequestMapping(value = "/{id}", params = "form", produces = "text/html")
     public String ConfiguracionController.updateForm(@PathVariable("id") Long id, Model uiModel) {
-        populateEditForm(uiModel, Configuracion.findConfiguracion(id));
+        populateEditForm(uiModel, configuracionService.findConfiguracion(id));
         return "configuracions/update";
     }
     
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = "text/html")
     public String ConfiguracionController.delete(@PathVariable("id") Long id, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
-        Configuracion configuracion = Configuracion.findConfiguracion(id);
-        configuracion.remove();
+        Configuracion configuracion = configuracionService.findConfiguracion(id);
+        configuracionService.deleteConfiguracion(configuracion);
         uiModel.asMap().clear();
         uiModel.addAttribute("page", (page == null) ? "1" : page.toString());
         uiModel.addAttribute("size", (size == null) ? "10" : size.toString());

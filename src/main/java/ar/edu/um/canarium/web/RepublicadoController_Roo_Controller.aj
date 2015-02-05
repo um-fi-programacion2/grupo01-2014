@@ -6,6 +6,9 @@ package ar.edu.um.canarium.web;
 import ar.edu.um.canarium.domain.Mensaje;
 import ar.edu.um.canarium.domain.Persona;
 import ar.edu.um.canarium.domain.Republicado;
+import ar.edu.um.canarium.service.MensajeService;
+import ar.edu.um.canarium.service.PersonaService;
+import ar.edu.um.canarium.service.RepublicadoService;
 import ar.edu.um.canarium.web.RepublicadoController;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -13,6 +16,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import org.joda.time.format.DateTimeFormat;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -25,6 +29,15 @@ import org.springframework.web.util.WebUtils;
 
 privileged aspect RepublicadoController_Roo_Controller {
     
+    @Autowired
+    RepublicadoService RepublicadoController.republicadoService;
+    
+    @Autowired
+    MensajeService RepublicadoController.mensajeService;
+    
+    @Autowired
+    PersonaService RepublicadoController.personaService;
+    
     @RequestMapping(method = RequestMethod.POST, produces = "text/html")
     public String RepublicadoController.create(@Valid Republicado republicado, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
@@ -32,7 +45,7 @@ privileged aspect RepublicadoController_Roo_Controller {
             return "republicadoes/create";
         }
         uiModel.asMap().clear();
-        republicado.persist();
+        republicadoService.saveRepublicado(republicado);
         return "redirect:/republicadoes/" + encodeUrlPathSegment(republicado.getId().toString(), httpServletRequest);
     }
     
@@ -40,10 +53,10 @@ privileged aspect RepublicadoController_Roo_Controller {
     public String RepublicadoController.createForm(Model uiModel) {
         populateEditForm(uiModel, new Republicado());
         List<String[]> dependencies = new ArrayList<String[]>();
-        if (Persona.countPersonae() == 0) {
+        if (personaService.countAllPersonae() == 0) {
             dependencies.add(new String[] { "persona", "personae" });
         }
-        if (Mensaje.countMensajes() == 0) {
+        if (mensajeService.countAllMensajes() == 0) {
             dependencies.add(new String[] { "mensaje", "mensajes" });
         }
         uiModel.addAttribute("dependencies", dependencies);
@@ -53,7 +66,7 @@ privileged aspect RepublicadoController_Roo_Controller {
     @RequestMapping(value = "/{id}", produces = "text/html")
     public String RepublicadoController.show(@PathVariable("id") Long id, Model uiModel) {
         addDateTimeFormatPatterns(uiModel);
-        uiModel.addAttribute("republicado", Republicado.findRepublicado(id));
+        uiModel.addAttribute("republicado", republicadoService.findRepublicado(id));
         uiModel.addAttribute("itemId", id);
         return "republicadoes/show";
     }
@@ -63,11 +76,11 @@ privileged aspect RepublicadoController_Roo_Controller {
         if (page != null || size != null) {
             int sizeNo = size == null ? 10 : size.intValue();
             final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
-            uiModel.addAttribute("republicadoes", Republicado.findRepublicadoEntries(firstResult, sizeNo));
-            float nrOfPages = (float) Republicado.countRepublicadoes() / sizeNo;
+            uiModel.addAttribute("republicadoes", republicadoService.findRepublicadoEntries(firstResult, sizeNo));
+            float nrOfPages = (float) republicadoService.countAllRepublicadoes() / sizeNo;
             uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
         } else {
-            uiModel.addAttribute("republicadoes", Republicado.findAllRepublicadoes());
+            uiModel.addAttribute("republicadoes", republicadoService.findAllRepublicadoes());
         }
         addDateTimeFormatPatterns(uiModel);
         return "republicadoes/list";
@@ -80,20 +93,20 @@ privileged aspect RepublicadoController_Roo_Controller {
             return "republicadoes/update";
         }
         uiModel.asMap().clear();
-        republicado.merge();
+        republicadoService.updateRepublicado(republicado);
         return "redirect:/republicadoes/" + encodeUrlPathSegment(republicado.getId().toString(), httpServletRequest);
     }
     
     @RequestMapping(value = "/{id}", params = "form", produces = "text/html")
     public String RepublicadoController.updateForm(@PathVariable("id") Long id, Model uiModel) {
-        populateEditForm(uiModel, Republicado.findRepublicado(id));
+        populateEditForm(uiModel, republicadoService.findRepublicado(id));
         return "republicadoes/update";
     }
     
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = "text/html")
     public String RepublicadoController.delete(@PathVariable("id") Long id, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
-        Republicado republicado = Republicado.findRepublicado(id);
-        republicado.remove();
+        Republicado republicado = republicadoService.findRepublicado(id);
+        republicadoService.deleteRepublicado(republicado);
         uiModel.asMap().clear();
         uiModel.addAttribute("page", (page == null) ? "1" : page.toString());
         uiModel.addAttribute("size", (size == null) ? "10" : size.toString());
@@ -107,8 +120,8 @@ privileged aspect RepublicadoController_Roo_Controller {
     void RepublicadoController.populateEditForm(Model uiModel, Republicado republicado) {
         uiModel.addAttribute("republicado", republicado);
         addDateTimeFormatPatterns(uiModel);
-        uiModel.addAttribute("mensajes", Mensaje.findAllMensajes());
-        uiModel.addAttribute("personae", Persona.findAllPersonae());
+        uiModel.addAttribute("mensajes", mensajeService.findAllMensajes());
+        uiModel.addAttribute("personae", personaService.findAllPersonae());
     }
     
     String RepublicadoController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

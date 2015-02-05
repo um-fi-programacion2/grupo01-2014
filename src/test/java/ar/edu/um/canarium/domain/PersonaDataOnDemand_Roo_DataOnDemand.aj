@@ -7,6 +7,7 @@ import ar.edu.um.canarium.domain.Persona;
 import ar.edu.um.canarium.domain.PersonaDataOnDemand;
 import ar.edu.um.canarium.domain.Sexo;
 import ar.edu.um.canarium.domain.UserDataOnDemand;
+import ar.edu.um.canarium.service.PersonaService;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -30,6 +31,9 @@ privileged aspect PersonaDataOnDemand_Roo_DataOnDemand {
     
     @Autowired
     UserDataOnDemand PersonaDataOnDemand.userDataOnDemand;
+    
+    @Autowired
+    PersonaService PersonaDataOnDemand.personaService;
     
     public Persona PersonaDataOnDemand.getNewTransientPersona(int index) {
         Persona obj = new Persona();
@@ -85,14 +89,14 @@ privileged aspect PersonaDataOnDemand_Roo_DataOnDemand {
         }
         Persona obj = data.get(index);
         Long id = obj.getId();
-        return Persona.findPersona(id);
+        return personaService.findPersona(id);
     }
     
     public Persona PersonaDataOnDemand.getRandomPersona() {
         init();
         Persona obj = data.get(rnd.nextInt(data.size()));
         Long id = obj.getId();
-        return Persona.findPersona(id);
+        return personaService.findPersona(id);
     }
     
     public boolean PersonaDataOnDemand.modifyPersona(Persona obj) {
@@ -102,7 +106,7 @@ privileged aspect PersonaDataOnDemand_Roo_DataOnDemand {
     public void PersonaDataOnDemand.init() {
         int from = 0;
         int to = 10;
-        data = Persona.findPersonaEntries(from, to);
+        data = personaService.findPersonaEntries(from, to);
         if (data == null) {
             throw new IllegalStateException("Find entries implementation for 'Persona' illegally returned null");
         }
@@ -114,7 +118,7 @@ privileged aspect PersonaDataOnDemand_Roo_DataOnDemand {
         for (int i = 0; i < 10; i++) {
             Persona obj = getNewTransientPersona(i);
             try {
-                obj.persist();
+                personaService.savePersona(obj);
             } catch (final ConstraintViolationException e) {
                 final StringBuilder msg = new StringBuilder();
                 for (Iterator<ConstraintViolation<?>> iter = e.getConstraintViolations().iterator(); iter.hasNext();) {

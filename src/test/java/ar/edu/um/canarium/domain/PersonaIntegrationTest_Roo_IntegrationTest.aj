@@ -3,9 +3,9 @@
 
 package ar.edu.um.canarium.domain;
 
-import ar.edu.um.canarium.domain.Persona;
 import ar.edu.um.canarium.domain.PersonaDataOnDemand;
 import ar.edu.um.canarium.domain.PersonaIntegrationTest;
+import ar.edu.um.canarium.service.PersonaService;
 import java.util.Iterator;
 import java.util.List;
 import javax.validation.ConstraintViolation;
@@ -29,10 +29,13 @@ privileged aspect PersonaIntegrationTest_Roo_IntegrationTest {
     @Autowired
     PersonaDataOnDemand PersonaIntegrationTest.dod;
     
+    @Autowired
+    PersonaService PersonaIntegrationTest.personaService;
+    
     @Test
-    public void PersonaIntegrationTest.testCountPersonae() {
+    public void PersonaIntegrationTest.testCountAllPersonae() {
         Assert.assertNotNull("Data on demand for 'Persona' failed to initialize correctly", dod.getRandomPersona());
-        long count = Persona.countPersonae();
+        long count = personaService.countAllPersonae();
         Assert.assertTrue("Counter for 'Persona' incorrectly reported there were no entries", count > 0);
     }
     
@@ -42,7 +45,7 @@ privileged aspect PersonaIntegrationTest_Roo_IntegrationTest {
         Assert.assertNotNull("Data on demand for 'Persona' failed to initialize correctly", obj);
         Long id = obj.getId();
         Assert.assertNotNull("Data on demand for 'Persona' failed to provide an identifier", id);
-        obj = Persona.findPersona(id);
+        obj = personaService.findPersona(id);
         Assert.assertNotNull("Find method for 'Persona' illegally returned null for id '" + id + "'", obj);
         Assert.assertEquals("Find method for 'Persona' returned the incorrect identifier", id, obj.getId());
     }
@@ -50,9 +53,9 @@ privileged aspect PersonaIntegrationTest_Roo_IntegrationTest {
     @Test
     public void PersonaIntegrationTest.testFindAllPersonae() {
         Assert.assertNotNull("Data on demand for 'Persona' failed to initialize correctly", dod.getRandomPersona());
-        long count = Persona.countPersonae();
+        long count = personaService.countAllPersonae();
         Assert.assertTrue("Too expensive to perform a find all test for 'Persona', as there are " + count + " entries; set the findAllMaximum to exceed this value or set findAll=false on the integration test annotation to disable the test", count < 250);
-        List<Persona> result = Persona.findAllPersonae();
+        List<Persona> result = personaService.findAllPersonae();
         Assert.assertNotNull("Find all method for 'Persona' illegally returned null", result);
         Assert.assertTrue("Find all method for 'Persona' failed to return any data", result.size() > 0);
     }
@@ -60,11 +63,11 @@ privileged aspect PersonaIntegrationTest_Roo_IntegrationTest {
     @Test
     public void PersonaIntegrationTest.testFindPersonaEntries() {
         Assert.assertNotNull("Data on demand for 'Persona' failed to initialize correctly", dod.getRandomPersona());
-        long count = Persona.countPersonae();
+        long count = personaService.countAllPersonae();
         if (count > 20) count = 20;
         int firstResult = 0;
         int maxResults = (int) count;
-        List<Persona> result = Persona.findPersonaEntries(firstResult, maxResults);
+        List<Persona> result = personaService.findPersonaEntries(firstResult, maxResults);
         Assert.assertNotNull("Find entries method for 'Persona' illegally returned null", result);
         Assert.assertEquals("Find entries method for 'Persona' returned an incorrect number of entries", count, result.size());
     }
@@ -75,7 +78,7 @@ privileged aspect PersonaIntegrationTest_Roo_IntegrationTest {
         Assert.assertNotNull("Data on demand for 'Persona' failed to initialize correctly", obj);
         Long id = obj.getId();
         Assert.assertNotNull("Data on demand for 'Persona' failed to provide an identifier", id);
-        obj = Persona.findPersona(id);
+        obj = personaService.findPersona(id);
         Assert.assertNotNull("Find method for 'Persona' illegally returned null for id '" + id + "'", obj);
         boolean modified =  dod.modifyPersona(obj);
         Integer currentVersion = obj.getVersion();
@@ -84,28 +87,28 @@ privileged aspect PersonaIntegrationTest_Roo_IntegrationTest {
     }
     
     @Test
-    public void PersonaIntegrationTest.testMergeUpdate() {
+    public void PersonaIntegrationTest.testUpdatePersonaUpdate() {
         Persona obj = dod.getRandomPersona();
         Assert.assertNotNull("Data on demand for 'Persona' failed to initialize correctly", obj);
         Long id = obj.getId();
         Assert.assertNotNull("Data on demand for 'Persona' failed to provide an identifier", id);
-        obj = Persona.findPersona(id);
+        obj = personaService.findPersona(id);
         boolean modified =  dod.modifyPersona(obj);
         Integer currentVersion = obj.getVersion();
-        Persona merged = obj.merge();
+        Persona merged = personaService.updatePersona(obj);
         obj.flush();
         Assert.assertEquals("Identifier of merged object not the same as identifier of original object", merged.getId(), id);
         Assert.assertTrue("Version for 'Persona' failed to increment on merge and flush directive", (currentVersion != null && obj.getVersion() > currentVersion) || !modified);
     }
     
     @Test
-    public void PersonaIntegrationTest.testPersist() {
+    public void PersonaIntegrationTest.testSavePersona() {
         Assert.assertNotNull("Data on demand for 'Persona' failed to initialize correctly", dod.getRandomPersona());
         Persona obj = dod.getNewTransientPersona(Integer.MAX_VALUE);
         Assert.assertNotNull("Data on demand for 'Persona' failed to provide a new transient entity", obj);
         Assert.assertNull("Expected 'Persona' identifier to be null", obj.getId());
         try {
-            obj.persist();
+            personaService.savePersona(obj);
         } catch (final ConstraintViolationException e) {
             final StringBuilder msg = new StringBuilder();
             for (Iterator<ConstraintViolation<?>> iter = e.getConstraintViolations().iterator(); iter.hasNext();) {
@@ -119,15 +122,15 @@ privileged aspect PersonaIntegrationTest_Roo_IntegrationTest {
     }
     
     @Test
-    public void PersonaIntegrationTest.testRemove() {
+    public void PersonaIntegrationTest.testDeletePersona() {
         Persona obj = dod.getRandomPersona();
         Assert.assertNotNull("Data on demand for 'Persona' failed to initialize correctly", obj);
         Long id = obj.getId();
         Assert.assertNotNull("Data on demand for 'Persona' failed to provide an identifier", id);
-        obj = Persona.findPersona(id);
-        obj.remove();
+        obj = personaService.findPersona(id);
+        personaService.deletePersona(obj);
         obj.flush();
-        Assert.assertNull("Failed to remove 'Persona' with identifier '" + id + "'", Persona.findPersona(id));
+        Assert.assertNull("Failed to remove 'Persona' with identifier '" + id + "'", personaService.findPersona(id));
     }
     
 }

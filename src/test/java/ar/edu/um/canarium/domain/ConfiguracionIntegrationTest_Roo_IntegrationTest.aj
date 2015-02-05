@@ -3,9 +3,9 @@
 
 package ar.edu.um.canarium.domain;
 
-import ar.edu.um.canarium.domain.Configuracion;
 import ar.edu.um.canarium.domain.ConfiguracionDataOnDemand;
 import ar.edu.um.canarium.domain.ConfiguracionIntegrationTest;
+import ar.edu.um.canarium.service.ConfiguracionService;
 import java.util.Iterator;
 import java.util.List;
 import javax.validation.ConstraintViolation;
@@ -29,10 +29,13 @@ privileged aspect ConfiguracionIntegrationTest_Roo_IntegrationTest {
     @Autowired
     ConfiguracionDataOnDemand ConfiguracionIntegrationTest.dod;
     
+    @Autowired
+    ConfiguracionService ConfiguracionIntegrationTest.configuracionService;
+    
     @Test
-    public void ConfiguracionIntegrationTest.testCountConfiguracions() {
+    public void ConfiguracionIntegrationTest.testCountAllConfiguracions() {
         Assert.assertNotNull("Data on demand for 'Configuracion' failed to initialize correctly", dod.getRandomConfiguracion());
-        long count = Configuracion.countConfiguracions();
+        long count = configuracionService.countAllConfiguracions();
         Assert.assertTrue("Counter for 'Configuracion' incorrectly reported there were no entries", count > 0);
     }
     
@@ -42,7 +45,7 @@ privileged aspect ConfiguracionIntegrationTest_Roo_IntegrationTest {
         Assert.assertNotNull("Data on demand for 'Configuracion' failed to initialize correctly", obj);
         Long id = obj.getId();
         Assert.assertNotNull("Data on demand for 'Configuracion' failed to provide an identifier", id);
-        obj = Configuracion.findConfiguracion(id);
+        obj = configuracionService.findConfiguracion(id);
         Assert.assertNotNull("Find method for 'Configuracion' illegally returned null for id '" + id + "'", obj);
         Assert.assertEquals("Find method for 'Configuracion' returned the incorrect identifier", id, obj.getId());
     }
@@ -50,9 +53,9 @@ privileged aspect ConfiguracionIntegrationTest_Roo_IntegrationTest {
     @Test
     public void ConfiguracionIntegrationTest.testFindAllConfiguracions() {
         Assert.assertNotNull("Data on demand for 'Configuracion' failed to initialize correctly", dod.getRandomConfiguracion());
-        long count = Configuracion.countConfiguracions();
+        long count = configuracionService.countAllConfiguracions();
         Assert.assertTrue("Too expensive to perform a find all test for 'Configuracion', as there are " + count + " entries; set the findAllMaximum to exceed this value or set findAll=false on the integration test annotation to disable the test", count < 250);
-        List<Configuracion> result = Configuracion.findAllConfiguracions();
+        List<Configuracion> result = configuracionService.findAllConfiguracions();
         Assert.assertNotNull("Find all method for 'Configuracion' illegally returned null", result);
         Assert.assertTrue("Find all method for 'Configuracion' failed to return any data", result.size() > 0);
     }
@@ -60,11 +63,11 @@ privileged aspect ConfiguracionIntegrationTest_Roo_IntegrationTest {
     @Test
     public void ConfiguracionIntegrationTest.testFindConfiguracionEntries() {
         Assert.assertNotNull("Data on demand for 'Configuracion' failed to initialize correctly", dod.getRandomConfiguracion());
-        long count = Configuracion.countConfiguracions();
+        long count = configuracionService.countAllConfiguracions();
         if (count > 20) count = 20;
         int firstResult = 0;
         int maxResults = (int) count;
-        List<Configuracion> result = Configuracion.findConfiguracionEntries(firstResult, maxResults);
+        List<Configuracion> result = configuracionService.findConfiguracionEntries(firstResult, maxResults);
         Assert.assertNotNull("Find entries method for 'Configuracion' illegally returned null", result);
         Assert.assertEquals("Find entries method for 'Configuracion' returned an incorrect number of entries", count, result.size());
     }
@@ -75,7 +78,7 @@ privileged aspect ConfiguracionIntegrationTest_Roo_IntegrationTest {
         Assert.assertNotNull("Data on demand for 'Configuracion' failed to initialize correctly", obj);
         Long id = obj.getId();
         Assert.assertNotNull("Data on demand for 'Configuracion' failed to provide an identifier", id);
-        obj = Configuracion.findConfiguracion(id);
+        obj = configuracionService.findConfiguracion(id);
         Assert.assertNotNull("Find method for 'Configuracion' illegally returned null for id '" + id + "'", obj);
         boolean modified =  dod.modifyConfiguracion(obj);
         Integer currentVersion = obj.getVersion();
@@ -84,28 +87,28 @@ privileged aspect ConfiguracionIntegrationTest_Roo_IntegrationTest {
     }
     
     @Test
-    public void ConfiguracionIntegrationTest.testMergeUpdate() {
+    public void ConfiguracionIntegrationTest.testUpdateConfiguracionUpdate() {
         Configuracion obj = dod.getRandomConfiguracion();
         Assert.assertNotNull("Data on demand for 'Configuracion' failed to initialize correctly", obj);
         Long id = obj.getId();
         Assert.assertNotNull("Data on demand for 'Configuracion' failed to provide an identifier", id);
-        obj = Configuracion.findConfiguracion(id);
+        obj = configuracionService.findConfiguracion(id);
         boolean modified =  dod.modifyConfiguracion(obj);
         Integer currentVersion = obj.getVersion();
-        Configuracion merged = obj.merge();
+        Configuracion merged = configuracionService.updateConfiguracion(obj);
         obj.flush();
         Assert.assertEquals("Identifier of merged object not the same as identifier of original object", merged.getId(), id);
         Assert.assertTrue("Version for 'Configuracion' failed to increment on merge and flush directive", (currentVersion != null && obj.getVersion() > currentVersion) || !modified);
     }
     
     @Test
-    public void ConfiguracionIntegrationTest.testPersist() {
+    public void ConfiguracionIntegrationTest.testSaveConfiguracion() {
         Assert.assertNotNull("Data on demand for 'Configuracion' failed to initialize correctly", dod.getRandomConfiguracion());
         Configuracion obj = dod.getNewTransientConfiguracion(Integer.MAX_VALUE);
         Assert.assertNotNull("Data on demand for 'Configuracion' failed to provide a new transient entity", obj);
         Assert.assertNull("Expected 'Configuracion' identifier to be null", obj.getId());
         try {
-            obj.persist();
+            configuracionService.saveConfiguracion(obj);
         } catch (final ConstraintViolationException e) {
             final StringBuilder msg = new StringBuilder();
             for (Iterator<ConstraintViolation<?>> iter = e.getConstraintViolations().iterator(); iter.hasNext();) {
@@ -119,15 +122,15 @@ privileged aspect ConfiguracionIntegrationTest_Roo_IntegrationTest {
     }
     
     @Test
-    public void ConfiguracionIntegrationTest.testRemove() {
+    public void ConfiguracionIntegrationTest.testDeleteConfiguracion() {
         Configuracion obj = dod.getRandomConfiguracion();
         Assert.assertNotNull("Data on demand for 'Configuracion' failed to initialize correctly", obj);
         Long id = obj.getId();
         Assert.assertNotNull("Data on demand for 'Configuracion' failed to provide an identifier", id);
-        obj = Configuracion.findConfiguracion(id);
-        obj.remove();
+        obj = configuracionService.findConfiguracion(id);
+        configuracionService.deleteConfiguracion(obj);
         obj.flush();
-        Assert.assertNull("Failed to remove 'Configuracion' with identifier '" + id + "'", Configuracion.findConfiguracion(id));
+        Assert.assertNull("Failed to remove 'Configuracion' with identifier '" + id + "'", configuracionService.findConfiguracion(id));
     }
     
 }

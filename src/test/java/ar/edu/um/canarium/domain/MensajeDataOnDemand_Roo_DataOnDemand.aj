@@ -7,6 +7,7 @@ import ar.edu.um.canarium.domain.Mensaje;
 import ar.edu.um.canarium.domain.MensajeDataOnDemand;
 import ar.edu.um.canarium.domain.Persona;
 import ar.edu.um.canarium.domain.PersonaDataOnDemand;
+import ar.edu.um.canarium.service.MensajeService;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -30,6 +31,9 @@ privileged aspect MensajeDataOnDemand_Roo_DataOnDemand {
     
     @Autowired
     PersonaDataOnDemand MensajeDataOnDemand.personaDataOnDemand;
+    
+    @Autowired
+    MensajeService MensajeDataOnDemand.mensajeService;
     
     public Mensaje MensajeDataOnDemand.getNewTransientMensaje(int index) {
         Mensaje obj = new Mensaje();
@@ -67,14 +71,14 @@ privileged aspect MensajeDataOnDemand_Roo_DataOnDemand {
         }
         Mensaje obj = data.get(index);
         Long id = obj.getId();
-        return Mensaje.findMensaje(id);
+        return mensajeService.findMensaje(id);
     }
     
     public Mensaje MensajeDataOnDemand.getRandomMensaje() {
         init();
         Mensaje obj = data.get(rnd.nextInt(data.size()));
         Long id = obj.getId();
-        return Mensaje.findMensaje(id);
+        return mensajeService.findMensaje(id);
     }
     
     public boolean MensajeDataOnDemand.modifyMensaje(Mensaje obj) {
@@ -84,7 +88,7 @@ privileged aspect MensajeDataOnDemand_Roo_DataOnDemand {
     public void MensajeDataOnDemand.init() {
         int from = 0;
         int to = 10;
-        data = Mensaje.findMensajeEntries(from, to);
+        data = mensajeService.findMensajeEntries(from, to);
         if (data == null) {
             throw new IllegalStateException("Find entries implementation for 'Mensaje' illegally returned null");
         }
@@ -96,7 +100,7 @@ privileged aspect MensajeDataOnDemand_Roo_DataOnDemand {
         for (int i = 0; i < 10; i++) {
             Mensaje obj = getNewTransientMensaje(i);
             try {
-                obj.persist();
+                mensajeService.saveMensaje(obj);
             } catch (final ConstraintViolationException e) {
                 final StringBuilder msg = new StringBuilder();
                 for (Iterator<ConstraintViolation<?>> iter = e.getConstraintViolations().iterator(); iter.hasNext();) {

@@ -9,6 +9,7 @@ import ar.edu.um.canarium.domain.Persona;
 import ar.edu.um.canarium.domain.PersonaDataOnDemand;
 import ar.edu.um.canarium.domain.Republicado;
 import ar.edu.um.canarium.domain.RepublicadoDataOnDemand;
+import ar.edu.um.canarium.service.RepublicadoService;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -35,6 +36,9 @@ privileged aspect RepublicadoDataOnDemand_Roo_DataOnDemand {
     
     @Autowired
     PersonaDataOnDemand RepublicadoDataOnDemand.personaDataOnDemand;
+    
+    @Autowired
+    RepublicadoService RepublicadoDataOnDemand.republicadoService;
     
     public Republicado RepublicadoDataOnDemand.getNewTransientRepublicado(int index) {
         Republicado obj = new Republicado();
@@ -69,14 +73,14 @@ privileged aspect RepublicadoDataOnDemand_Roo_DataOnDemand {
         }
         Republicado obj = data.get(index);
         Long id = obj.getId();
-        return Republicado.findRepublicado(id);
+        return republicadoService.findRepublicado(id);
     }
     
     public Republicado RepublicadoDataOnDemand.getRandomRepublicado() {
         init();
         Republicado obj = data.get(rnd.nextInt(data.size()));
         Long id = obj.getId();
-        return Republicado.findRepublicado(id);
+        return republicadoService.findRepublicado(id);
     }
     
     public boolean RepublicadoDataOnDemand.modifyRepublicado(Republicado obj) {
@@ -86,7 +90,7 @@ privileged aspect RepublicadoDataOnDemand_Roo_DataOnDemand {
     public void RepublicadoDataOnDemand.init() {
         int from = 0;
         int to = 10;
-        data = Republicado.findRepublicadoEntries(from, to);
+        data = republicadoService.findRepublicadoEntries(from, to);
         if (data == null) {
             throw new IllegalStateException("Find entries implementation for 'Republicado' illegally returned null");
         }
@@ -98,7 +102,7 @@ privileged aspect RepublicadoDataOnDemand_Roo_DataOnDemand {
         for (int i = 0; i < 10; i++) {
             Republicado obj = getNewTransientRepublicado(i);
             try {
-                obj.persist();
+                republicadoService.saveRepublicado(obj);
             } catch (final ConstraintViolationException e) {
                 final StringBuilder msg = new StringBuilder();
                 for (Iterator<ConstraintViolation<?>> iter = e.getConstraintViolations().iterator(); iter.hasNext();) {

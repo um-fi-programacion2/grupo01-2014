@@ -5,8 +5,10 @@ package ar.edu.um.canarium.web;
 
 import ar.edu.um.canarium.domain.Mensaje;
 import ar.edu.um.canarium.domain.Persona;
-import ar.edu.um.canarium.domain.Republicado;
-import ar.edu.um.canarium.domain.Tag;
+import ar.edu.um.canarium.service.MensajeService;
+import ar.edu.um.canarium.service.PersonaService;
+import ar.edu.um.canarium.service.RepublicadoService;
+import ar.edu.um.canarium.service.TagService;
 import ar.edu.um.canarium.web.MensajeController;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -14,6 +16,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import org.joda.time.format.DateTimeFormat;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -26,6 +29,18 @@ import org.springframework.web.util.WebUtils;
 
 privileged aspect MensajeController_Roo_Controller {
     
+    @Autowired
+    MensajeService MensajeController.mensajeService;
+    
+    @Autowired
+    PersonaService MensajeController.personaService;
+    
+    @Autowired
+    RepublicadoService MensajeController.republicadoService;
+    
+    @Autowired
+    TagService MensajeController.tagService;
+    
     @RequestMapping(method = RequestMethod.POST, produces = "text/html")
     public String MensajeController.create(@Valid Mensaje mensaje, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
         if (bindingResult.hasErrors()) {
@@ -33,7 +48,7 @@ privileged aspect MensajeController_Roo_Controller {
             return "mensajes/create";
         }
         uiModel.asMap().clear();
-        mensaje.persist();
+        mensajeService.saveMensaje(mensaje);
         return "redirect:/mensajes/" + encodeUrlPathSegment(mensaje.getId().toString(), httpServletRequest);
     }
     
@@ -41,7 +56,7 @@ privileged aspect MensajeController_Roo_Controller {
     public String MensajeController.createForm(Model uiModel) {
         populateEditForm(uiModel, new Mensaje());
         List<String[]> dependencies = new ArrayList<String[]>();
-        if (Persona.countPersonae() == 0) {
+        if (personaService.countAllPersonae() == 0) {
             dependencies.add(new String[] { "persona", "personae" });
         }
         uiModel.addAttribute("dependencies", dependencies);
@@ -51,7 +66,7 @@ privileged aspect MensajeController_Roo_Controller {
     @RequestMapping(value = "/{id}", produces = "text/html")
     public String MensajeController.show(@PathVariable("id") Long id, Model uiModel) {
         addDateTimeFormatPatterns(uiModel);
-        uiModel.addAttribute("mensaje", Mensaje.findMensaje(id));
+        uiModel.addAttribute("mensaje", mensajeService.findMensaje(id));
         uiModel.addAttribute("itemId", id);
         return "mensajes/show";
     }
@@ -61,11 +76,11 @@ privileged aspect MensajeController_Roo_Controller {
         if (page != null || size != null) {
             int sizeNo = size == null ? 10 : size.intValue();
             final int firstResult = page == null ? 0 : (page.intValue() - 1) * sizeNo;
-            uiModel.addAttribute("mensajes", Mensaje.findMensajeEntries(firstResult, sizeNo));
-            float nrOfPages = (float) Mensaje.countMensajes() / sizeNo;
+            uiModel.addAttribute("mensajes", mensajeService.findMensajeEntries(firstResult, sizeNo));
+            float nrOfPages = (float) mensajeService.countAllMensajes() / sizeNo;
             uiModel.addAttribute("maxPages", (int) ((nrOfPages > (int) nrOfPages || nrOfPages == 0.0) ? nrOfPages + 1 : nrOfPages));
         } else {
-            uiModel.addAttribute("mensajes", Mensaje.findAllMensajes());
+            uiModel.addAttribute("mensajes", mensajeService.findAllMensajes());
         }
         addDateTimeFormatPatterns(uiModel);
         return "mensajes/list";
@@ -78,20 +93,20 @@ privileged aspect MensajeController_Roo_Controller {
             return "mensajes/update";
         }
         uiModel.asMap().clear();
-        mensaje.merge();
+        mensajeService.updateMensaje(mensaje);
         return "redirect:/mensajes/" + encodeUrlPathSegment(mensaje.getId().toString(), httpServletRequest);
     }
     
     @RequestMapping(value = "/{id}", params = "form", produces = "text/html")
     public String MensajeController.updateForm(@PathVariable("id") Long id, Model uiModel) {
-        populateEditForm(uiModel, Mensaje.findMensaje(id));
+        populateEditForm(uiModel, mensajeService.findMensaje(id));
         return "mensajes/update";
     }
     
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = "text/html")
     public String MensajeController.delete(@PathVariable("id") Long id, @RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
-        Mensaje mensaje = Mensaje.findMensaje(id);
-        mensaje.remove();
+        Mensaje mensaje = mensajeService.findMensaje(id);
+        mensajeService.deleteMensaje(mensaje);
         uiModel.asMap().clear();
         uiModel.addAttribute("page", (page == null) ? "1" : page.toString());
         uiModel.addAttribute("size", (size == null) ? "10" : size.toString());
@@ -105,9 +120,9 @@ privileged aspect MensajeController_Roo_Controller {
     void MensajeController.populateEditForm(Model uiModel, Mensaje mensaje) {
         uiModel.addAttribute("mensaje", mensaje);
         addDateTimeFormatPatterns(uiModel);
-        uiModel.addAttribute("personae", Persona.findAllPersonae());
-        uiModel.addAttribute("republicadoes", Republicado.findAllRepublicadoes());
-        uiModel.addAttribute("tags", Tag.findAllTags());
+        uiModel.addAttribute("personae", personaService.findAllPersonae());
+        uiModel.addAttribute("republicadoes", republicadoService.findAllRepublicadoes());
+        uiModel.addAttribute("tags", tagService.findAllTags());
     }
     
     String MensajeController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {
