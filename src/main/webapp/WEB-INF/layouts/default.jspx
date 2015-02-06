@@ -106,10 +106,7 @@
 		            	</div>
 		            </div>
 		            <div class="bloque footer">
-		            	<ul>
-		            		<li class="alumno">Federico Baigorria</li>
-		            	</ul>
-		            	<div class="footer-universidad">2015 - Facultad de Ingenieria - <b>UM</b></div>
+		            	<tiles:insertAttribute name="footer"/>
 		            </div>
 		        </div>
            	 	<div class="col-xs-12 col-sm-9">

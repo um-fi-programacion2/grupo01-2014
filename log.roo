@@ -215,3 +215,4 @@ service all --interfacePackage ~.service
 focus --class ~.domain.Persona
 finder list
 finder add findPersonaeByUsuarioEquals
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2015-02-05 23:23:21
