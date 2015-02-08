@@ -28,4 +28,7 @@
 <definition extends="default" name="personae/findPersonaeByUsuarioEquals">
         <put-attribute name="body" value="/WEB-INF/views/personae/findPersonaeByUsuarioEquals.jspx"/>
     </definition>
+<definition extends="default" name="personae/findPersonaeByPersona">
+        <put-attribute name="body" value="/WEB-INF/views/personae/findPersonaeByPersona.jspx"/>
+    </definition>
 </tiles-definitions>

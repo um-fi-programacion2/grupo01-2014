@@ -216,3 +216,14 @@ focus --class ~.domain.Persona
 finder list
 finder add findPersonaeByUsuarioEquals
 // Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2015-02-05 23:23:21
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2015-02-07 20:17:42
+focus --class ~.domain.Persona
+finder list
+finder add findPersonaeByPersona
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2015-02-07 20:29:25
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2015-02-07 22:57:22
+service all --interfacePackage ~.service
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2015-02-08 00:00:59
+focus --class ~.domain.Persona
+finder list
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2015-02-08 00:06:27

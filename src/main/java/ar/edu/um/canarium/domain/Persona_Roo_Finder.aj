@@ -4,10 +4,19 @@
 package ar.edu.um.canarium.domain;
 
 import ar.edu.um.canarium.domain.Persona;
+import ar.edu.um.canarium.domain.User;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
 privileged aspect Persona_Roo_Finder {
+    
+    public static TypedQuery<Persona> Persona.findPersonaeByPersona(User persona) {
+        if (persona == null) throw new IllegalArgumentException("The persona argument is required");
+        EntityManager em = Persona.entityManager();
+        TypedQuery<Persona> q = em.createQuery("SELECT o FROM Persona AS o WHERE o.persona = :persona", Persona.class);
+        q.setParameter("persona", persona);
+        return q;
+    }
     
     public static TypedQuery<Persona> Persona.findPersonaeByUsuarioEquals(String usuario) {
         if (usuario == null || usuario.length() == 0) throw new IllegalArgumentException("The usuario argument is required");

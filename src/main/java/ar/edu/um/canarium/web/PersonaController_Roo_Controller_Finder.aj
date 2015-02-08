@@ -4,6 +4,7 @@
 package ar.edu.um.canarium.web;
 
 import ar.edu.um.canarium.domain.Persona;
+import ar.edu.um.canarium.domain.User;
 import ar.edu.um.canarium.web.PersonaController;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +12,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 privileged aspect PersonaController_Roo_Controller_Finder {
+    
+    @RequestMapping(params = { "find=ByPersona", "form" }, method = RequestMethod.GET)
+    public String PersonaController.findPersonaeByPersonaForm(Model uiModel) {
+        uiModel.addAttribute("users", userService.findAllUsers());
+        return "personae/findPersonaeByPersona";
+    }
+    
+    @RequestMapping(params = "find=ByPersona", method = RequestMethod.GET)
+    public String PersonaController.findPersonaeByPersona(@RequestParam("persona") User persona, Model uiModel) {
+        uiModel.addAttribute("personae", Persona.findPersonaeByPersona(persona).getResultList());
+        return "personae/list";
+    }
     
     @RequestMapping(params = { "find=ByUsuarioEquals", "form" }, method = RequestMethod.GET)
     public String PersonaController.findPersonaeByUsuarioEqualsForm(Model uiModel) {

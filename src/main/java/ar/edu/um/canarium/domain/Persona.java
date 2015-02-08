@@ -18,7 +18,7 @@ import javax.persistence.OneToOne;
 
 @RooJavaBean
 @RooToString
-@RooJpaActiveRecord(finders = { "findPersonaeByUsuarioEquals" })
+@RooJpaActiveRecord(finders = { "findPersonaeByUsuarioEquals", "findPersonaeByPersona" })
 public class Persona {
 
     /**

@@ -45,7 +45,7 @@
 			          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><c:out value="${pageContext.request.userPrincipal.name}"/><span class="caret"></span></a>
 			          <ul class="dropdown-menu" role="menu">
 			            <li>
-			            	<a href="/canarium/personae?form"><spring:message code="change_perfil"/></a>
+			            	<a href="/canarium/personae/updatePerfil"><spring:message code="change_perfil"/></a>
 			            </li>
 			            <li>
 			            	<a href="/canarium/changepassword/index"><spring:message code="cambiar_contraseña"/></a>
@@ -106,7 +106,10 @@
 		            	</div>
 		            </div>
 		            <div class="bloque footer">
-		            	<tiles:insertAttribute name="footer"/>
+		            	<ul>
+							<li class="alumno">Federico Baigorria</li>
+						</ul>
+						<div class="footer-universidad">2015 - Facultad de Ingenieria - <b>UM</b></div>
 		            </div>
 		        </div>
            	 	<div class="col-xs-12 col-sm-9">

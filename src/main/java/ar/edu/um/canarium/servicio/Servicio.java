@@ -2,6 +2,11 @@ package ar.edu.um.canarium.servicio;
 
 import java.util.Date;
 
+import javax.persistence.Query;
+
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import ar.edu.um.canarium.domain.Persona;
 import ar.edu.um.canarium.domain.Role;
 import ar.edu.um.canarium.domain.Sexo;
@@ -10,11 +15,8 @@ import ar.edu.um.canarium.domain.UserRole;
 
 public class Servicio {
 	
-	
-	
 	public UserRole setAsignarRol(User user)
 	{
-		//Role Rol = Role.findRole(Long.valueOf(2));
         Role Rol = Role.findRolesByRoleNameEquals("user").getSingleResult();
 		UserRole Urol = new UserRole();
         Urol.setUserEntry(user);
@@ -60,6 +62,11 @@ public class Servicio {
 		return persona;
 	}
 	
+	public static User getUserLogged(){
+		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Query query = User.findUsersByEmailAddress(userDetails.getUsername());
+		User person = (User) query.getSingleResult();
+		return person;
+	}
 	
-
 }
