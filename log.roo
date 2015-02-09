@@ -227,3 +227,6 @@ service all --interfacePackage ~.service
 focus --class ~.domain.Persona
 finder list
 // Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2015-02-08 00:06:27
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2015-02-09 17:46:07
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2015-02-09 17:52:34
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2015-02-09 17:57:16
