@@ -40,7 +40,6 @@ privileged aspect PersonaDataOnDemand_Roo_DataOnDemand {
         setContentType(obj, index);
         setDescripcion(obj, index);
         setFecha(obj, index);
-        setFoto(obj, index);
         setPath(obj, index);
         setSexo(obj, index);
         setUsuario(obj, index);
@@ -63,14 +62,6 @@ privileged aspect PersonaDataOnDemand_Roo_DataOnDemand {
     public void PersonaDataOnDemand.setFecha(Persona obj, int index) {
         Date fecha = new GregorianCalendar(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH), Calendar.getInstance().get(Calendar.HOUR_OF_DAY), Calendar.getInstance().get(Calendar.MINUTE), Calendar.getInstance().get(Calendar.SECOND) + new Double(Math.random() * 1000).intValue()).getTime();
         obj.setFecha(fecha);
-    }
-    
-    public void PersonaDataOnDemand.setFoto(Persona obj, int index) {
-        String foto = "foto_" + index;
-        if (foto.length() > 255) {
-            foto = foto.substring(0, 255);
-        }
-        obj.setFoto(foto);
     }
     
     public void PersonaDataOnDemand.setPath(Persona obj, int index) {

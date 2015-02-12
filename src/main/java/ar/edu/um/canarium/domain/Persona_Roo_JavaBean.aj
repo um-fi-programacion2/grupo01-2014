@@ -40,14 +40,6 @@ privileged aspect Persona_Roo_JavaBean {
         this.image = image;
     }
     
-    public String Persona.getFoto() {
-        return this.foto;
-    }
-    
-    public void Persona.setFoto(String foto) {
-        this.foto = foto;
-    }
-    
     public String Persona.getUsuario() {
         return this.usuario;
     }

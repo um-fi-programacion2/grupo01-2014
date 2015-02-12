@@ -40,11 +40,6 @@ public class Persona {
 		
     /**
      */
-    @Size(max = 255)
-    private String foto;
-
-    /**
-     */
     @NotNull
     @Column(unique = true)
     @Size(max = 15)

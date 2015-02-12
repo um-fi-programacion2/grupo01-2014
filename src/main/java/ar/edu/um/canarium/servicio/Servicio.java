@@ -59,6 +59,8 @@ public class Servicio {
         persona.setUsuario(this.generarUsuario(user));
         persona.setSexo(Sexo.masculino);
         persona.setPersona(user);
+        persona.setPath("/home/federico/software/proyectos/canarium/src/main/webapp/images/default-profile.jpg");
+        persona.setContentType("image/jpeg");
 		return persona;
 	}
 	

@@ -3,7 +3,6 @@
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
     <form:create id="fc_ar_edu_um_canarium_domain_Persona" modelAttribute="persona" multipart="true" path="/personae" render="${empty dependencies}" z="user-managed">
-        <field:textarea field="foto" id="c_ar_edu_um_canarium_domain_Persona_foto" z="PXpF4ASuxH/x9RaSvMi7tWklUH0="/>
         <field:textarea field="descripcion" id="c_ar_edu_um_canarium_domain_Persona_descripcion" z="4/9o8IvdZ5CR+/9TTaExLr//VIQ="/>
         <field:select field="sexo" id="c_ar_edu_um_canarium_domain_Persona_sexo" items="${sexoes}" path="sexoes" required="true" z="efJVf3n4jEdBUTN1rylBGsRcqcc="/>
         <field:datetime dateTimePattern="${persona_fecha_date_format}" field="fecha" id="c_ar_edu_um_canarium_domain_Persona_fecha" required="true" z="FOG6QAjWp06hCtGdDrW/C95H1V8="/>
