@@ -12,8 +12,33 @@ import ar.edu.um.canarium.domain.Sexo;
 import ar.edu.um.canarium.domain.User;
 import java.util.Date;
 import java.util.Set;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 privileged aspect Persona_Roo_JavaBean {
+    
+    public String Persona.getContentType() {
+        return this.contentType;
+    }
+    
+    public void Persona.setContentType(String contentType) {
+        this.contentType = contentType;
+    }
+    
+    public String Persona.getPath() {
+        return this.path;
+    }
+    
+    public void Persona.setPath(String path) {
+        this.path = path;
+    }
+    
+    public CommonsMultipartFile Persona.getImage() {
+        return this.image;
+    }
+    
+    public void Persona.setImage(CommonsMultipartFile image) {
+        this.image = image;
+    }
     
     public String Persona.getFoto() {
         return this.foto;

@@ -37,12 +37,19 @@ privileged aspect PersonaDataOnDemand_Roo_DataOnDemand {
     
     public Persona PersonaDataOnDemand.getNewTransientPersona(int index) {
         Persona obj = new Persona();
+        setContentType(obj, index);
         setDescripcion(obj, index);
         setFecha(obj, index);
         setFoto(obj, index);
+        setPath(obj, index);
         setSexo(obj, index);
         setUsuario(obj, index);
         return obj;
+    }
+    
+    public void PersonaDataOnDemand.setContentType(Persona obj, int index) {
+        String contentType = "contentType_" + index;
+        obj.setContentType(contentType);
     }
     
     public void PersonaDataOnDemand.setDescripcion(Persona obj, int index) {
@@ -64,6 +71,11 @@ privileged aspect PersonaDataOnDemand_Roo_DataOnDemand {
             foto = foto.substring(0, 255);
         }
         obj.setFoto(foto);
+    }
+    
+    public void PersonaDataOnDemand.setPath(Persona obj, int index) {
+        String path = "path_" + index;
+        obj.setPath(path);
     }
     
     public void PersonaDataOnDemand.setSexo(Persona obj, int index) {

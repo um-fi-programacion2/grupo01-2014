@@ -2,7 +2,8 @@
 <div xmlns:field="urn:jsptagdir:/WEB-INF/tags/jquery/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/jquery/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
-    <form:update id="fu_ar_edu_um_canarium_domain_Persona" modelAttribute="persona" path="/personae" versionField="Version" z="1FjTZFsb9mkoqHTpUVyUFjutxbs=">
+    <form:update id="fu_ar_edu_um_canarium_domain_Persona" modelAttribute="persona" multipart="true" path="/personae/update" versionField="Version" z="user-managed">
+        <img height="256px" src="${persona.id}/image"/>
         <field:textarea field="foto" id="c_ar_edu_um_canarium_domain_Persona_foto" z="PXpF4ASuxH/x9RaSvMi7tWklUH0="/>
         <field:textarea field="descripcion" id="c_ar_edu_um_canarium_domain_Persona_descripcion" z="4/9o8IvdZ5CR+/9TTaExLr//VIQ="/>
         <field:select field="sexo" id="c_ar_edu_um_canarium_domain_Persona_sexo" items="${sexoes}" path="sexoes" required="true" z="efJVf3n4jEdBUTN1rylBGsRcqcc="/>
@@ -15,5 +16,8 @@
         <field:simple field="relaciones" id="c_ar_edu_um_canarium_domain_Persona_relaciones" messageCode="entity_reference_not_managed" messageCodeAttribute="Relacion" z="9/RyKq9Am7fzBme78nrfglGKWno="/>
         <field:simple field="republicados" id="c_ar_edu_um_canarium_domain_Persona_republicados" messageCode="entity_reference_not_managed" messageCodeAttribute="Republicado" z="ltoL5myVg//7WNmD76sfrzhuePE="/>
         <field:simple field="mensajes" id="c_ar_edu_um_canarium_domain_Persona_mensajes" messageCode="entity_reference_not_managed" messageCodeAttribute="Mensaje" z="tosG2PFys1xK8R1f4lu409YaCVY="/>
+        <field:input field="contentType" id="c_ar_edu_um_canarium_domain_Persona_contentType" z="user-managed" render="false"/>
+        <field:input field="path" id="c_ar_edu_um_canarium_domain_Persona_path" render="false" z="user-managed"/>
+        <field:input field="image" id="c_ar_edu_um_canarium_domain_Persona_image" type="file" z="user-managed" required="false"/>
     </form:update>
 </div>

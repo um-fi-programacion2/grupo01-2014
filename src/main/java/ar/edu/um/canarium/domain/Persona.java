@@ -2,25 +2,42 @@ package ar.edu.um.canarium.domain;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.jpa.activerecord.RooJpaActiveRecord;
 import org.springframework.roo.addon.tostring.RooToString;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.persistence.Column;
+
 import java.util.Date;
+
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
 import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.Enumerated;
+
 import java.util.HashSet;
 import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 
 @RooJavaBean
 @RooToString
 @RooJpaActiveRecord(finders = { "findPersonaeByUsuarioEquals", "findPersonaeByPersona" })
 public class Persona {
 
+	
+	private String contentType;
+	
+	private String path;
+	
+	@Transient
+	private CommonsMultipartFile image;
+		
     /**
      */
     @Size(max = 255)

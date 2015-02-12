@@ -138,7 +138,7 @@ privileged aspect ApplicationConversionServiceFactoryBean_Roo_ConversionService 
     public Converter<Persona, String> ApplicationConversionServiceFactoryBean.getPersonaToStringConverter() {
         return new org.springframework.core.convert.converter.Converter<ar.edu.um.canarium.domain.Persona, java.lang.String>() {
             public String convert(Persona persona) {
-                return new StringBuilder().append(persona.getFoto()).append(' ').append(persona.getUsuario()).append(' ').append(persona.getDescripcion()).append(' ').append(persona.getFecha()).toString();
+                return new StringBuilder().append(persona.getContentType()).append(' ').append(persona.getPath()).append(' ').append(persona.getImage()).append(' ').append(persona.getFoto()).toString();
             }
         };
     }

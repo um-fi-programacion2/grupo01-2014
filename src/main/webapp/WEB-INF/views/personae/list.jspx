@@ -6,9 +6,10 @@
         <table:table data="${personae}" id="l_ar_edu_um_canarium_domain_Persona" path="/personae" z="p2vb3mtkYfXb68Wcz9vPG1VmSzQ=">
             <table:column id="c_ar_edu_um_canarium_domain_Persona_foto" property="foto" z="b9TA6mRrhyjbyjZjedCnDyZrtqg="/>
             <table:column id="c_ar_edu_um_canarium_domain_Persona_descripcion" property="descripcion" z="8lbdQGRfu+kjaEh8czPya/6Kfs8="/>
-            <table:column id="c_ar_edu_um_canarium_domain_Persona_sexo" property="sexo" z="FgDiNOqBSxtHolLthHHPMy97d20="/>
-            <table:column date="true" dateTimePattern="${persona_fecha_date_format}" id="c_ar_edu_um_canarium_domain_Persona_fecha" property="fecha" z="kXBVXgIkxu7va+a1azsiK41GJnE="/>
             <table:column id="c_ar_edu_um_canarium_domain_Persona_usuario" property="usuario" z="rUuru4qdof1oPxDrEhFVg9if+CY="/>
+            <table:column id="c_ar_edu_um_canarium_domain_Persona_contentType" property="contentType" z="c9KHmCECyNwIH3giY+gZi1IGPj4="/>
+            <table:column id="c_ar_edu_um_canarium_domain_Persona_path" property="path" z="diysEqNuRigTsKYF8uNTY+9kvRs="/>
+            <table:column id="c_ar_edu_um_canarium_domain_Persona_image" property="image" z="igBWDyd8iP1FFaQCRFnMDHi/F48="/>
         </table:table>
     </page:list>
 </div>

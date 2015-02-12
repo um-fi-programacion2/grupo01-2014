@@ -15,12 +15,10 @@ import ar.edu.um.canarium.web.PersonaController;
 import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
 import org.joda.time.format.DateTimeFormat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -47,17 +45,6 @@ privileged aspect PersonaController_Roo_Controller {
     
     @Autowired
     UserService PersonaController.userService;
-    
-    @RequestMapping(method = RequestMethod.POST, produces = "text/html")
-    public String PersonaController.create(@Valid Persona persona, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
-        if (bindingResult.hasErrors()) {
-            populateEditForm(uiModel, persona);
-            return "personae/create";
-        }
-        uiModel.asMap().clear();
-        personaService.savePersona(persona);
-        return "redirect:/personae/" + encodeUrlPathSegment(persona.getId().toString(), httpServletRequest);
-    }
     
     @RequestMapping(params = "form", produces = "text/html")
     public String PersonaController.createForm(Model uiModel) {
@@ -86,17 +73,6 @@ privileged aspect PersonaController_Roo_Controller {
         }
         addDateTimeFormatPatterns(uiModel);
         return "personae/list";
-    }
-    
-    @RequestMapping(method = RequestMethod.PUT, produces = "text/html")
-    public String PersonaController.update(@Valid Persona persona, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
-        if (bindingResult.hasErrors()) {
-            populateEditForm(uiModel, persona);
-            return "personae/update";
-        }
-        uiModel.asMap().clear();
-        personaService.updatePersona(persona);
-        return "redirect:/personae/" + encodeUrlPathSegment(persona.getId().toString(), httpServletRequest);
     }
     
     @RequestMapping(value = "/{id}", params = "form", produces = "text/html")
