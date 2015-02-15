@@ -2,21 +2,31 @@
 <div xmlns:field="urn:jsptagdir:/WEB-INF/tags/jquery/form/fields" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/jquery/form" version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
-    <page:show id="ps_ar_edu_um_canarium_domain_Persona" object="${persona}" path="/personae" z="J821zWf7LwPjWP7yu03Ppt1veZg=">
-        <div class="row">
-        	<div class="col-md-8"> 
-		        <field:display field="descripcion" id="s_ar_edu_um_canarium_domain_Persona_descripcion" object="${persona}" z="twXqnnScPLgs0PX0LU7udnq1J+k="/>
-		        <field:display field="sexo" id="s_ar_edu_um_canarium_domain_Persona_sexo" object="${persona}" z="C2aIJvP5yK69JeyjIswicJdW2II="/>
-		        <field:display date="true" dateTimePattern="${persona_fecha_date_format}" field="fecha" id="s_ar_edu_um_canarium_domain_Persona_fecha" object="${persona}" z="+Vam6ZT8XeVlugKNsFdPg4mNXFE="/>
-		        <field:display field="usuario" id="s_ar_edu_um_canarium_domain_Persona_usuario" object="${persona}" z="iuf8/u8+/Fe0gE7n7/t6Tiv1/l8="/>
-		        <field:display field="persona" id="s_ar_edu_um_canarium_domain_Persona_persona" object="${persona}" render="false" z="user-managed"/>
-		        <field:display field="contentType" id="s_ar_edu_um_canarium_domain_Persona_contentType" object="${persona}" render="false" z="user-managed"/>
-		        <field:display field="path" id="s_ar_edu_um_canarium_domain_Persona_path" object="${persona}" render="false" z="user-managed"/>
-		        <field:display field="image" id="s_ar_edu_um_canarium_domain_Persona_image" object="${persona}" render="false" z="user-managed"/>
-	    	</div>
-			<div class="col-md-4"> 
-		        <img width="100%" src="${persona.id}/image"/>
-	    	</div>
-    	</div>
-    </page:show>
+    
+    
+    	<div class="col-xs-6 col-sm-3" id="sidebar" role="navigation">
+ 			
+           <jsp:include page="../usuario.jsp" />
+       
+       	</div>
+  	 	<div class="col-xs-12 col-sm-9">
+    
+		    <page:show id="ps_ar_edu_um_canarium_domain_Persona" object="${persona}" path="/personae" z="J821zWf7LwPjWP7yu03Ppt1veZg=">
+		        <div class="row">
+		        	<div class="col-md-8"> 
+				        <field:display field="descripcion" id="s_ar_edu_um_canarium_domain_Persona_descripcion" object="${persona}" z="twXqnnScPLgs0PX0LU7udnq1J+k="/>
+				        <field:display field="sexo" id="s_ar_edu_um_canarium_domain_Persona_sexo" object="${persona}" z="C2aIJvP5yK69JeyjIswicJdW2II="/>
+				        <field:display date="true" dateTimePattern="${persona_fecha_date_format}" field="fecha" id="s_ar_edu_um_canarium_domain_Persona_fecha" object="${persona}" z="+Vam6ZT8XeVlugKNsFdPg4mNXFE="/>
+				        <field:display field="usuario" id="s_ar_edu_um_canarium_domain_Persona_usuario" object="${persona}" z="iuf8/u8+/Fe0gE7n7/t6Tiv1/l8="/>
+				        <field:display field="persona" id="s_ar_edu_um_canarium_domain_Persona_persona" object="${persona}" render="false" z="user-managed"/>
+				        <field:display field="contentType" id="s_ar_edu_um_canarium_domain_Persona_contentType" object="${persona}" render="false" z="user-managed"/>
+				        <field:display field="path" id="s_ar_edu_um_canarium_domain_Persona_path" object="${persona}" render="false" z="user-managed"/>
+				        <field:display field="image" id="s_ar_edu_um_canarium_domain_Persona_image" object="${persona}" render="false" z="user-managed"/>
+			    	</div>
+					<div class="col-md-4"> 
+				        <img width="100%" src="${persona.id}/image"/>
+			    	</div>
+		    	</div>
+		    </page:show>
+	    </div>
 </div>

@@ -115,7 +115,9 @@ public class PersonaController {
 		User person = Servicio.getUserLogged();
 		Query consulta = Persona.findPersonaeByPersona(person);
 		Persona persona = (Persona) consulta.getSingleResult();
-
+		
+		uiModel.addAttribute("usuario", person);
+		
 		populateEditForm(uiModel, persona);
         return "personae/update";
 	}
@@ -126,6 +128,8 @@ public class PersonaController {
 		Query consulta = Persona.findPersonaeByPersona(person);
 		Persona persona = (Persona) consulta.getSingleResult();
 
+		uiModel.addAttribute("usuario", person);
+		
 		addDateTimeFormatPatterns(uiModel);
         uiModel.addAttribute("persona", persona);
         uiModel.addAttribute("itemId", persona.getId());

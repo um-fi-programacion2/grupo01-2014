@@ -78,44 +78,9 @@
 	<div class="container index wrapper white">
 		<div class="row">
 		
-				<div class="col-xs-6 col-sm-3" id="sidebar" role="navigation">
-		            <div class="bloque">
-		            	<div class="cuenta">
-		            		<a href="#" class="informacion_cuenta">
-		            			<div class="contenido_cuenta">
-		            				<b class="nombre_completo">Federico Baigorria</b>
-		            				<small class="perfil_link">Ver mi pagina de perfil</small>
-		            			</div>
-		            		</a>
-		            	</div>
-		            	<div>
-		            		<ul class="estado_perfil_caja">
-		            			<li>
-		            				<a class="js-nav" href="#" data-element-term="tweet-stats" data-nav="profile"><strong>18</strong>Tweets</a>
-		            			</li>
-		            			<li>
-		            				<a class="js-nav" href="#" data-element-term="tweet-stats" data-nav="profile"><strong>18</strong>Siguiendo</a>
-		            			</li>
-		            			<li>
-		            				<a class="js-nav" href="#" data-element-term="tweet-stats" data-nav="profile"><strong>18</strong>Seguidores</a>
-		            			</li>
-		            		</ul>
-		            	</div>
-		            	<div class="caja_tweet">
-		            		falta poner un formulario
-		            	</div>
-		            </div>
-		            <div class="bloque footer">
-		            	<ul>
-							<li class="alumno">Federico Baigorria</li>
-						</ul>
-						<div class="footer-universidad">2015 - Facultad de Ingenieria - <b>UM</b></div>
-		            </div>
-		        </div>
-           	 	<div class="col-xs-12 col-sm-9">
-		            <tiles:insertAttribute name="body"/>
-		        </div>
-
+            <tiles:insertAttribute name="body"/>
+            
+            
 		</div>
 	</div>
 	
