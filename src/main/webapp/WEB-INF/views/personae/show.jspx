@@ -11,7 +11,7 @@
        	</div>
   	 	<div class="col-xs-12 col-sm-9">
     
-		    <page:show id="ps_ar_edu_um_canarium_domain_Persona" object="${persona}" path="/personae" z="J821zWf7LwPjWP7yu03Ppt1veZg=">
+		    <page:showSinBoton id="ps_ar_edu_um_canarium_domain_Persona" object="${persona}" path="/personae" z="J821zWf7LwPjWP7yu03Ppt1veZg=">
 		        <div class="row">
 		        	<div class="col-md-8"> 
 				        <field:display field="descripcion" id="s_ar_edu_um_canarium_domain_Persona_descripcion" object="${persona}" z="twXqnnScPLgs0PX0LU7udnq1J+k="/>
@@ -27,6 +27,6 @@
 				        <img width="100%" src="${persona.id}/image"/>
 			    	</div>
 		    	</div>
-		    </page:show>
+		    </page:showSinBoton>
 	    </div>
 </div>
