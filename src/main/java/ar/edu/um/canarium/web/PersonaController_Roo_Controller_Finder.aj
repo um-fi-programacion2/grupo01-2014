@@ -36,15 +36,16 @@ privileged aspect PersonaController_Roo_Controller_Finder {
         return "personae/list";
     }
     
+    
     @RequestMapping(params = { "find=ByUsuarioLike", "form" }, method = RequestMethod.GET)
     public String PersonaController.findPersonaeByUsuarioLikeForm(Model uiModel) {
         return "personae/findPersonaeByUsuarioLike";
     }
-    
+    /*
     @RequestMapping(params = "find=ByUsuarioLike", method = RequestMethod.GET)
     public String PersonaController.findPersonaeByUsuarioLike(@RequestParam("usuario") String usuario, Model uiModel) {
         uiModel.addAttribute("personae", Persona.findPersonaeByUsuarioLike(usuario).getResultList());
         return "personae/list";
-    }
+    }*/
     
 }

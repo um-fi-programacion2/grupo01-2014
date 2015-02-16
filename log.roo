@@ -242,3 +242,4 @@ finder list
 focus --class ~.domain.Persona
 finder list
 finder add findPersonaeByUsuarioLike
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2015-02-16 02:35:41

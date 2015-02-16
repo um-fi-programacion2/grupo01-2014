@@ -2,14 +2,21 @@
 <div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/jquery/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/jquery/form/fields" version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
-    <page:list id="pl_ar_edu_um_canarium_domain_Persona" items="${personae}" z="aeeywRN2+eSxy5ofBvoxBDTyCiY=">
-        <table:table data="${personae}" id="l_ar_edu_um_canarium_domain_Persona" path="/personae" z="p2vb3mtkYfXb68Wcz9vPG1VmSzQ=">
-            <table:column id="c_ar_edu_um_canarium_domain_Persona_descripcion" property="descripcion" z="8lbdQGRfu+kjaEh8czPya/6Kfs8="/>
-            <table:column id="c_ar_edu_um_canarium_domain_Persona_usuario" property="usuario" z="rUuru4qdof1oPxDrEhFVg9if+CY="/>
-            <table:column id="c_ar_edu_um_canarium_domain_Persona_contentType" property="contentType" z="c9KHmCECyNwIH3giY+gZi1IGPj4="/>
-            <table:column id="c_ar_edu_um_canarium_domain_Persona_path" property="path" z="diysEqNuRigTsKYF8uNTY+9kvRs="/>
-            <table:column id="c_ar_edu_um_canarium_domain_Persona_image" property="image" z="igBWDyd8iP1FFaQCRFnMDHi/F48="/>
-            <table:column id="c_ar_edu_um_canarium_domain_Persona_sexo" property="sexo" z="FgDiNOqBSxtHolLthHHPMy97d20="/>
-        </table:table>
-    </page:list>
+    
+    <div class="col-xs-6 col-sm-3" id="sidebar" role="navigation">
+        <jsp:include page="../usuario.jsp"/>
+    </div>
+    <div class="col-xs-12 col-sm-9">
+	    <page:list id="pl_ar_edu_um_canarium_domain_Persona" items="${personae}" z="aeeywRN2+eSxy5ofBvoxBDTyCiY=">
+	        <table:table data="${personae}" id="l_ar_edu_um_canarium_domain_Persona" path="/personae" z="p2vb3mtkYfXb68Wcz9vPG1VmSzQ=">
+	            <table:column id="c_ar_edu_um_canarium_domain_Persona_descripcion" property="descripcion" z="8lbdQGRfu+kjaEh8czPya/6Kfs8="/>
+	            <table:column id="c_ar_edu_um_canarium_domain_Persona_usuario" property="usuario" z="rUuru4qdof1oPxDrEhFVg9if+CY="/>
+	            <table:column id="c_ar_edu_um_canarium_domain_Persona_contentType" property="contentType" z="c9KHmCECyNwIH3giY+gZi1IGPj4="/>
+	            <table:column id="c_ar_edu_um_canarium_domain_Persona_path" property="path" z="diysEqNuRigTsKYF8uNTY+9kvRs="/>
+	            <table:column id="c_ar_edu_um_canarium_domain_Persona_image" property="image" z="igBWDyd8iP1FFaQCRFnMDHi/F48="/>
+	            <table:column id="c_ar_edu_um_canarium_domain_Persona_sexo"  property="sexo" z="FgDiNOqBSxtHolLthHHPMy97d20="/>
+	        </table:table>
+	    </page:list>
+    </div>
+    
 </div>

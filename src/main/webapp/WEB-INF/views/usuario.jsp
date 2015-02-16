@@ -2,7 +2,7 @@
 	<div class="cuenta">
 		<a href="/canarium/personae/verPerfil" class="informacion_cuenta">
 			<div class="contenido_cuenta">
-				<img class="avatar size32" src="${persona.id}/image" /> <b
+				<img class="avatar size32" src="http://localhost:8080/canarium/personae/${persona.id}/image" /> <b
 					class="nombre_completo">${usuario.firstName}
 					${usuario.lastName}</b> <small class="perfil_link">Ver mi
 					pagina de perfil</small>

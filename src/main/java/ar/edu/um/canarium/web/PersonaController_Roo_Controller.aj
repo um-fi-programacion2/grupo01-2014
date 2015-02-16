@@ -60,6 +60,7 @@ privileged aspect PersonaController_Roo_Controller {
         return "personae/show";
     }
     
+    
     @RequestMapping(produces = "text/html")
     public String PersonaController.list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
         if (page != null || size != null) {

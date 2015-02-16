@@ -21,6 +21,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.roo.addon.web.mvc.controller.finder.RooWebFinder;
 import org.gvnix.addon.web.mvc.jquery.GvNIXWebJQuery;
@@ -31,6 +32,21 @@ import org.gvnix.addon.web.mvc.jquery.GvNIXWebJQuery;
 @RooWebFinder
 @GvNIXWebJQuery
 public class PersonaController {
+	
+	@RequestMapping(params = "find=ByUsuarioLike", method = RequestMethod.GET)
+    public String findPersonaeByUsuarioLike(@RequestParam("usuario") String usuario, Model uiModel) {
+        uiModel.addAttribute("personae", Persona.findPersonaeByUsuarioLike(usuario).getResultList());
+        User person = Servicio.getUserLogged();
+		Query consulta = Persona.findPersonaeByPersona(person);
+		Persona persona = (Persona) consulta.getSingleResult();
+
+		uiModel.addAttribute("usuario", person);
+		
+		addDateTimeFormatPatterns(uiModel);
+        uiModel.addAttribute("persona", persona);
+		
+        return "personae/list";
+    }
 	
 	
 	@RequestMapping(value = "/{id}/image", method = RequestMethod.GET)
