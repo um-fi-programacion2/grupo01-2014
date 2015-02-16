@@ -31,4 +31,7 @@
 <definition extends="default" name="personae/findPersonaeByPersona">
         <put-attribute name="body" value="/WEB-INF/views/personae/findPersonaeByPersona.jspx"/>
     </definition>
+<definition extends="default" name="personae/findPersonaeByUsuarioLike">
+        <put-attribute name="body" value="/WEB-INF/views/personae/findPersonaeByUsuarioLike.jspx"/>
+    </definition>
 </tiles-definitions>

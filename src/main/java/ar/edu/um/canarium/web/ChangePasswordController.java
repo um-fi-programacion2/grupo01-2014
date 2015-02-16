@@ -54,6 +54,7 @@ public class ChangePasswordController {
 				Query query = User
 						.findUsersByEmailAddress(userDetails.getUsername());
 				User person = (User) query.getSingleResult();
+				
 				person.setPassword(messageDigestPasswordEncoder.encodePassword(newPassword, null));
 				person.merge();
 				return "changepassword/thanks";

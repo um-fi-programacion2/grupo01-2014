@@ -19,6 +19,7 @@
             <menu:item id="i_persona_list" messageCode="global_menu_list" url="/personae?page=1&amp;size=${empty param.size ? 10 : param.size}" z="/MWcaTHST1kjwDWGXluGyXbYCJo="/>
             <menu:item id="fi_persona_persona" messageCode="global_menu_find" url="/personae?find=ByPersona&amp;form" z="AGoyBDM2Hf2d8wzMc68VSrv+z+I="/>
             <menu:item id="fi_persona_usuarioequals" messageCode="global_menu_find" url="/personae?find=ByUsuarioEquals&amp;form" z="KX4S7x+nSITxXmusSHMTFthNGc8="/>
+            <menu:item id="fi_persona_usuariolike" messageCode="global_menu_find" url="/personae?find=ByUsuarioLike&amp;form" z="4w699MEQJA4Y3heJ3j4fn2ciOOk="/>
         </menu:category>
         <menu:category id="c_relacion" z="a6Czd0t6QhDkwccFPPk7dOzBCds=">
             <menu:item id="i_relacion_new" messageCode="global_menu_new" url="/relacions?form" z="FoAHS0gEqP6/U5vfV+M7stHz08U="/>

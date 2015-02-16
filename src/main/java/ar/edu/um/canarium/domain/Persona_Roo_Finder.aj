@@ -26,4 +26,19 @@ privileged aspect Persona_Roo_Finder {
         return q;
     }
     
+    public static TypedQuery<Persona> Persona.findPersonaeByUsuarioLike(String usuario) {
+        if (usuario == null || usuario.length() == 0) throw new IllegalArgumentException("The usuario argument is required");
+        usuario = usuario.replace('*', '%');
+        if (usuario.charAt(0) != '%') {
+            usuario = "%" + usuario;
+        }
+        if (usuario.charAt(usuario.length() - 1) != '%') {
+            usuario = usuario + "%";
+        }
+        EntityManager em = Persona.entityManager();
+        TypedQuery<Persona> q = em.createQuery("SELECT o FROM Persona AS o WHERE LOWER(o.usuario) LIKE LOWER(:usuario)", Persona.class);
+        q.setParameter("usuario", usuario);
+        return q;
+    }
+    
 }

@@ -565,3 +565,10 @@ img
 {
     margin-right:  5px !important;
 }
+
+/*-------------------------BUSCAR USUARIO-----------------------------------------*/
+
+.buscar_usuario .col-lg-9
+{
+	width: 100% !important;
+}

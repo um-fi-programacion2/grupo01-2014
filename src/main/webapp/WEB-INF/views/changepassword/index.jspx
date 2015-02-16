@@ -9,40 +9,49 @@
 	<spring:message code="placeholder_repeat_password" var="pass3" />
 	
 	<jsp:output omit-xml-declaration="yes" />
-	<script type="text/javascript">dojo.require('dijit.TitlePane');dojo.require('dijit.form.SimpleTextarea');dojo.require('dijit.form.FilteringSelect');</script>
-	<div id="_title_div" class="panel panel-default">
-		<spring:url value="/changepassword" var="form_url" />
-        <div class="panel-heading">
-        	<h3 class="panel-title"><spring:message code="cambiar_contraseña"/></h3>
-       	</div>
-       	<div class="panel-body">
-			<form:form action="update" method="POST" commandName="changePasswordForm" class="form-horizontal">
-				<div class="form-group">
-				    <div class="col-sm-12">
-						<form:password cssStyle="width:100%" id="_changepassword_oldpassword" maxlength="30" path="oldPassword" placeholder="${pass1}"/>			    
+	
+	
+	<div class="col-xs-6 col-sm-3" id="sidebar" role="navigation">
+        <jsp:include page="../usuario.jsp"/>
+    </div>
+    <div class="col-xs-12 col-sm-9">
+		<script type="text/javascript">dojo.require('dijit.TitlePane');dojo.require('dijit.form.SimpleTextarea');dojo.require('dijit.form.FilteringSelect');</script>
+		<div id="_title_div" class="panel panel-default">
+			<spring:url value="/changepassword" var="form_url" />
+	        <div class="panel-heading">
+	        	<h3 class="panel-title"><spring:message code="cambiar_contraseña"/></h3>
+	       	</div>
+	       	<div class="panel-body">
+				<form:form action="update" method="POST" commandName="changePasswordForm" class="form-horizontal">
+					<div class="form-group">
+					    <div class="col-sm-12">
+							<form:password cssStyle="width:100%" id="_changepassword_oldpassword" maxlength="30" path="oldPassword" placeholder="${pass1}"/>			    
+						</div>
+						<form:errors cssClass="errors" path="oldPassword" />
 					</div>
-					<form:errors cssClass="errors" path="oldPassword" />
-				</div>
-				<div class="form-group">
-				    <div class="col-sm-12">
-						<form:password cssStyle="width:100%"  id="_changepassword_newpassword" maxlength="30" path="newPassword" placeholder="${pass2}"/>				
+					<div class="form-group">
+					    <div class="col-sm-12">
+							<form:password cssStyle="width:100%"  id="_changepassword_newpassword" maxlength="30" path="newPassword" placeholder="${pass2}"/>				
+						</div>
+						<form:errors cssClass="errors" path="newPassword" />
 					</div>
-					<form:errors cssClass="errors" path="newPassword" />
-				</div>
-				<div class="form-group">
-				    <div class="col-sm-12">
-						<form:password cssStyle="width:100%"  id="_changepassword_newpasswordagain" maxlength="30" path="newPasswordAgain" placeholder="${pass2}"/>				
+					<div class="form-group">
+					    <div class="col-sm-12">
+							<form:password cssStyle="width:100%"  id="_changepassword_newpasswordagain" maxlength="30" path="newPasswordAgain" placeholder="${pass2}"/>				
+						</div>
+						<form:errors cssClass="errors" path="newPasswordAgain" />	
 					</div>
-					<form:errors cssClass="errors" path="newPasswordAgain" />	
-				</div>
-				<div class="form-group">
-				    <div class="col-sm-12">
-						<script type="text/javascript">Spring.addDecoration(new Spring.ValidateAllDecoration({elementId: 'proceed', event : 'onclick'}));</script>
-						<input id="proceed" class="btn btn-primary btn-sm pull-right" type="submit" value="Save" width="100%"/>
-	                </div>		
-				</div>
-				<form:errors cssClass="errors" delimiter="&lt;p/&gt;" />
-			</form:form>
+					<div class="form-group">
+					    <div class="col-sm-12">
+							<script type="text/javascript">Spring.addDecoration(new Spring.ValidateAllDecoration({elementId: 'proceed', event : 'onclick'}));</script>
+							<input id="proceed" class="btn btn-primary btn-sm pull-right" type="submit" value="Save" width="100%"/>
+		                </div>		
+					</div>
+					<form:errors cssClass="errors" delimiter="&lt;p/&gt;" />
+				</form:form>
+			</div>
 		</div>
 	</div>
+	
+	
 </div>
