@@ -16,6 +16,22 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 privileged aspect Persona_Roo_JavaBean {
     
+    public Integer Persona.getSiguiendo() {
+        return this.siguiendo;
+    }
+    
+    public void Persona.setSiguiendo(Integer siguiendo) {
+        this.siguiendo = siguiendo;
+    }
+    
+    public Integer Persona.getSeguidores() {
+        return this.seguidores;
+    }
+    
+    public void Persona.setSeguidores(Integer seguidores) {
+        this.seguidores = seguidores;
+    }
+    
     public String Persona.getContentType() {
         return this.contentType;
     }

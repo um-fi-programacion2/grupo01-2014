@@ -23,6 +23,12 @@ import javax.persistence.Transient;
 @RooJpaActiveRecord(finders = { "findPersonaeByUsuarioEquals", "findPersonaeByPersona", "findPersonaeByUsuarioLike" })
 public class Persona {
 
+	@Transient
+	private Integer siguiendo;
+	
+	@Transient
+	private Integer seguidores;
+	
     private String contentType;
 
     private String path;

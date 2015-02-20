@@ -49,7 +49,10 @@ public class PersonaController {
 		User person = Servicio.getUserLogged();
 		Query consulta = Persona.findPersonaeByPersona(person);
 		Persona persona = (Persona) consulta.getSingleResult();
-
+		
+		persona.setSiguiendo(Servicio.cantidadSeguidos(persona.getId()));
+		persona.setSeguidores(Servicio.cantidadSeguidores(persona.getId()));
+		
 		addDateTimeFormatPatterns(uiModel);
 		
 		uiModel.addAttribute("servicio", new Servicio());
@@ -144,6 +147,9 @@ public class PersonaController {
 		Query consulta = Persona.findPersonaeByPersona(person);
 		Persona persona = (Persona) consulta.getSingleResult();
 		
+		persona.setSiguiendo(Servicio.cantidadSeguidos(persona.getId()));
+		persona.setSeguidores(Servicio.cantidadSeguidores(persona.getId()));
+		
 		uiModel.addAttribute("usuario", person);
 		
 		populateEditForm(uiModel, persona);
@@ -156,6 +162,10 @@ public class PersonaController {
 		Query consulta = Persona.findPersonaeByPersona(person);
 		Persona persona = (Persona) consulta.getSingleResult();
 
+		persona.setSiguiendo(Servicio.cantidadSeguidos(persona.getId()));
+		persona.setSeguidores(Servicio.cantidadSeguidores(persona.getId()));
+
+		
 		uiModel.addAttribute("usuario", person);
 		
 		addDateTimeFormatPatterns(uiModel);

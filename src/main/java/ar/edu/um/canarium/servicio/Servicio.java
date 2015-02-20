@@ -18,12 +18,26 @@ import ar.edu.um.canarium.domain.UserRole;
 
 public class Servicio {
 	
+
+	public static Integer cantidadSeguidos(Long id)
+	{
+		Persona persona = Persona.findPersona(id);
+		List<Relacion> relacion = Relacion.findRelacionsByPersona(persona).getResultList();
+		return relacion.size();
+	}
+	
+	public static Integer cantidadSeguidores(Long id)
+	{
+		List<Relacion> relacion = Relacion.findRelacionsByIdSeguidoEquals(id).getResultList();
+		return relacion.size();
+	}
+	
+	
 	public static boolean relacionSeguido(Long id, Persona persona)
 	{
 		List<Relacion> relacion = Relacion.findRelacionsByIdSeguidoEqualsAndPersona(id, persona).getResultList();
 		return relacion.isEmpty();
 	}
-	
 	
 	public UserRole setAsignarRol(User user)
 	{

@@ -21,17 +21,17 @@
                                 </a>
                             </div>
                             <div class="col-md-2 boton">
-                            	<c:set var="relacion" value="${servicio.relacionSeguido(person.id,persona)}"></c:set>
-                            	<c:if test="${relacion}">
-	                           		 	<a class="btn btn-primary btn-block" href="relacions/seguir/${persona.id}/${person.id}" role="button">
-	                                    	<c:out value="Seguir"/>
-	                                	</a>
-                            	</c:if>
-                            	<c:if test="${! relacion}">
-	                           		 	<a class="btn btn-default btn-block" href="relacions/noSeguir/${persona.id}/${person.id}" role="button">
-                                    	<c:out value="Dejar de Seguir"/>
-                                	</a>
-                            	</c:if>
+                                <c:set value="${servicio.relacionSeguido(person.id,persona)}" var="relacion"/>
+                                <c:if test="${relacion}">
+                                    <a class="btn btn-primary btn-block" href="relacions/seguir/${persona.id}/${person.id}" role="button">
+                                        <c:out value="Seguir"/>
+                                    </a>
+                                </c:if>
+                                <c:if test="${! relacion}">
+                                    <a class="btn btn-default btn-block" href="relacions/noSeguir/${persona.id}/${person.id}" role="button">
+                                        <c:out value="Dejar de Seguir"/>
+                                    </a>
+                                </c:if>
                             </div>
                         </div>
                     </div>
