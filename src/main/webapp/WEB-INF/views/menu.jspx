@@ -25,6 +25,7 @@
             <menu:item id="i_relacion_new" messageCode="global_menu_new" url="/relacions?form" z="FoAHS0gEqP6/U5vfV+M7stHz08U="/>
             <menu:item id="i_relacion_list" messageCode="global_menu_list" url="/relacions?page=1&amp;size=${empty param.size ? 10 : param.size}" z="Wvr9LHa0UK3u8PqOlNItycMSNFA="/>
             <menu:item id="fi_relacion_idseguidoequals" messageCode="global_menu_find" url="/relacions?find=ByIdSeguidoEquals&amp;form" z="I4ZF0k9oySi/vD60Rch1htYq9Oc="/>
+            <menu:item id="fi_relacion_idseguidoequalsandpersona" messageCode="global_menu_find" url="/relacions?find=ByIdSeguidoEqualsAndPersona&amp;form" z="prX6nRBNWCKcPt+E307tPJ70zW8="/>
             <menu:item id="fi_relacion_persona" messageCode="global_menu_find" url="/relacions?find=ByPersona&amp;form" z="/dG0z3MlMRW/+82Daj3uBnNiD40="/>
         </menu:category>
         <menu:category id="c_republicado" z="Xk3dz6aNSEEOy8dHkqQmRhf70oU=">

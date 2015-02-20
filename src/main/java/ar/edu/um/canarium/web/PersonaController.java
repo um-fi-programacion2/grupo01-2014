@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
+import java.util.List;
+
+import javassist.expr.NewArray;
 
 import javax.persistence.Query;
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import ar.edu.um.canarium.domain.Persona;
+import ar.edu.um.canarium.domain.Relacion;
 import ar.edu.um.canarium.domain.User;
 import ar.edu.um.canarium.servicio.Servicio;
 
@@ -35,16 +39,24 @@ public class PersonaController {
 	
 	@RequestMapping(params = "find=ByUsuarioLike", method = RequestMethod.GET)
     public String findPersonaeByUsuarioLike(@RequestParam("usuario") String usuario, Model uiModel) {
-        uiModel.addAttribute("personae", Persona.findPersonaeByUsuarioLike(usuario).getResultList());
-        User person = Servicio.getUserLogged();
+		List<Persona> personae;
+		if(usuario.isEmpty()){
+			personae=Persona.findAllPersonae();
+		}else{ 
+			personae=Persona.findPersonaeByUsuarioLike(usuario).getResultList();
+		}
+		
+		User person = Servicio.getUserLogged();
 		Query consulta = Persona.findPersonaeByPersona(person);
 		Persona persona = (Persona) consulta.getSingleResult();
 
-		uiModel.addAttribute("usuario", person);
-		
 		addDateTimeFormatPatterns(uiModel);
-        uiModel.addAttribute("persona", persona);
 		
+		uiModel.addAttribute("servicio", new Servicio());
+        uiModel.addAttribute("persona", persona);
+		uiModel.addAttribute("usuario", person);
+		uiModel.addAttribute("personae",personae);
+
         return "personae/list";
     }
 	

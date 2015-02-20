@@ -24,6 +24,18 @@ privileged aspect RelacionController_Roo_Controller_Finder {
         return "relacions/list";
     }
     
+    @RequestMapping(params = { "find=ByIdSeguidoEqualsAndPersona", "form" }, method = RequestMethod.GET)
+    public String RelacionController.findRelacionsByIdSeguidoEqualsAndPersonaForm(Model uiModel) {
+        uiModel.addAttribute("personae", personaService.findAllPersonae());
+        return "relacions/findRelacionsByIdSeguidoEqualsAndPersona";
+    }
+    
+    @RequestMapping(params = "find=ByIdSeguidoEqualsAndPersona", method = RequestMethod.GET)
+    public String RelacionController.findRelacionsByIdSeguidoEqualsAndPersona(@RequestParam("idSeguido") Long idSeguido, @RequestParam("persona") Persona persona, Model uiModel) {
+        uiModel.addAttribute("relacions", Relacion.findRelacionsByIdSeguidoEqualsAndPersona(idSeguido, persona).getResultList());
+        return "relacions/list";
+    }
+    
     @RequestMapping(params = { "find=ByPersona", "form" }, method = RequestMethod.GET)
     public String RelacionController.findRelacionsByPersonaForm(Model uiModel) {
         uiModel.addAttribute("personae", personaService.findAllPersonae());

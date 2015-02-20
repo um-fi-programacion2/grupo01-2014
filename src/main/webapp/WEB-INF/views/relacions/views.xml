@@ -19,4 +19,7 @@
 <definition extends="default" name="relacions/findRelacionsByPersona">
         <put-attribute name="body" value="/WEB-INF/views/relacions/findRelacionsByPersona.jspx"/>
     </definition>
+<definition extends="default" name="relacions/findRelacionsByIdSeguidoEqualsAndPersona">
+        <put-attribute name="body" value="/WEB-INF/views/relacions/findRelacionsByIdSeguidoEqualsAndPersona.jspx"/>
+    </definition>
 </tiles-definitions>

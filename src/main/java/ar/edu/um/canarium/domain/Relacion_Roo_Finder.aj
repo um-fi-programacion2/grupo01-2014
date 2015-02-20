@@ -18,6 +18,16 @@ privileged aspect Relacion_Roo_Finder {
         return q;
     }
     
+    public static TypedQuery<Relacion> Relacion.findRelacionsByIdSeguidoEqualsAndPersona(Long idSeguido, Persona persona) {
+        if (idSeguido == null) throw new IllegalArgumentException("The idSeguido argument is required");
+        if (persona == null) throw new IllegalArgumentException("The persona argument is required");
+        EntityManager em = Relacion.entityManager();
+        TypedQuery<Relacion> q = em.createQuery("SELECT o FROM Relacion AS o WHERE o.idSeguido = :idSeguido  AND o.persona = :persona", Relacion.class);
+        q.setParameter("idSeguido", idSeguido);
+        q.setParameter("persona", persona);
+        return q;
+    }
+    
     public static TypedQuery<Relacion> Relacion.findRelacionsByPersona(Persona persona) {
         if (persona == null) throw new IllegalArgumentException("The persona argument is required");
         EntityManager em = Relacion.entityManager();

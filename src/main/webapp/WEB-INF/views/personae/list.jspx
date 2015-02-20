@@ -1,22 +1,49 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/jquery/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/jquery/form/fields" version="2.0">
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/jquery/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/jquery/form/fields" version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
-    
     <div class="col-xs-6 col-sm-3" id="sidebar" role="navigation">
         <jsp:include page="../usuario.jsp"/>
     </div>
     <div class="col-xs-12 col-sm-9">
-	    <page:list id="pl_ar_edu_um_canarium_domain_Persona" items="${personae}" z="aeeywRN2+eSxy5ofBvoxBDTyCiY=">
-	        <table:table data="${personae}" id="l_ar_edu_um_canarium_domain_Persona" path="/personae" z="p2vb3mtkYfXb68Wcz9vPG1VmSzQ=">
-	            <table:column id="c_ar_edu_um_canarium_domain_Persona_descripcion" property="descripcion" z="8lbdQGRfu+kjaEh8czPya/6Kfs8="/>
-	            <table:column id="c_ar_edu_um_canarium_domain_Persona_usuario" property="usuario" z="rUuru4qdof1oPxDrEhFVg9if+CY="/>
-	            <table:column id="c_ar_edu_um_canarium_domain_Persona_contentType" property="contentType" z="c9KHmCECyNwIH3giY+gZi1IGPj4="/>
-	            <table:column id="c_ar_edu_um_canarium_domain_Persona_path" property="path" z="diysEqNuRigTsKYF8uNTY+9kvRs="/>
-	            <table:column id="c_ar_edu_um_canarium_domain_Persona_image" property="image" z="igBWDyd8iP1FFaQCRFnMDHi/F48="/>
-	            <table:column id="c_ar_edu_um_canarium_domain_Persona_sexo"  property="sexo" z="FgDiNOqBSxtHolLthHHPMy97d20="/>
-	        </table:table>
-	    </page:list>
+        <c:if test="${! empty personae}">
+            <c:forEach items="${personae}" var="person">
+                <c:if test="${person.id ne persona.id}">
+                    <div class="bloque lista">
+                        <div class="cuenta">
+                            <div class="col-md-10">
+                                <a class="informacion_cuenta" href="/canarium/personae/verPerfil">
+                                    <div class="contenido_cuenta lista">
+                                        <img class="avatar size48" src="http://localhost:8080/canarium/personae/${persona.id}/image"/>
+                                        <b class="nombre_completo">${person.usuario}</b> 
+											${person.descripcion}
+										</div>
+                                </a>
+                            </div>
+                            <div class="col-md-2 boton">
+                            	<c:set var="relacion" value="${servicio.relacionSeguido(person.id,persona)}"></c:set>
+                            	<c:if test="${relacion}">
+	                           		 	<a class="btn btn-primary btn-block" href="relacions/seguir/${persona.id}/${person.id}" role="button">
+	                                    	<c:out value="Seguir"/>
+	                                	</a>
+                            	</c:if>
+                            	<c:if test="${! relacion}">
+	                           		 	<a class="btn btn-default btn-block" href="relacions/noSeguir/${persona.id}/${person.id}" role="button">
+                                    	<c:out value="Dejar de Seguir"/>
+                                	</a>
+                            	</c:if>
+                            </div>
+                        </div>
+                    </div>
+                </c:if>
+            </c:forEach>
+        </c:if>
+        <c:if test="${empty personae or person.id eq persona.id}">
+            <div class="bloque lista">
+                <div class="cuenta">
+                    <b>No se encontraron usuarios.</b>
+                </div>
+            </div>
+        </c:if>
     </div>
-    
 </div>

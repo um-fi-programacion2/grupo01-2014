@@ -1,19 +1,29 @@
 package ar.edu.um.canarium.servicio;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import ar.edu.um.canarium.domain.Persona;
+import ar.edu.um.canarium.domain.Relacion;
 import ar.edu.um.canarium.domain.Role;
 import ar.edu.um.canarium.domain.Sexo;
 import ar.edu.um.canarium.domain.User;
 import ar.edu.um.canarium.domain.UserRole;
 
 public class Servicio {
+	
+	public static boolean relacionSeguido(Long id, Persona persona)
+	{
+		List<Relacion> relacion = Relacion.findRelacionsByIdSeguidoEqualsAndPersona(id, persona).getResultList();
+		return relacion.isEmpty();
+	}
+	
 	
 	public UserRole setAsignarRol(User user)
 	{

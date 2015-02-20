@@ -2,10 +2,9 @@
 <div xmlns:field="urn:jsptagdir:/WEB-INF/tags/jquery/form/fields" xmlns:form="urn:jsptagdir:/WEB-INF/tags/jquery/form" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
-    
     <div class="buscar_usuario">
-	    <form:find label="Usuario" finderName="ByUsuarioLike" id="ff_ar_edu_um_canarium_domain_Persona" path="/personae" z="lJRWHKcR5ladB5JoK/8MdZwCKwc=">
-	        <field:inputLabel disableFormBinding="true" field="usuario" id="f_ar_edu_um_canarium_domain_Persona_usuario"  max="15" required="true" z="dS4kn/iGsJKSEG+J/AUtV9MR1PY="/>
-	    </form:find>
+        <form:find finderName="ByUsuarioLike" id="ff_ar_edu_um_canarium_domain_Persona" label="Usuario" path="/personae" z="user-managed">
+            <field:inputLabel disableFormBinding="true" field="usuario" id="f_ar_edu_um_canarium_domain_Persona_usuario" max="15" required="true" z="user-managed"/>
+        </form:find>
     </div>
 </div>

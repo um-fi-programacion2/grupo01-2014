@@ -330,6 +330,22 @@ body.login
     left: 0;
 }
 
+.avatar.size48
+{
+    width: 48px !important;
+    height: 48px !important;
+}
+
+.contenido_cuenta.lista
+{
+	margin-left: 60px !important
+}
+
+.bloque.lista
+{
+	min-height: 70px !important;
+}
+
 .nombre_completo
 {
     font-weight: bold;
@@ -571,4 +587,14 @@ img
 .buscar_usuario .col-lg-9
 {
 	width: 100% !important;
+}
+
+.boton a.btn-primary
+{
+	color: none !important;
+	background-color: none !important;
+}
+.boton a:HOVER.btn-primary
+{
+	color: white !important;
 }
