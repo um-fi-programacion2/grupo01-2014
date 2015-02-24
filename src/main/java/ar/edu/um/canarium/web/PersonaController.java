@@ -11,6 +11,7 @@ import javassist.expr.NewArray;
 import javax.persistence.Query;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import ar.edu.um.canarium.domain.Persona;
@@ -37,8 +38,9 @@ import org.gvnix.addon.web.mvc.jquery.GvNIXWebJQuery;
 @GvNIXWebJQuery
 public class PersonaController {
 	
+	
 	@RequestMapping(params = "find=ByUsuarioLike", method = RequestMethod.GET)
-    public String findPersonaeByUsuarioLike(@RequestParam("usuario") String usuario, Model uiModel) {
+    public String findPersonaeByUsuarioLike(@RequestParam("usuario") String usuario, Model uiModel, HttpSession sessionObj) {
 		List<Persona> personae;
 		if(usuario.isEmpty()){
 			personae=Persona.findAllPersonae();
@@ -46,18 +48,20 @@ public class PersonaController {
 			personae=Persona.findPersonaeByUsuarioLike(usuario).getResultList();
 		}
 		
-		User person = Servicio.getUserLogged();
-		Query consulta = Persona.findPersonaeByPersona(person);
-		Persona persona = (Persona) consulta.getSingleResult();
+		Servicio.actualizarSession(sessionObj);
 		
-		persona.setSiguiendo(Servicio.cantidadSeguidos(persona.getId()));
-		persona.setSeguidores(Servicio.cantidadSeguidores(persona.getId()));
+		/*User person = Servicio.getUserLogged();
+		Query consulta = Persona.findPersonaeByPersona(person);
+		Persona persona = (Persona) consulta.getSingleResult();*/
+		
+		//persona.setSiguiendo(Servicio.cantidadSeguidos(persona.getId()));
+		//persona.setSeguidores(Servicio.cantidadSeguidores(persona.getId()));
 		
 		addDateTimeFormatPatterns(uiModel);
 		
 		uiModel.addAttribute("servicio", new Servicio());
-        uiModel.addAttribute("persona", persona);
-		uiModel.addAttribute("usuario", person);
+        //uiModel.addAttribute("persona", persona);
+		//uiModel.addAttribute("usuario", person);
 		uiModel.addAttribute("personae",personae);
 
         return "personae/list";
@@ -142,23 +146,24 @@ public class PersonaController {
     }
 	
 	@RequestMapping(value = "/updatePerfil", produces = "text/html")
-	public String updatePerfil(Model uiModel) throws IOException {
-		User person = Servicio.getUserLogged();
+	public String updatePerfil(Model uiModel, HttpSession sessionObj) throws IOException {
+		/*User person = Servicio.getUserLogged();
 		Query consulta = Persona.findPersonaeByPersona(person);
 		Persona persona = (Persona) consulta.getSingleResult();
 		
 		persona.setSiguiendo(Servicio.cantidadSeguidos(persona.getId()));
 		persona.setSeguidores(Servicio.cantidadSeguidores(persona.getId()));
 		
-		uiModel.addAttribute("usuario", person);
+		uiModel.addAttribute("usuario", person);*/
+		Persona persona = Servicio.actualizarSession(sessionObj);
 		
 		populateEditForm(uiModel, persona);
         return "personae/update";
 	}
 	
 	@RequestMapping(value = "/verPerfil", produces = "text/html")
-	public String verPerfil(Model uiModel) throws IOException {
-		User person = Servicio.getUserLogged();
+	public String verPerfil(Model uiModel, HttpSession sessionObj) throws IOException {
+		/*User person = Servicio.getUserLogged();
 		Query consulta = Persona.findPersonaeByPersona(person);
 		Persona persona = (Persona) consulta.getSingleResult();
 
@@ -166,10 +171,12 @@ public class PersonaController {
 		persona.setSeguidores(Servicio.cantidadSeguidores(persona.getId()));
 
 		
-		uiModel.addAttribute("usuario", person);
+		uiModel.addAttribute("usuario", person);*/
+		Persona persona = Servicio.actualizarSession(sessionObj);
+
 		
 		addDateTimeFormatPatterns(uiModel);
-        uiModel.addAttribute("persona", persona);
+        //uiModel.addAttribute("persona", persona);
         uiModel.addAttribute("itemId", persona.getId());
         return "personae/show";
 	}

@@ -12,7 +12,7 @@
                     <div class="bloque lista">
                         <div class="cuenta">
                             <div class="col-md-10">
-                                <a class="informacion_cuenta" href="/canarium/personae/verPerfil">
+                                <a class="informacion_cuenta" href="/canarium/personae/${person.id}">
                                     <div class="contenido_cuenta lista">
                                         <img class="avatar size48" src="http://localhost:8080/canarium/personae/${persona.id}/image"/>
                                         <b class="nombre_completo">${person.usuario}</b> 

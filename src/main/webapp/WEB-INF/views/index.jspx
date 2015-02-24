@@ -14,6 +14,7 @@
         <div class="jumbotron">
             <h1><spring:message arguments="${app_name}" code="welcome_h3"/></h1>
             <p><spring:message code="welcome_text"/></p>
+            ${persona.id}
         </div>
 
 </div>

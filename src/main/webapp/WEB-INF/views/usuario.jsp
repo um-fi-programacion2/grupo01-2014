@@ -15,10 +15,10 @@
 				data-nav="profile"><strong>18</strong>Tweets</a>
 			</li>
 			<li><a class="js-nav" href="#" data-element-term="tweet-stats"
-				data-nav="profile"><strong>${persona.siguiendo}</strong>Siguiendo</a>
+				data-nav="profile"><strong>${seguidos}</strong>Siguiendo</a>
 			</li>
 			<li><a class="js-nav" href="#" data-element-term="tweet-stats"
-				data-nav="profile"><strong>${persona.seguidores}</strong>Seguidores</a>
+				data-nav="profile"><strong>${seguidores}</strong>Seguidores</a>
 			</li>
 		</ul>
 	</div>

@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,6 +19,23 @@ import ar.edu.um.canarium.domain.UserRole;
 
 public class Servicio {
 	
+	public static Persona actualizarSession(HttpSession sessionObj)
+	{
+		//if(sessionObj.isNew()){
+			User usuario = getUserLogged();
+			Query consulta = Persona.findPersonaeByPersona(usuario);
+			Persona persona = (Persona) consulta.getSingleResult();
+			sessionObj.setAttribute("persona",persona);
+			sessionObj.setAttribute("usuario",usuario);
+			sessionObj.setAttribute("seguidores", cantidadSeguidores(persona.getId()));
+			sessionObj.setAttribute("seguidos", cantidadSeguidos(persona.getId()));
+			return persona;
+		/*}else{
+			//Persona persona = new Persona();
+			return (Persona) sessionObj.getAttribute("persona");
+		}*/
+		
+	}
 
 	public static Integer cantidadSeguidos(Long id)
 	{
