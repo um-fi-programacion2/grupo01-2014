@@ -5,16 +5,15 @@
     <spring:message code="application_name" htmlEscape="false" var="app_name"/>
     <spring:message arguments="${app_name}" code="welcome_titlepane" htmlEscape="false" var="title"/>
 
-    	<!-- toggle nav sidebar -->
-    	<!--
-    	<p class="pull-right visible-xs">
-    		<button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
-        </p>
-         -->
-        <div class="jumbotron">
-            <h1><spring:message arguments="${app_name}" code="welcome_h3"/></h1>
-            <p><spring:message code="welcome_text"/></p>
-            ${persona.id}
+    	<div class="col-xs-6 col-sm-3" id="sidebar" role="navigation">
+        	<jsp:include page="usuario.jsp"/>
+    	</div>
+    	<div class="col-xs-12 col-sm-9">
+	        <div class="jumbotron">
+	            <h1><spring:message arguments="${app_name}" code="welcome_h3"/></h1>
+	            <p><spring:message code="welcome_text"/></p>
+	            ${persona.id}
+	        </div>
         </div>
 
 </div>

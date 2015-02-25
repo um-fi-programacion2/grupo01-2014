@@ -14,11 +14,11 @@
 			<li><a class="js-nav" href="#" data-element-term="tweet-stats"
 				data-nav="profile"><strong>18</strong>Tweets</a>
 			</li>
-			<li><a class="js-nav" href="#" data-element-term="tweet-stats"
-				data-nav="profile"><strong>${seguidos}</strong>Siguiendo</a>
+			<li><a class="js-nav" href="http://localhost:8080/canarium/relacions?find=ByPersona&persona=${persona.id}" data-element-term="tweet-stats"
+				data-nav="profile"><strong>${persona.siguiendo}</strong>Siguiendo</a>
 			</li>
-			<li><a class="js-nav" href="#" data-element-term="tweet-stats"
-				data-nav="profile"><strong>${seguidores}</strong>Seguidores</a>
+			<li><a class="js-nav" href="http://localhost:8080/canarium/relacions?find=ByIdSeguidoEquals&idSeguido=${persona.id}" data-element-term="tweet-stats"
+				data-nav="profile"><strong>${persona.seguidores}</strong>Seguidores</a>
 			</li>
 		</ul>
 	</div>

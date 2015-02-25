@@ -6,6 +6,7 @@ package ar.edu.um.canarium.web;
 import ar.edu.um.canarium.domain.Persona;
 import ar.edu.um.canarium.domain.Relacion;
 import ar.edu.um.canarium.web.RelacionController;
+
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -40,12 +41,6 @@ privileged aspect RelacionController_Roo_Controller_Finder {
     public String RelacionController.findRelacionsByPersonaForm(Model uiModel) {
         uiModel.addAttribute("personae", personaService.findAllPersonae());
         return "relacions/findRelacionsByPersona";
-    }
-    
-    @RequestMapping(params = "find=ByPersona", method = RequestMethod.GET)
-    public String RelacionController.findRelacionsByPersona(@RequestParam("persona") Persona persona, Model uiModel) {
-        uiModel.addAttribute("relacions", Relacion.findRelacionsByPersona(persona).getResultList());
-        return "relacions/list";
     }
     
 }

@@ -25,10 +25,12 @@ public class Servicio {
 			User usuario = getUserLogged();
 			Query consulta = Persona.findPersonaeByPersona(usuario);
 			Persona persona = (Persona) consulta.getSingleResult();
+			
+			persona.setSiguiendo(cantidadSeguidos(persona.getId()));
+			persona.setSeguidores(cantidadSeguidores(persona.getId()));
+			
 			sessionObj.setAttribute("persona",persona);
 			sessionObj.setAttribute("usuario",usuario);
-			sessionObj.setAttribute("seguidores", cantidadSeguidores(persona.getId()));
-			sessionObj.setAttribute("seguidos", cantidadSeguidos(persona.getId()));
 			return persona;
 		/*}else{
 			//Persona persona = new Persona();

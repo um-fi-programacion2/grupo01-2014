@@ -1,11 +1,48 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<div xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/jquery/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/jquery/form/fields" version="2.0">
+<div xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:jsp="http://java.sun.com/JSP/Page" xmlns:page="urn:jsptagdir:/WEB-INF/tags/jquery/form" xmlns:table="urn:jsptagdir:/WEB-INF/tags/jquery/form/fields" version="2.0">
     <jsp:directive.page contentType="text/html;charset=UTF-8"/>
     <jsp:output omit-xml-declaration="yes"/>
-    <page:list id="pl_ar_edu_um_canarium_domain_Relacion" items="${relacions}" z="88SqkozRe9fxhHbit36Kqil/wgA=">
-        <table:table data="${relacions}" id="l_ar_edu_um_canarium_domain_Relacion" path="/relacions" z="R+2ec39yjKNypuKPWZFYqgt81N4=">
-            <table:column id="c_ar_edu_um_canarium_domain_Relacion_idSeguido" property="idSeguido" z="pF4YzRjwDFhr6rO2OPg1imll20g="/>
-            <table:column id="c_ar_edu_um_canarium_domain_Relacion_persona" property="persona" z="FwSX1QZYKa51mLaOZt8oSG6Qj0g="/>
-        </table:table>
-    </page:list>
+	
+	<div class="col-xs-6 col-sm-3" id="sidebar" role="navigation">
+        <jsp:include page="../usuario.jsp"/>
+    </div>
+    <div class="col-xs-12 col-sm-9">
+  		<c:if test="${! empty personae}">
+           <c:forEach items="${personae}" var="person">
+                   <div class="bloque lista">
+                       <div class="cuenta">
+                           <div class="col-md-10">
+                               <a class="informacion_cuenta" href="/canarium/personae/${person.id}">
+                                   <div class="contenido_cuenta lista">
+                                       <img class="avatar size48" src="http://localhost:8080/canarium/personae/${person.id}/image"/>
+                                       <b class="nombre_completo">${person.usuario}</b> 
+										${person.descripcion}
+									</div>
+                               </a>
+                           </div>
+                           <div class="col-md-2 boton">
+                                <c:set value="${servicio.relacionSeguido(person.id,persona)}" var="relacion"/>
+                                <c:if test="${relacion}">
+                                    <a class="btn btn-primary btn-block" href="relacions/seguir/${persona.id}/${person.id}" role="button">
+                                        <c:out value="Seguir"/>
+                                    </a>
+                                </c:if>
+                                <c:if test="${! relacion}">
+                                    <a class="btn btn-default btn-block" href="relacions/noSeguir/${persona.id}/${person.id}" role="button">
+                                        <c:out value="Dejar de Seguir"/>
+                                    </a>
+                                </c:if>
+                            </div>
+                       </div>
+                   </div>
+           </c:forEach>
+       </c:if>
+       <c:if test="${empty personae}">
+           <div class="bloque lista">
+               <div class="cuenta">
+                   <b>No se encontraron usuarios.</b>
+               </div>
+           </div>
+       </c:if>
+      </div>
 </div>
