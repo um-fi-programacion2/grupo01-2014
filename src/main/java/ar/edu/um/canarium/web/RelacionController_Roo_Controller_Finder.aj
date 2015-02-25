@@ -19,12 +19,6 @@ privileged aspect RelacionController_Roo_Controller_Finder {
         return "relacions/findRelacionsByIdSeguidoEquals";
     }
     
-    @RequestMapping(params = "find=ByIdSeguidoEquals", method = RequestMethod.GET)
-    public String RelacionController.findRelacionsByIdSeguidoEquals(@RequestParam("idSeguido") Long idSeguido, Model uiModel) {
-        uiModel.addAttribute("relacions", Relacion.findRelacionsByIdSeguidoEquals(idSeguido).getResultList());
-        return "relacions/list";
-    }
-    
     @RequestMapping(params = { "find=ByIdSeguidoEqualsAndPersona", "form" }, method = RequestMethod.GET)
     public String RelacionController.findRelacionsByIdSeguidoEqualsAndPersonaForm(Model uiModel) {
         uiModel.addAttribute("personae", personaService.findAllPersonae());

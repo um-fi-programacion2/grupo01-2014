@@ -66,6 +66,22 @@ public class RelacionController {
 		
         return "relacions/list";
     }
+	
+	@RequestMapping(params = "find=ByIdSeguidoEquals", method = RequestMethod.GET)
+    public String findRelacionsByIdSeguidoEquals(@RequestParam("idSeguido") Long idSeguido, Model uiModel) {
+		List<Persona> persons = new ArrayList<Persona>();
+		List<Relacion> relacions = Relacion.findRelacionsByIdSeguidoEquals(idSeguido).getResultList();
+		
+		for (Relacion relacion : relacions) {
+			Persona personaRelacion = Persona.findPersona(relacion.getPersona().getId());
+			persons.add(personaRelacion);
+		}
+		uiModel.addAttribute("personae", persons);
+		
+        uiModel.addAttribute("relacions", relacions);
+        uiModel.addAttribute("servicio", new Servicio());
+        return "relacions/list";
+    }
        
 	
 }
