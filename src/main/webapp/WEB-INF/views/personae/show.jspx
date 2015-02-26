@@ -18,7 +18,7 @@
                     <field:display field="path" id="s_ar_edu_um_canarium_domain_Persona_path" object="${persona}" render="false" z="user-managed"/>
                     <field:display field="image" id="s_ar_edu_um_canarium_domain_Persona_image" object="${persona}" render="false" z="user-managed"/>
                     <field:display field="siguiendo" id="s_ar_edu_um_canarium_domain_Persona_siguiendo" object="${persona}" render="false" z="user-managed"/>
-       	            <field:display field="seguidores" id="s_ar_edu_um_canarium_domain_Persona_seguidores" object="${persona}" render="false" z="8bJNP897KGV/RFTN26G+7By6ZzQ="/>
+                    <field:display field="seguidores" id="s_ar_edu_um_canarium_domain_Persona_seguidores" object="${persona}" render="false" z="user-managed"/>
                 </div>
                 <div class="col-md-4">
                     <img src="${persona.id}/image" width="100%"/>

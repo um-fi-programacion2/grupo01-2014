@@ -8,10 +8,12 @@ import javax.persistence.TemporalType;
 import org.springframework.format.annotation.DateTimeFormat;
 import javax.validation.constraints.NotNull;
 import javax.persistence.ManyToOne;
+import org.springframework.roo.addon.json.RooJson;
 
 @RooJavaBean
 @RooToString
 @RooJpaActiveRecord(finders = { "findRepublicadoesByPersona", "findRepublicadoesByMensaje", "findRepublicadoesByFechaBetween" })
+@RooJson
 public class Republicado {
 
     /**

@@ -17,18 +17,20 @@ import javax.persistence.CascadeType;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Transient;
+import org.springframework.roo.addon.json.RooJson;
 
 @RooJavaBean
 @RooToString
 @RooJpaActiveRecord(finders = { "findPersonaeByUsuarioEquals", "findPersonaeByPersona", "findPersonaeByUsuarioLike" })
+@RooJson
 public class Persona {
 
-	@Transient
-	private Integer siguiendo;
-	
-	@Transient
-	private Integer seguidores;
-	
+    @Transient
+    private Integer siguiendo;
+
+    @Transient
+    private Integer seguidores;
+
     private String contentType;
 
     private String path;

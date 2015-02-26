@@ -11,11 +11,13 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.gvnix.addon.web.mvc.jquery.GvNIXWebJQuery;
+import org.springframework.roo.addon.web.mvc.controller.json.RooWebJson;
 
 @RooWebScaffold(path = "users", formBackingObject = User.class)
 @RequestMapping("/users")
 @Controller
 @GvNIXWebJQuery
+@RooWebJson(jsonObject = User.class)
 public class UserController {
 
     @Autowired

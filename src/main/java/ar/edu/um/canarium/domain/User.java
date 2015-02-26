@@ -10,10 +10,12 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.OneToOne;
+import org.springframework.roo.addon.json.RooJson;
 
 @RooJavaBean
 @RooToString
 @RooJpaActiveRecord(finders = { "findUsersByEmailAddress", "findUsersByActivationKeyAndEmailAddress" })
+@RooJson
 public class User {
 
     /**

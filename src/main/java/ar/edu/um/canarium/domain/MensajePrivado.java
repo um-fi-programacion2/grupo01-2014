@@ -10,10 +10,12 @@ import javax.persistence.TemporalType;
 import org.springframework.format.annotation.DateTimeFormat;
 import javax.validation.constraints.DecimalMin;
 import javax.persistence.ManyToOne;
+import org.springframework.roo.addon.json.RooJson;
 
 @RooJavaBean
 @RooToString
 @RooJpaActiveRecord(finders = { "findMensajePrivadoesByIdPersonaDestinoEquals", "findMensajePrivadoesByPersona" })
+@RooJson
 public class MensajePrivado {
 
     /**

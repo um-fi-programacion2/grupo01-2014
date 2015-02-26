@@ -16,7 +16,7 @@
         <field:input field="path" id="c_ar_edu_um_canarium_domain_Persona_path" render="false" z="user-managed"/>
         <field:input field="image" id="c_ar_edu_um_canarium_domain_Persona_image" type="file" z="user-managed"/>
         <field:input field="siguiendo" id="c_ar_edu_um_canarium_domain_Persona_siguiendo" render="false" validationMessageCode="field_invalid_integer" z="user-managed"/>
-        <field:input field="seguidores" id="c_ar_edu_um_canarium_domain_Persona_seguidores" render="false" validationMessageCode="field_invalid_integer" z="5UfCVA3Jexu5tmfO7rk0IZR0ISA="/>
+        <field:input field="seguidores" id="c_ar_edu_um_canarium_domain_Persona_seguidores" render="false" validationMessageCode="field_invalid_integer" z="user-managed"/>
     </form:create>
     <form:dependency dependencies="${dependencies}" id="d_ar_edu_um_canarium_domain_Persona" render="${not empty dependencies}" z="ws9ly6SvoB99gURF8/w1IOFwTAE="/>
 </div>
