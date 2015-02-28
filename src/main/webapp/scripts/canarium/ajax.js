@@ -68,6 +68,21 @@ $(document).ready(function(){
 			}
 		});
 	});*/
+	
+	$("body").on("click","#botonBorrar", function(event){
+		var id = $(this).data("id");
+		var url = "mensajes/"+id;
+		$.ajax({
+			type:'DELETE',
+			headers: {Accept: 'application/json'},
+			url: url,
+			data: {},
+			success: function() {},
+			complete: function() {
+				cargarMensajes();
+			}
+		});
+	});
 
 	$("body").on("click","#crear_mensaje", function(event){
 		var descripcion = $("#_descripcion_id").val();
@@ -82,10 +97,63 @@ $(document).ready(function(){
 			success: function() {},
 			complete: function() {
 				$("#_descripcion_id").val("");
-				alert(data);
+				cargarMensajes()
 			}
 		});
 	});
+	
+	function cargarMensajes(){
+		var id = $(this).data("objid");
+		var url = "mensajes/";
+		$.ajax({
+			type:'GET',
+			headers: {Accept: 'application/json'},
+			url: url,
+			data: {},
+			success: function(data) {
+				var datoHTML = "";
+				$.each(data, function(i, val){
+					datoHTML += 
+						"<div class='cuenta mensajes'>"+
+							"<div class='informacion_cuenta'>"+
+								"<div class='contenido_cuenta lista'>"+
+									"<a href='/canarium/personae/"+val.persona.id+"'>"+
+										"<img class='avatar size48' src='http://localhost:8080/canarium/personae/"+val.persona.id+"/image' />"+ 
+										"<b	class='nombre_completo'>"+val.persona.persona.firstName+" "+val.persona.persona.lastName+"</b>"+
+									"</a>"+
+										val.descripcion+
+									"<div class='lista-acciones'>"+
+										"<div class='accion-republicar'>"+
+											"<a href='#' title='Republicar'>"+
+												"<span class='glyphicon glyphicon-retweet' aria-hidden='true'></span>"+
+											"</a>"+
+										"</div>"+
+										"<div class='accion-editar'>"+
+											"<a href='#' title='Editar'>"+
+												"<span class='glyphicon glyphicon-edit' aria-hidden='true'></span>"+
+											"</a>"+
+										"</div>"+
+										"<div class='accion-borrar'>"+
+											"<a href='#' title='Borrar' id='botonBorrar' data-id='"+val.id+"'>"+
+												"<span class='glyphicon glyphicon-trash' aria-hidden='true'></span>"+
+											"</a>"+
+										"</div>"+
+									"</div>"+
+								"</div>"+
+							"</div>"+
+						"</div>";
+				});
+				$("#muro_mensajes").html(datoHTML);
+			}
+		});
+		
+		//$("#muro_mensajes").html("<div>Hola</div>");
+	};
+	
+	$(document).ready(function(){
+		cargarMensajes();
+	});
+
 	
 	/*$("body").on("click","#botonAjaxEditar", function(event){
 		var id = $("#formId").val();

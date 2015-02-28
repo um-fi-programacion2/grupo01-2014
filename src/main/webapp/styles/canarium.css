@@ -610,3 +610,33 @@ img
 {
 	color: white !important;
 }
+
+/*-------------------------MURO MENSAJES-----------------------------------------*/
+.mensajes
+{
+	border-bottom: 1px solid #e1e8ed;
+	margin-top: 5px;
+}
+
+.lista-acciones
+{
+	min-height: 10px;
+}
+
+.accion-republicar
+{
+	float: left;
+	margin-right: 31px;
+}
+
+.accion-borrar
+{
+	float: left;
+	margin-right: 31px;
+}
+
+.accion-editar
+{
+	float: left;
+	margin-right: 31px;
+}

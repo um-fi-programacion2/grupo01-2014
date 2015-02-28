@@ -9,10 +9,8 @@
         	<jsp:include page="usuario.jsp"/>
     	</div>
     	<div class="col-xs-12 col-sm-9">
-	        <div class="jumbotron">
-	            <h1><spring:message arguments="${app_name}" code="welcome_h3"/></h1>
-	            <p><spring:message code="welcome_text"/></p>
-	            ${persona.id}
+	        <div class="bloque" id="muro_mensajes">
+	            
 	        </div>
         </div>
 

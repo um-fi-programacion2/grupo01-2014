@@ -36,7 +36,6 @@ import org.springframework.roo.addon.web.mvc.controller.json.RooWebJson;
 @RooWebJson(jsonObject = Mensaje.class)
 public class MensajeController {
 
-	 //@Transactional(noRollbackFor = Exception.class)
 	 @RequestMapping(method = RequestMethod.POST, headers = "Accept=application/json")
 	 public ResponseEntity<String> create(@RequestBody String json)
 	 {
