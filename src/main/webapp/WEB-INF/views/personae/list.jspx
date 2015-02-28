@@ -14,7 +14,7 @@
                             <div class="col-md-10">
                                 <a class="informacion_cuenta" href="/canarium/personae/${person.id}">
                                     <div class="contenido_cuenta lista">
-                                        <img class="avatar size48" src="http://localhost:8080/canarium/personae/${persona.id}/image"/>
+                                        <img class="avatar size48" src="http://localhost:8080/canarium/personae/${person.id}/image"/>
                                         <b class="nombre_completo">${person.usuario}</b> 
 											${person.descripcion}
 										</div>
