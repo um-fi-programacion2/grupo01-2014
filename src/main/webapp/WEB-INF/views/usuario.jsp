@@ -1,3 +1,4 @@
+<input type="hidden" value="${persona.id}" id="logueada_id" />
 <div class="bloque">
 	<div class="cuenta">
 		<a href="/canarium/personae/verPerfil" class="informacion_cuenta">

@@ -103,7 +103,7 @@ $(document).ready(function(){
 	});
 	
 	function cargarMensajes(){
-		var id = $(this).data("objid");
+		var logueado = $("#logueada_id").val();
 		var url = "mensajes/";
 		$.ajax({
 			type:'GET',
@@ -122,12 +122,16 @@ $(document).ready(function(){
 										"<b	class='nombre_completo'>"+val.persona.persona.firstName+" "+val.persona.persona.lastName+"</b>"+
 									"</a>"+
 										val.descripcion+
-									"<div class='lista-acciones'>"+
+									"<div class='lista-acciones'>";
+										if(logueado != val.persona.id){
+										datoHTML += 
 										"<div class='accion-republicar'>"+
 											"<a href='#' title='Republicar'>"+
 												"<span class='glyphicon glyphicon-retweet' aria-hidden='true'></span>"+
 											"</a>"+
-										"</div>"+
+										"</div>";
+										}else{
+										datoHTML +=
 										"<div class='accion-editar'>"+
 											"<a href='#' title='Editar'>"+
 												"<span class='glyphicon glyphicon-edit' aria-hidden='true'></span>"+
@@ -137,7 +141,9 @@ $(document).ready(function(){
 											"<a href='#' title='Borrar' id='botonBorrar' data-id='"+val.id+"'>"+
 												"<span class='glyphicon glyphicon-trash' aria-hidden='true'></span>"+
 											"</a>"+
-										"</div>"+
+										"</div>";
+										}
+									datoHTML +=
 									"</div>"+
 								"</div>"+
 							"</div>"+
