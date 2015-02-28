@@ -1,5 +1,7 @@
 package ar.edu.um.canarium.web;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Query;
 import javax.servlet.http.HttpSession;
@@ -19,6 +21,7 @@ import ar.edu.um.canarium.servicio.Servicio;
 @GvNIXWebJQuery
 public class SiteController {
 	
+	
 	@RequestMapping("/")
 	public String index(Model uiModel, HttpSession sessionObj) throws IOException {
 		
@@ -37,6 +40,5 @@ public class SiteController {
         //uiModel.addAttribute("persona", persona);
         //uiModel.addAttribute("itemId", persona.getId());
         return "index";
-	}
-	
+	}	
 }

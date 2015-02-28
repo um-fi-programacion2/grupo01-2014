@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import ar.edu.um.canarium.domain.Mensaje;
 import ar.edu.um.canarium.domain.Persona;
 import ar.edu.um.canarium.domain.Relacion;
 import ar.edu.um.canarium.domain.Role;
@@ -31,6 +32,7 @@ public class Servicio {
 			
 			sessionObj.setAttribute("persona",persona);
 			sessionObj.setAttribute("usuario",usuario);
+			
 			return persona;
 		/*}else{
 			//Persona persona = new Persona();
@@ -113,6 +115,13 @@ public class Servicio {
 		Query query = User.findUsersByEmailAddress(userDetails.getUsername());
 		User person = (User) query.getSingleResult();
 		return person;
+	}
+	
+	public static Persona getPersonaLogged(){
+		User usuario = getUserLogged();
+		Query consulta = Persona.findPersonaeByPersona(usuario);
+		Persona persona = (Persona) consulta.getSingleResult();
+		return persona;
 	}
 	
 }

@@ -22,7 +22,9 @@
 			</li>
 		</ul>
 	</div>
-	<div class="caja_tweet">falta poner un formulario</div>
+	<div class="caja_tweet">
+		<jsp:include page="/WEB-INF/views/mensajes/mensaje.jsp" />
+	</div>
 </div>
 <div class="bloque">
 	<jsp:include page="/WEB-INF/views/personae/findPersonaeByUsuarioLike.jspx" />

@@ -42,14 +42,14 @@ privileged aspect MensajeController_Roo_Controller_Json {
         return new ResponseEntity<String>(Mensaje.toJsonArray(result), headers, HttpStatus.OK);
     }
     
-    @RequestMapping(method = RequestMethod.POST, headers = "Accept=application/json")
+    /*@RequestMapping(method = RequestMethod.POST, headers = "Accept=application/json")
     public ResponseEntity<String> MensajeController.createFromJson(@RequestBody String json) {
         Mensaje mensaje = Mensaje.fromJsonToMensaje(json);
         mensajeService.saveMensaje(mensaje);
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json");
         return new ResponseEntity<String>(headers, HttpStatus.CREATED);
-    }
+    }*/
     
     @RequestMapping(value = "/jsonArray", method = RequestMethod.POST, headers = "Accept=application/json")
     public ResponseEntity<String> MensajeController.createFromJsonArray(@RequestBody String json) {

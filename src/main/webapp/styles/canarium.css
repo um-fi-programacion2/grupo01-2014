@@ -411,7 +411,6 @@ ul
 
 .caja_tweet
 {
-    padding: 10px 12px;
     background-color: #f5f5f5;
     border-radius: 0 0 5px 5px;
 }
@@ -430,6 +429,19 @@ ul
 {
     font-weight: bold;
     padding-left: 36px;
+}
+
+.mensaje
+{
+	padding-left: 0px !important;
+	padding-right: 0px !important;
+	padding-bottom: 15px !important;
+}
+
+.panel-body-mensaje
+{
+	padding-left:15px;
+	padding-right:15px;
 }
 
 /*Tweet*/

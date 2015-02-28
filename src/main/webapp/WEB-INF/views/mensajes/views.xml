@@ -28,4 +28,7 @@
 <definition extends="default" name="mensajes/findMensajesByPersona">
         <put-attribute name="body" value="/WEB-INF/views/mensajes/findMensajesByPersona.jspx"/>
     </definition>
+    <definition extends="default" name="mensajes/mensaje">
+        <put-attribute name="body" value="/WEB-INF/views/mensajes/mensaje.jsp"/>
+    </definition>
 </tiles-definitions>
