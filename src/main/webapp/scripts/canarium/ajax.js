@@ -69,10 +69,9 @@ $(document).ready(function(){
 		});
 	});*/
 
-	$("body").on("click","#botonsito", function(event){
+	$("body").on("click","#crear_mensaje", function(event){
 		var descripcion = $("#_descripcion_id").val();
 		var url = "mensajes/";	
-		//var data = JSON.stringify({"descripcion":descripcion,"id":null,"persona":{"contentType":"image/png","descripcion":"12","fecha":1423796400000,"id":5,"image":null,"path":"/home/federico/software/jboos-6-3/bin/Sinnombre.png","persona":{"activationDate":1423871942000,"activationKey":"activationKey:1253955607","emailAddress":"fede.becerra@gmail.com","enabled":true,"firstName":"federico","id":3,"lastName":"baigorria","locked":false,"password":"6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b","persona":null,"version":1},"seguidores":null,"sexo":"masculino","siguiendo":null,"usuario":"baigorriafeder","version":8},"version":0});
 		var data = JSON.stringify({"descripcion":descripcion});
 		$.ajax({
 			type:'POST',
