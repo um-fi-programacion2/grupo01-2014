@@ -70,7 +70,7 @@ privileged aspect MensajeController_Roo_Controller {
         uiModel.addAttribute("itemId", id);
         return "mensajes/show";
     }
-    
+
     @RequestMapping(produces = "text/html")
     public String MensajeController.list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
         if (page != null || size != null) {

@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 privileged aspect MensajeController_Roo_Controller_Json {
     
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, headers = "Accept=application/json")
-    @ResponseBody
     public ResponseEntity<String> MensajeController.showJson(@PathVariable("id") Long id) {
         Mensaje mensaje = mensajeService.findMensaje(id);
         HttpHeaders headers = new HttpHeaders();
@@ -32,15 +31,14 @@ privileged aspect MensajeController_Roo_Controller_Json {
         }
         return new ResponseEntity<String>(mensaje.toJson(), headers, HttpStatus.OK);
     }
-    
+    /*
     @RequestMapping(headers = "Accept=application/json")
-    @ResponseBody
     public ResponseEntity<String> MensajeController.listJson() {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json; charset=utf-8");
         List<Mensaje> result = mensajeService.findAllMensajes();
         return new ResponseEntity<String>(Mensaje.toJsonArray(result), headers, HttpStatus.OK);
-    }
+    }*/
     
     /*@RequestMapping(method = RequestMethod.POST, headers = "Accept=application/json")
     public ResponseEntity<String> MensajeController.createFromJson(@RequestBody String json) {

@@ -1,5 +1,11 @@
 package ar.edu.um.canarium.web;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -8,6 +14,7 @@ import javax.validation.Valid;
 
 import ar.edu.um.canarium.domain.Mensaje;
 import ar.edu.um.canarium.domain.Persona;
+import ar.edu.um.canarium.domain.Relacion;
 import ar.edu.um.canarium.servicio.Servicio;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,6 +74,41 @@ public class MensajeController {
         }
         return new ResponseEntity<String>(headers, HttpStatus.OK);
     }
+	 
+	 @SuppressWarnings({ "unchecked", "rawtypes" })
+	@RequestMapping(headers = "Accept=application/json")
+     public ResponseEntity<String> listJson() {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json; charset=utf-8");
+        List<Mensaje> todos = new ArrayList<Mensaje>();
+        
+        //Obtengo mis mensajes.
+        Persona persona = Servicio.getPersonaLogged();
+        List<Mensaje> mios = Mensaje.findMensajesByPersona(persona).getResultList();
+        
+        //Obtengo los mensajes de los que sigo
+        List<Relacion> relaciones = Relacion.findRelacionsByPersona(persona).getResultList();
+        
+        for (Relacion relacion : relaciones) {
+        	Persona seguido = Persona.findPersona(relacion.getIdSeguido());
+			List<Mensaje> seguidos = Mensaje.findMensajesByPersona(seguido).getResultList();
+			todos.addAll(seguidos);
+		}
+        
+        todos.addAll(mios);
+        
+        //Los ordeno
+        Collections.sort(todos, new Comparator(){
+        	public int compare(Object o1, Object o2)
+        	{
+        		Mensaje p1 = (Mensaje)o1;
+        		Mensaje p2 = (Mensaje)o2;
+        		return p2.getFecha().compareTo(p1.getFecha());
+        	}
+        });
+        
+        return new ResponseEntity<String>(Mensaje.toJsonArray(todos), headers, HttpStatus.OK);
+     }
 	
 	
 }

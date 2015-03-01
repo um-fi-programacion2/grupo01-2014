@@ -143,21 +143,23 @@ $(document).ready(function(){
 		var logueado = $("#logueada_id").val();
 		var url = "mensajes/";
 		$.ajax({
-			type:'GET',
 			headers: {Accept: 'application/json'},
 			url: url,
 			data: {},
 			success: function(data) {
 				var datoHTML = "";
 				$.each(data, function(i, val){
+					var theDate = new Date(val.fecha);
+					dateString = theDate.toString();
 					datoHTML += 
 						"<div class='cuenta mensajes'>"+
 							"<div class='informacion_cuenta'>"+
 								"<div class='contenido_cuenta lista'>"+
 									"<a href='/canarium/personae/"+val.persona.id+"'>"+
 										"<img class='avatar size48' src='http://localhost:8080/canarium/personae/"+val.persona.id+"/image' />"+ 
-										"<b	class='nombre_completo'>"+val.persona.persona.firstName+" "+val.persona.persona.lastName+"</b>"+
-									"</a>"+
+										"<b	class='nombre_completo'>"+val.persona.persona.firstName+" "+val.persona.persona.lastName+"</b>" +
+										"<small class='perfil_link'><b>@"+val.persona.usuario+"</b> "+dateString+"</small>"+
+									"</a><br>"+
 										val.descripcion+
 									"<div class='lista-acciones'>";
 										if(logueado != val.persona.id){
