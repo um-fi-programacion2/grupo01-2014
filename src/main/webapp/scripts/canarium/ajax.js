@@ -69,6 +69,43 @@ $(document).ready(function(){
 		});
 	});*/
 	
+	$("body").on("click","#botonEditar", function(event){
+		var id = $(this).data("id");
+		//$("#descripcion_editar").val(id);
+		var url = "mensajes/"+id;
+		$.ajax({
+			type:'GET',
+			headers: {Accept: 'application/json'},
+			url: url,
+			data: {},
+			success: function(data) {
+				$("#descripcion_editar").val(data.descripcion);
+				$("#id_editar_mensaje").val(data.id);
+				$("#editar_version").val(data.version);
+				document.getElementById('editar_mensaje').style.display = 'block';
+			}
+		});
+	});
+	
+	$("body").on("click","#editar_mensaje_boton", function(event){
+		var id = $("#id_editar_mensaje").val();
+		var descripcion = $("#descripcion_editar").val();
+		var version = $("#editar_version").val();
+		var url = "mensajes/"+id;
+		var data = JSON.stringify(data = {id: id, descripcion:descripcion, version: version});
+		$.ajax({
+			type:'PUT',
+			headers: {Accept: 'application/json'},
+			url: url,
+			data: data,
+			success: function() {},
+			complete: function() {
+				cargarMensajes();
+				document.getElementById('editar_mensaje').style.display = 'none';
+			}
+		});
+	});	
+	
 	$("body").on("click","#botonBorrar", function(event){
 		var id = $(this).data("id");
 		var url = "mensajes/"+id;
@@ -133,7 +170,7 @@ $(document).ready(function(){
 										}else{
 										datoHTML +=
 										"<div class='accion-editar'>"+
-											"<a href='#' title='Editar'>"+
+											"<a href='#' title='Editar' id='botonEditar' data-id='"+val.id+"'>"+
 												"<span class='glyphicon glyphicon-edit' aria-hidden='true'></span>"+
 											"</a>"+
 										"</div>"+

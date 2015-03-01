@@ -31,4 +31,7 @@
     <definition extends="default" name="mensajes/mensaje">
         <put-attribute name="body" value="/WEB-INF/views/mensajes/mensaje.jsp"/>
     </definition>
+     <definition extends="default" name="mensajes/editar">
+        <put-attribute name="body" value="/WEB-INF/views/mensajes/editarjsp"/>
+    </definition>
 </tiles-definitions>

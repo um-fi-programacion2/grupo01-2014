@@ -9,6 +9,10 @@
         	<jsp:include page="usuario.jsp"/>
     	</div>
     	<div class="col-xs-12 col-sm-9">
+	        <div class="bloque" id="editar_mensaje" style='display:none;'>
+	            <jsp:include page="mensajes/editar.jsp"/>
+	        </div>
+	        
 	        <div class="bloque" id="muro_mensajes">
 	            
 	        </div>

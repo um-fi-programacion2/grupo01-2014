@@ -5,6 +5,6 @@
      		</div>
   		</div>
   		<div id="fc_ar_edu_um_canarium_domain_Mensaje_submit" class="submit" style="padding-bottom: 5px;">
-  			<input value="Guardar" id="crear_mensaje" class="btn btn-primary btn-block" type="submit" id="proceed" data-original-title="" title=""></input>
+  			<input value="UMensajear" id="crear_mensaje" class="btn btn-primary btn-block" type="submit" id="proceed" data-original-title="" title=""></input>
 		</div>
 </div>

@@ -19,6 +19,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -50,6 +51,21 @@ public class MensajeController {
 		headers.add("Content-Type", "application/json");
         
         return new ResponseEntity<String >(headers, HttpStatus.CREATED);
+    }
+	 
+	 @RequestMapping(value = "/{id}", method = RequestMethod.PUT, headers = "Accept=application/json")
+    public ResponseEntity<String> updateFromJson(@RequestBody String json, @PathVariable("id") Long id) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json");
+        Mensaje mensaje = Mensaje.fromJsonToMensaje(json);
+        Mensaje anterior = Mensaje.findMensaje(mensaje.getId());
+        mensaje.setFecha(anterior.getFecha());
+        mensaje.setPersona(anterior.getPersona());
+        
+        if (mensajeService.updateMensaje(mensaje) == null) {
+            return new ResponseEntity<String>(headers, HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<String>(headers, HttpStatus.OK);
     }
 	
 	
