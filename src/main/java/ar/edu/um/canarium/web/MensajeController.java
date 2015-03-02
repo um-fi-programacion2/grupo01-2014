@@ -15,6 +15,7 @@ import javax.validation.Valid;
 import ar.edu.um.canarium.domain.Mensaje;
 import ar.edu.um.canarium.domain.Persona;
 import ar.edu.um.canarium.domain.Relacion;
+import ar.edu.um.canarium.domain.Republicado;
 import ar.edu.um.canarium.servicio.Servicio;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -82,17 +83,43 @@ public class MensajeController {
         headers.add("Content-Type", "application/json; charset=utf-8");
         List<Mensaje> todos = new ArrayList<Mensaje>();
         
-        //Obtengo mis mensajes.
+        //OBTENGO MIS MENSAJES
+        //los que yo publico
         Persona persona = Servicio.getPersonaLogged();
         List<Mensaje> mios = Mensaje.findMensajesByPersona(persona).getResultList();
         
-        //Obtengo los mensajes de los que sigo
+        //los que yo republico
+        List<Republicado> republicadoMio = Republicado.findRepublicadoesByPersona(persona).getResultList();
+        for (Republicado republicado : republicadoMio) {
+        	Mensaje m = Servicio.getMensajeRepublicado(republicado);
+        	/*Mensaje m = new Mensaje();
+        	m.setRepublicado(1);
+        	m.setDescripcion(republicado.getMensaje().getDescripcion());
+        	m.setFecha(republicado.getFecha());
+        	m.setPersona(republicado.getPersona());*/
+        	mios.add(m);
+		}
+        
+        //OBTENGO LOS MENSAJES DE LAS PERSONAS QUE SIGO
+        //los que ellos publican
         List<Relacion> relaciones = Relacion.findRelacionsByPersona(persona).getResultList();
         
         for (Relacion relacion : relaciones) {
         	Persona seguido = Persona.findPersona(relacion.getIdSeguido());
 			List<Mensaje> seguidos = Mensaje.findMensajesByPersona(seguido).getResultList();
 			todos.addAll(seguidos);
+			 
+			//los que ellos republican
+			List<Republicado> republicadoSeguido = Republicado.findRepublicadoesByPersona(seguido).getResultList();
+			 for (Republicado republicado : republicadoSeguido) {
+		        	Mensaje m = Servicio.getMensajeRepublicado(republicado);
+				 	/*Mensaje m = new Mensaje();
+		        	m.setRepublicado(1);
+		        	m.setDescripcion(republicado.getMensaje().getDescripcion());
+		        	m.setFecha(republicado.getFecha());
+		        	m.setPersona(republicado.getPersona());*/
+		        	todos.add(m);
+				}
 		}
         
         todos.addAll(mios);

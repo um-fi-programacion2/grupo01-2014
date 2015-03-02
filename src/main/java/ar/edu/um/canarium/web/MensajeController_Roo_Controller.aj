@@ -41,17 +41,6 @@ privileged aspect MensajeController_Roo_Controller {
     @Autowired
     TagService MensajeController.tagService;
     
-    @RequestMapping(method = RequestMethod.POST, produces = "text/html")
-    public String MensajeController.create(@Valid Mensaje mensaje, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
-        if (bindingResult.hasErrors()) {
-            populateEditForm(uiModel, mensaje);
-            return "mensajes/create";
-        }
-        uiModel.asMap().clear();
-        mensajeService.saveMensaje(mensaje);
-        return "redirect:/mensajes/" + encodeUrlPathSegment(mensaje.getId().toString(), httpServletRequest);
-    }
-    
     @RequestMapping(params = "form", produces = "text/html")
     public String MensajeController.createForm(Model uiModel) {
         populateEditForm(uiModel, new Mensaje());
@@ -70,7 +59,7 @@ privileged aspect MensajeController_Roo_Controller {
         uiModel.addAttribute("itemId", id);
         return "mensajes/show";
     }
-
+    
     @RequestMapping(produces = "text/html")
     public String MensajeController.list(@RequestParam(value = "page", required = false) Integer page, @RequestParam(value = "size", required = false) Integer size, Model uiModel) {
         if (page != null || size != null) {

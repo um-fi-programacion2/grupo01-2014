@@ -7,5 +7,6 @@
         <field:display date="true" dateTimePattern="${mensaje_fecha_date_format}" field="fecha" id="s_ar_edu_um_canarium_domain_Mensaje_fecha" object="${mensaje}" z="AwZCSrSXKanWJRplI9WQWjsbsLU="/>
         <field:display field="persona" id="s_ar_edu_um_canarium_domain_Mensaje_persona" object="${mensaje}" z="h77td4KDqn/XhZld+VbklwicFtA="/>
         <field:display field="tags" id="s_ar_edu_um_canarium_domain_Mensaje_tags" object="${mensaje}" z="yshMfSB+tE542YwR6v9z5RRoXgM="/>
+        <field:display field="republicado" id="s_ar_edu_um_canarium_domain_Mensaje_republicado" object="${mensaje}" z="rbBDqqDiFejAGYzo4jc0ER50p8I="/>
     </page:show>
 </div>

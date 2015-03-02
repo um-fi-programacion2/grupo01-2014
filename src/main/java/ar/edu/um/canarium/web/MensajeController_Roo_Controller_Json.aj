@@ -7,7 +7,6 @@ import ar.edu.um.canarium.domain.Mensaje;
 import ar.edu.um.canarium.domain.Persona;
 import ar.edu.um.canarium.web.MensajeController;
 import java.util.Date;
-import java.util.List;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -22,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 privileged aspect MensajeController_Roo_Controller_Json {
     
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, headers = "Accept=application/json")
+    @ResponseBody
     public ResponseEntity<String> MensajeController.showJson(@PathVariable("id") Long id) {
         Mensaje mensaje = mensajeService.findMensaje(id);
         HttpHeaders headers = new HttpHeaders();
@@ -32,15 +32,7 @@ privileged aspect MensajeController_Roo_Controller_Json {
         return new ResponseEntity<String>(mensaje.toJson(), headers, HttpStatus.OK);
     }
     /*
-    @RequestMapping(headers = "Accept=application/json")
-    public ResponseEntity<String> MensajeController.listJson() {
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-Type", "application/json; charset=utf-8");
-        List<Mensaje> result = mensajeService.findAllMensajes();
-        return new ResponseEntity<String>(Mensaje.toJsonArray(result), headers, HttpStatus.OK);
-    }*/
-    
-    /*@RequestMapping(method = RequestMethod.POST, headers = "Accept=application/json")
+    @RequestMapping(method = RequestMethod.POST, headers = "Accept=application/json")
     public ResponseEntity<String> MensajeController.createFromJson(@RequestBody String json) {
         Mensaje mensaje = Mensaje.fromJsonToMensaje(json);
         mensajeService.saveMensaje(mensaje);
@@ -58,18 +50,6 @@ privileged aspect MensajeController_Roo_Controller_Json {
         headers.add("Content-Type", "application/json");
         return new ResponseEntity<String>(headers, HttpStatus.CREATED);
     }
-    
-    /*
-    @RequestMapping(value = "/{id}", method = RequestMethod.PUT, headers = "Accept=application/json")
-    public ResponseEntity<String> MensajeController.updateFromJson(@RequestBody String json, @PathVariable("id") Long id) {
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-Type", "application/json");
-        Mensaje mensaje = Mensaje.fromJsonToMensaje(json);
-        if (mensajeService.updateMensaje(mensaje) == null) {
-            return new ResponseEntity<String>(headers, HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<String>(headers, HttpStatus.OK);
-    }*/
     
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, headers = "Accept=application/json")
     public ResponseEntity<String> MensajeController.deleteFromJson(@PathVariable("id") Long id) {

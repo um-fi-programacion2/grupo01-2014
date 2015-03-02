@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import ar.edu.um.canarium.domain.Mensaje;
 import ar.edu.um.canarium.domain.Persona;
 import ar.edu.um.canarium.domain.Relacion;
+import ar.edu.um.canarium.domain.Republicado;
 import ar.edu.um.canarium.domain.Role;
 import ar.edu.um.canarium.domain.Sexo;
 import ar.edu.um.canarium.domain.User;
@@ -122,6 +123,15 @@ public class Servicio {
 		Query consulta = Persona.findPersonaeByPersona(usuario);
 		Persona persona = (Persona) consulta.getSingleResult();
 		return persona;
+	}
+	
+	public static Mensaje getMensajeRepublicado(Republicado republicado){
+		Mensaje m = new Mensaje();
+    	m.setRepublicado(1);
+    	m.setDescripcion(republicado.getMensaje().getDescripcion());
+    	m.setFecha(republicado.getFecha());
+    	m.setPersona(republicado.getPersona());
+    	return m;
 	}
 	
 }

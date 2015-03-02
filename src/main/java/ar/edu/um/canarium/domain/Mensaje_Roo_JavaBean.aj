@@ -12,6 +12,14 @@ import java.util.Set;
 
 privileged aspect Mensaje_Roo_JavaBean {
     
+    public Integer Mensaje.getRepublicado() {
+        return this.republicado;
+    }
+    
+    public void Mensaje.setRepublicado(Integer republicado) {
+        this.republicado = republicado;
+    }
+    
     public String Mensaje.getDescripcion() {
         return this.descripcion;
     }
