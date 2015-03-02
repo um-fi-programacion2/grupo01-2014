@@ -128,6 +128,7 @@ public class Servicio {
 	public static Mensaje getMensajeRepublicado(Republicado republicado){
 		Mensaje m = new Mensaje();
     	m.setRepublicado(1);
+    	m.setId(republicado.getId());
     	m.setDescripcion(republicado.getMensaje().getDescripcion());
     	m.setFecha(republicado.getFecha());
     	m.setPersona(republicado.getPersona());

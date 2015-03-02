@@ -92,11 +92,6 @@ public class MensajeController {
         List<Republicado> republicadoMio = Republicado.findRepublicadoesByPersona(persona).getResultList();
         for (Republicado republicado : republicadoMio) {
         	Mensaje m = Servicio.getMensajeRepublicado(republicado);
-        	/*Mensaje m = new Mensaje();
-        	m.setRepublicado(1);
-        	m.setDescripcion(republicado.getMensaje().getDescripcion());
-        	m.setFecha(republicado.getFecha());
-        	m.setPersona(republicado.getPersona());*/
         	mios.add(m);
 		}
         
@@ -113,11 +108,6 @@ public class MensajeController {
 			List<Republicado> republicadoSeguido = Republicado.findRepublicadoesByPersona(seguido).getResultList();
 			 for (Republicado republicado : republicadoSeguido) {
 		        	Mensaje m = Servicio.getMensajeRepublicado(republicado);
-				 	/*Mensaje m = new Mensaje();
-		        	m.setRepublicado(1);
-		        	m.setDescripcion(republicado.getMensaje().getDescripcion());
-		        	m.setFecha(republicado.getFecha());
-		        	m.setPersona(republicado.getPersona());*/
 		        	todos.add(m);
 				}
 		}

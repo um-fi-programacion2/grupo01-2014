@@ -156,6 +156,21 @@ $(document).ready(function(){
 		});
 	});
 	
+	$("body").on("click","#botonBorrarRepublicado", function(event){
+		var id = $(this).data("id");
+		var url = "republicadoes/"+id;
+		$.ajax({
+			type:'DELETE',
+			headers: {Accept: 'application/json'},
+			url: url,
+			data: {},
+			success: function() {},
+			complete: function() {
+				cargarMensajes();
+			}
+		});
+	});
+	
 	function cargarMensajes(){
 		var logueado = $("#logueada_id").val();
 		var url = "mensajes/";
@@ -276,11 +291,17 @@ $(document).ready(function(){
 						"<a href='/canarium/personae/"+val.persona.id+"'>"+
 							"<img class='avatar size48' src='http://localhost:8080/canarium/personae/"+val.persona.id+"/image' />"+ 
 							"<b	class='nombre_completo'>"+val.persona.persona.firstName+" "+val.persona.persona.lastName+"</b>" +
-							"<small class='perfil_link'><b>@"+val.persona.usuario+"</b> "+dateString+"</small>"+
+							"<small class='perfil_link'><b>@"+val.persona.usuario+"</b> "+dateString+" - REPUBLICADO</small>"+
 						"</a><br>"+
 							val.descripcion+
 						"<div class='lista-acciones'>";
-							datoHTML += "<small class='perfil_link'><b>Republicado</b></small>";
+							if(logueado == val.persona.id){
+								datoHTML += "<div class='accion-borrar'>"+
+									"<a href='#' title='Borrar' id='botonBorrarRepublicado' data-id='"+val.id+"'>"+
+										"<span class='glyphicon glyphicon-trash' aria-hidden='true'></span>"+
+									"</a>"+
+								"</div>";
+							}
 						datoHTML +=
 						"</div>"+
 					"</div>"+
