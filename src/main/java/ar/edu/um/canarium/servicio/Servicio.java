@@ -1,5 +1,6 @@
 package ar.edu.um.canarium.servicio;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -11,11 +12,13 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import ar.edu.um.canarium.domain.Mensaje;
+import ar.edu.um.canarium.domain.MensajeTag;
 import ar.edu.um.canarium.domain.Persona;
 import ar.edu.um.canarium.domain.Relacion;
 import ar.edu.um.canarium.domain.Republicado;
 import ar.edu.um.canarium.domain.Role;
 import ar.edu.um.canarium.domain.Sexo;
+import ar.edu.um.canarium.domain.Tag;
 import ar.edu.um.canarium.domain.User;
 import ar.edu.um.canarium.domain.UserRole;
 
@@ -133,6 +136,33 @@ public class Servicio {
     	m.setFecha(republicado.getFecha());
     	m.setPersona(republicado.getPersona());
     	return m;
+	}
+	
+	public static List<Tag> buscarTag(String mensaje){
+		
+		List<Tag> lista = new ArrayList<Tag>();
+		
+		String[] partes = mensaje.split("\\s+");
+		
+		for (String mens : partes) {
+			if(mens.contains("#")){
+				Tag tag = new Tag();
+				tag.setDescripcion(mens);
+				lista.add(tag);
+			}
+				
+		}
+		
+		return lista;
+	}
+	
+	public static MensajeTag crearMensajeTag(Mensaje mensaje, Tag tag){
+		
+		MensajeTag mensajeTag = new MensajeTag();
+		mensajeTag.setMensaje(mensaje);
+		mensajeTag.setTag(tag);
+		mensajeTag.setVersion(0);
+		return mensajeTag;
 	}
 	
 }

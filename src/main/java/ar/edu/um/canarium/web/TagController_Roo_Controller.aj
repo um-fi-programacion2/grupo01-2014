@@ -3,8 +3,8 @@
 
 package ar.edu.um.canarium.web;
 
+import ar.edu.um.canarium.domain.MensajeTag;
 import ar.edu.um.canarium.domain.Tag;
-import ar.edu.um.canarium.service.MensajeService;
 import ar.edu.um.canarium.service.TagService;
 import ar.edu.um.canarium.web.TagController;
 import java.io.UnsupportedEncodingException;
@@ -24,9 +24,6 @@ privileged aspect TagController_Roo_Controller {
     
     @Autowired
     TagService TagController.tagService;
-    
-    @Autowired
-    MensajeService TagController.mensajeService;
     
     @RequestMapping(method = RequestMethod.POST, produces = "text/html")
     public String TagController.create(@Valid Tag tag, BindingResult bindingResult, Model uiModel, HttpServletRequest httpServletRequest) {
@@ -95,7 +92,7 @@ privileged aspect TagController_Roo_Controller {
     
     void TagController.populateEditForm(Model uiModel, Tag tag) {
         uiModel.addAttribute("tag", tag);
-        uiModel.addAttribute("mensajes", mensajeService.findAllMensajes());
+        uiModel.addAttribute("mensajetags", MensajeTag.findAllMensajeTags());
     }
     
     String TagController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

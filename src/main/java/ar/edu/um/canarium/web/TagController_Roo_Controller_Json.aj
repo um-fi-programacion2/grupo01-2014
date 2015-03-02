@@ -3,11 +3,9 @@
 
 package ar.edu.um.canarium.web;
 
-import ar.edu.um.canarium.domain.Mensaje;
 import ar.edu.um.canarium.domain.Tag;
 import ar.edu.um.canarium.web.TagController;
 import java.util.List;
-import java.util.Set;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -89,14 +87,6 @@ privileged aspect TagController_Roo_Controller_Json {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json; charset=utf-8");
         return new ResponseEntity<String>(Tag.toJsonArray(Tag.findTagsByDescripcionEquals(descripcion).getResultList()), headers, HttpStatus.OK);
-    }
-    
-    @RequestMapping(params = "find=ByMensajes", headers = "Accept=application/json")
-    @ResponseBody
-    public ResponseEntity<String> TagController.jsonFindTagsByMensajes(@RequestParam("mensajes") Set<Mensaje> mensajes) {
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Content-Type", "application/json; charset=utf-8");
-        return new ResponseEntity<String>(Tag.toJsonArray(Tag.findTagsByMensajes(mensajes).getResultList()), headers, HttpStatus.OK);
     }
     
 }

@@ -31,6 +31,7 @@ privileged aspect MensajeController_Roo_Controller_Json {
         }
         return new ResponseEntity<String>(mensaje.toJson(), headers, HttpStatus.OK);
     }
+    
     /*
     @RequestMapping(method = RequestMethod.POST, headers = "Accept=application/json")
     public ResponseEntity<String> MensajeController.createFromJson(@RequestBody String json) {

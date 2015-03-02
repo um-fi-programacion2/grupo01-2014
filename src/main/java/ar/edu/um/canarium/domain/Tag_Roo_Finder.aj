@@ -3,9 +3,7 @@
 
 package ar.edu.um.canarium.domain;
 
-import ar.edu.um.canarium.domain.Mensaje;
 import ar.edu.um.canarium.domain.Tag;
-import java.util.Set;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
@@ -16,22 +14,6 @@ privileged aspect Tag_Roo_Finder {
         EntityManager em = Tag.entityManager();
         TypedQuery<Tag> q = em.createQuery("SELECT o FROM Tag AS o WHERE o.descripcion = :descripcion", Tag.class);
         q.setParameter("descripcion", descripcion);
-        return q;
-    }
-    
-    public static TypedQuery<Tag> Tag.findTagsByMensajes(Set<Mensaje> mensajes) {
-        if (mensajes == null) throw new IllegalArgumentException("The mensajes argument is required");
-        EntityManager em = Tag.entityManager();
-        StringBuilder queryBuilder = new StringBuilder("SELECT o FROM Tag AS o WHERE");
-        for (int i = 0; i < mensajes.size(); i++) {
-            if (i > 0) queryBuilder.append(" AND");
-            queryBuilder.append(" :mensajes_item").append(i).append(" MEMBER OF o.mensajes");
-        }
-        TypedQuery<Tag> q = em.createQuery(queryBuilder.toString(), Tag.class);
-        int mensajesIndex = 0;
-        for (Mensaje _mensaje: mensajes) {
-            q.setParameter("mensajes_item" + mensajesIndex++, _mensaje);
-        }
         return q;
     }
     

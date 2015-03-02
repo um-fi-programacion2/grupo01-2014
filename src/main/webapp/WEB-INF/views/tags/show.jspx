@@ -4,6 +4,5 @@
     <jsp:output omit-xml-declaration="yes"/>
     <page:show id="ps_ar_edu_um_canarium_domain_Tag" object="${tag}" path="/tags" z="/dxa/vQwkh8On8fLDcrnwwCP40o=">
         <field:display field="descripcion" id="s_ar_edu_um_canarium_domain_Tag_descripcion" object="${tag}" z="n/Ew06BjK/wob3i0PE6NShSWi4k="/>
-        <field:display field="mensajes" id="s_ar_edu_um_canarium_domain_Tag_mensajes" object="${tag}" z="CWGerhkCuqq1oBXcHWaWIULjA7U="/>
     </page:show>
 </div>

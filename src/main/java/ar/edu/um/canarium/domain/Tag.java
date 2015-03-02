@@ -10,6 +10,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.ManyToMany;
 import org.springframework.roo.addon.json.RooJson;
+import javax.persistence.OneToMany;
 
 @RooJavaBean
 @RooToString
@@ -26,6 +27,6 @@ public class Tag {
 
     /**
      */
-    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "tags")
-    private Set<Mensaje> mensajes = new HashSet<Mensaje>();
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "tag")
+    private Set<MensajeTag> tagsMensaje = new HashSet<MensajeTag>();
 }

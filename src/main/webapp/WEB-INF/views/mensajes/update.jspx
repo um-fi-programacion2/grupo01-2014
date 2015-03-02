@@ -7,7 +7,7 @@
         <field:datetime dateTimePattern="${mensaje_fecha_date_format}" field="fecha" id="c_ar_edu_um_canarium_domain_Mensaje_fecha" required="true" z="TU4UdaQg9m+hAn2XZrDZS+wmznw="/>
         <field:select field="persona" id="c_ar_edu_um_canarium_domain_Mensaje_persona" itemValue="id" items="${personae}" path="/personae" required="true" z="zet5GVHnsgO3qzTOkURASD/KOq8="/>
         <field:simple field="republicados" id="c_ar_edu_um_canarium_domain_Mensaje_republicados" messageCode="entity_reference_not_managed" messageCodeAttribute="Republicado" z="gADeLo9P/2fI4mGOjIn6WEAOS2w="/>
-        <field:select field="tags" id="c_ar_edu_um_canarium_domain_Mensaje_tags" itemValue="id" items="${tags}" multiple="true" path="/tags" z="u3jAN/s1QVnhfMxWGiiKma3AnX4="/>
         <field:input field="republicado" id="c_ar_edu_um_canarium_domain_Mensaje_republicado" validationMessageCode="field_invalid_integer" z="wpC4NH3oTYSGI25Yl3rCsp7WsBU="/>
+        <field:simple field="mensajesTag" id="c_ar_edu_um_canarium_domain_Mensaje_mensajesTag" messageCode="entity_reference_not_managed" messageCodeAttribute="Mensaje Tag" z="teL+tsbb6F0olrnXbvZgsnvY+fI="/>
     </form:update>
 </div>

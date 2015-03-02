@@ -3,7 +3,7 @@
 
 package ar.edu.um.canarium.domain;
 
-import ar.edu.um.canarium.domain.Mensaje;
+import ar.edu.um.canarium.domain.MensajeTag;
 import ar.edu.um.canarium.domain.Tag;
 import java.util.Set;
 
@@ -17,12 +17,12 @@ privileged aspect Tag_Roo_JavaBean {
         this.descripcion = descripcion;
     }
     
-    public Set<Mensaje> Tag.getMensajes() {
-        return this.mensajes;
+    public Set<MensajeTag> Tag.getTagsMensaje() {
+        return this.tagsMensaje;
     }
     
-    public void Tag.setMensajes(Set<Mensaje> mensajes) {
-        this.mensajes = mensajes;
+    public void Tag.setTagsMensaje(Set<MensajeTag> tagsMensaje) {
+        this.tagsMensaje = tagsMensaje;
     }
     
 }

@@ -13,8 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import ar.edu.um.canarium.domain.Mensaje;
+import ar.edu.um.canarium.domain.MensajeTag;
 import ar.edu.um.canarium.domain.Persona;
 import ar.edu.um.canarium.domain.Relacion;
+import ar.edu.um.canarium.domain.Tag;
 import ar.edu.um.canarium.domain.Republicado;
 import ar.edu.um.canarium.servicio.Servicio;
 
@@ -50,12 +52,38 @@ public class MensajeController {
 	 {
 		HttpHeaders headers = new HttpHeaders(); 
 		Mensaje mensaje = Mensaje.fromJsonToMensaje(json);
+		
+		//CREO EL MENSAJE
 		mensaje.setFecha(new Date());
 		Persona persona = Servicio.getPersonaLogged();
 		mensaje.setPersona(persona);
+		String descripcion = mensaje.getDescripcion();
 		
 		mensaje.persist();
+		
+		//VERIFICO SI HAY TAGS
+		if(descripcion.contains("#")){
+			
+			List<Tag> tags = Servicio.buscarTag(descripcion);
+			
+			for (Tag tag : tags) {
 				
+				List<Tag> tagEncontrado = Tag.findTagsByDescripcionEquals(tag.getDescripcion()).getResultList();
+				
+				//SINO ESTA EL TAG LO GUARDO
+				if(tagEncontrado.isEmpty()){
+					tag.persist();
+				}else{
+					tag = tagEncontrado.get(0);
+				}
+				
+				//GUARDO LA RELACION
+				MensajeTag mensajeTag = Servicio.crearMensajeTag(mensaje, tag);
+				mensajeTag.persist();
+			}
+			
+		}
+		
 		headers.add("Content-Type", "application/json");
         
         return new ResponseEntity<String >(headers, HttpStatus.CREATED);

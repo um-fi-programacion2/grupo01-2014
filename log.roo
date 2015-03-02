@@ -262,3 +262,15 @@ web mvc json all
 // Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2015-02-28 23:36:20
 // Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2015-03-02 00:50:14
 // Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2015-03-02 00:53:33
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log opened at 2015-03-02 16:50:42
+entity jpa --class ~.dpmain.MensajeTag --testAutomatically 
+entity jpa --class ~.domain.MensajeTag --testAutomatically 
+focus --class ~.domain.Mensaje
+field set --fieldName mensajesTag --type ~.domain.MensajeTag --cardinality ONE_TO_MANY --mappedBy mensaje
+focus --class ~.domain.MensajeTag
+field reference --fieldName mensaje --type ~.domain.Mensaje --notNull --cardinality MANY_TO_ONE
+focus --class ~.domain.Tag
+field set --fieldName tagsMensaje --type ~.domain.MensajeTag --cardinality ONE_TO_MANY --mappedBy tag
+focus --class ~.domain.MensajeTag
+field reference --fieldName tag --type ~.domain.Tag --notNull --cardinality MANY_TO_ONE 
+// Spring Roo 1.2.4.RELEASE [rev 75337cf] log closed at 2015-03-02 17:30:21

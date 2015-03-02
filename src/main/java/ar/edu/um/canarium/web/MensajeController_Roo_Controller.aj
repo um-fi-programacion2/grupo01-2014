@@ -4,11 +4,11 @@
 package ar.edu.um.canarium.web;
 
 import ar.edu.um.canarium.domain.Mensaje;
+import ar.edu.um.canarium.domain.MensajeTag;
 import ar.edu.um.canarium.domain.Persona;
 import ar.edu.um.canarium.service.MensajeService;
 import ar.edu.um.canarium.service.PersonaService;
 import ar.edu.um.canarium.service.RepublicadoService;
-import ar.edu.um.canarium.service.TagService;
 import ar.edu.um.canarium.web.MensajeController;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -37,9 +37,6 @@ privileged aspect MensajeController_Roo_Controller {
     
     @Autowired
     RepublicadoService MensajeController.republicadoService;
-    
-    @Autowired
-    TagService MensajeController.tagService;
     
     @RequestMapping(params = "form", produces = "text/html")
     public String MensajeController.createForm(Model uiModel) {
@@ -109,9 +106,9 @@ privileged aspect MensajeController_Roo_Controller {
     void MensajeController.populateEditForm(Model uiModel, Mensaje mensaje) {
         uiModel.addAttribute("mensaje", mensaje);
         addDateTimeFormatPatterns(uiModel);
+        uiModel.addAttribute("mensajetags", MensajeTag.findAllMensajeTags());
         uiModel.addAttribute("personae", personaService.findAllPersonae());
         uiModel.addAttribute("republicadoes", republicadoService.findAllRepublicadoes());
-        uiModel.addAttribute("tags", tagService.findAllTags());
     }
     
     String MensajeController.encodeUrlPathSegment(String pathSegment, HttpServletRequest httpServletRequest) {

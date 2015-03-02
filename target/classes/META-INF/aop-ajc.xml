@@ -31,6 +31,7 @@
 <aspect name="ar.edu.um.canarium.web.RepublicadoController_Roo_Controller_Json"/>
 <aspect name="ar.edu.um.canarium.domain.MensajePrivado_Roo_Finder"/>
 <aspect name="ar.edu.um.canarium.domain.MensajePrivado_Roo_Json"/>
+<aspect name="ar.edu.um.canarium.domain.MensajeTag_Roo_Jpa_ActiveRecord"/>
 <aspect name="ar.edu.um.canarium.domain.User_Roo_Configurable"/>
 <aspect name="ar.edu.um.canarium.domain.Persona_Roo_Configurable"/>
 <aspect name="ar.edu.um.canarium.domain.Relacion_Roo_ToString"/>
@@ -68,9 +69,11 @@
 <aspect name="ar.edu.um.canarium.web.ConfiguracionController_Roo_Controller"/>
 <aspect name="ar.edu.um.canarium.domain.Relacion_Roo_Finder"/>
 <aspect name="ar.edu.um.canarium.service.TagService_Roo_Service"/>
+<aspect name="ar.edu.um.canarium.domain.MensajeTag_Roo_ToString"/>
 <aspect name="ar.edu.um.canarium.web.UserRoleController_Roo_Controller_Json"/>
 <aspect name="ar.edu.um.canarium.domain.Role_Roo_JavaBean"/>
 <aspect name="ar.edu.um.canarium.domain.Relacion_Roo_Json"/>
+<aspect name="ar.edu.um.canarium.domain.MensajeTag_Roo_JavaBean"/>
 <aspect name="ar.edu.um.canarium.web.RepublicadoController_Roo_Controller_Finder"/>
 <aspect name="ar.edu.um.canarium.domain.Mensaje_Roo_Json"/>
 <aspect name="ar.edu.um.canarium.domain.Tag_Roo_Jpa_Entity"/>
@@ -108,6 +111,7 @@
 <aspect name="ar.edu.um.canarium.domain.Tag_Roo_Configurable"/>
 <aspect name="ar.edu.um.canarium.service.RepublicadoService_Roo_Service"/>
 <aspect name="ar.edu.um.canarium.service.RelacionService_Roo_Service"/>
+<aspect name="ar.edu.um.canarium.domain.MensajeTag_Roo_Jpa_Entity"/>
 <aspect name="ar.edu.um.canarium.domain.Configuracion_Roo_Finder"/>
 <aspect name="ar.edu.um.canarium.service.UserServiceImpl_Roo_Service"/>
 <aspect name="ar.edu.um.canarium.domain.User_Roo_Jpa_Entity"/>
@@ -115,6 +119,7 @@
 <aspect name="ar.edu.um.canarium.web.MensajePrivadoController_Roo_Controller"/>
 <aspect name="ar.edu.um.canarium.domain.Relacion_Roo_Configurable"/>
 <aspect name="ar.edu.um.canarium.web.TagController_Roo_Controller_Finder"/>
+<aspect name="ar.edu.um.canarium.domain.MensajeTag_Roo_Configurable"/>
 <aspect name="ar.edu.um.canarium.domain.Republicado_Roo_Jpa_ActiveRecord"/>
 <aspect name="ar.edu.um.canarium.domain.User_Roo_Finder"/>
 <aspect name="ar.edu.um.canarium.domain.UserRole_Roo_JavaBean"/>

@@ -313,6 +313,7 @@ $(document).ready(function(){
 	$(document).ready(function(){
 		cargarMensajes();
 	});
+	
 
 	
 	/*$("body").on("click","#botonAjaxEditar", function(event){

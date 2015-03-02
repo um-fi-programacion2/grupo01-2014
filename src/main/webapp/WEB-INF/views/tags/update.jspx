@@ -4,6 +4,6 @@
     <jsp:output omit-xml-declaration="yes"/>
     <form:update id="fu_ar_edu_um_canarium_domain_Tag" modelAttribute="tag" path="/tags" versionField="Version" z="RBxYl+kjZGXBlH8205rXYbjLX+U=">
         <field:textarea field="descripcion" id="c_ar_edu_um_canarium_domain_Tag_descripcion" required="true" z="eFjpsK2aMMdEdz27XF6SS0gaI3M="/>
-        <field:select field="mensajes" id="c_ar_edu_um_canarium_domain_Tag_mensajes" itemValue="id" items="${mensajes}" multiple="true" path="/mensajes" z="p+/Ao1SJA0bpTZ6xmDBw9Yz0Qkk="/>
+        <field:simple field="tagsMensaje" id="c_ar_edu_um_canarium_domain_Tag_tagsMensaje" messageCode="entity_reference_not_managed" messageCodeAttribute="Mensaje Tag" z="jEu61H40PF8IUk3N25B0MoqJ4bo="/>
     </form:update>
 </div>

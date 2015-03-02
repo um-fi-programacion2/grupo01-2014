@@ -4,9 +4,9 @@
 package ar.edu.um.canarium.domain;
 
 import ar.edu.um.canarium.domain.Mensaje;
+import ar.edu.um.canarium.domain.MensajeTag;
 import ar.edu.um.canarium.domain.Persona;
 import ar.edu.um.canarium.domain.Republicado;
-import ar.edu.um.canarium.domain.Tag;
 import java.util.Date;
 import java.util.Set;
 
@@ -52,12 +52,12 @@ privileged aspect Mensaje_Roo_JavaBean {
         this.republicados = republicados;
     }
     
-    public Set<Tag> Mensaje.getTags() {
-        return this.tags;
+    public Set<MensajeTag> Mensaje.getMensajesTag() {
+        return this.mensajesTag;
     }
     
-    public void Mensaje.setTags(Set<Tag> tags) {
-        this.tags = tags;
+    public void Mensaje.setMensajesTag(Set<MensajeTag> mensajesTag) {
+        this.mensajesTag = mensajesTag;
     }
     
 }

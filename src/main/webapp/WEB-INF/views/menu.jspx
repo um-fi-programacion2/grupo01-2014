@@ -39,7 +39,6 @@
             <menu:item id="i_tag_new" messageCode="global_menu_new" url="/tags?form" z="c2MR5d7dttBSgnPxMMH7oOEDl6Q="/>
             <menu:item id="i_tag_list" messageCode="global_menu_list" url="/tags?page=1&amp;size=${empty param.size ? 10 : param.size}" z="HsTcxZ80PNENgslZ1+b/pv8MYug="/>
             <menu:item id="fi_tag_descripcionequals" messageCode="global_menu_find" url="/tags?find=ByDescripcionEquals&amp;form" z="sNucuO3rtxnADF4MZ99UqyYhVJc="/>
-            <menu:item id="fi_tag_mensajes" messageCode="global_menu_find" url="/tags?find=ByMensajes&amp;form" z="jwIDaqA1wHgPq/26zZpaox0FjsE="/>
         </menu:category>
         <menu:category id="c_mensaje" z="/z8EFX6PBUJoSZKfzMJGTros24c=">
             <menu:item id="i_mensaje_new" messageCode="global_menu_new" url="/mensajes?form" z="Bg8B78AtOSfZx35jXtE44AL2luU="/>
