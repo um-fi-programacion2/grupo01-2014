@@ -31,7 +31,6 @@
 <aspect name="ar.edu.um.canarium.domain.PersonaIntegrationTest_Roo_IntegrationTest"/>
 <aspect name="ar.edu.um.canarium.domain.RoleIntegrationTest_Roo_IntegrationTest"/>
 <aspect name="ar.edu.um.canarium.domain.MensajePrivadoIntegrationTest_Roo_Configurable"/>
-<aspect name="ar.edu.um.canarium.dpmain.MensajeTagIntegrationTest_Roo_Configurable"/>
 <aspect name="ar.edu.um.canarium.domain.RepublicadoDataOnDemand_Roo_Configurable"/>
 <aspect name="ar.edu.um.canarium.domain.UserRoleDataOnDemand_Roo_Configurable"/>
 <aspect name="ar.edu.um.canarium.domain.MensajeTagIntegrationTest_Roo_Configurable"/>
@@ -40,7 +39,6 @@
 <aspect name="ar.edu.um.canarium.domain.ConfiguracionDataOnDemand_Roo_DataOnDemand"/>
 <aspect name="ar.edu.um.canarium.domain.ConfiguracionIntegrationTest_Roo_Configurable"/>
 <aspect name="ar.edu.um.canarium.domain.ConfiguracionDataOnDemand_Roo_Configurable"/>
-<aspect name="ar.edu.um.canarium.dpmain.MensajeTagDataOnDemand_Roo_Configurable"/>
 <aspect name="ar.edu.um.canarium.domain.TagIntegrationTest_Roo_Configurable"/>
 <aspect name="ar.edu.um.canarium.domain.MensajePrivadoIntegrationTest_Roo_IntegrationTest"/>
 <aspect name="ar.edu.um.canarium.domain.UserRoleDataOnDemand_Roo_DataOnDemand"/>

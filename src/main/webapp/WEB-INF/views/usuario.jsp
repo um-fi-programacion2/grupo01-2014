@@ -13,7 +13,7 @@
 	<div>
 		<ul class="estado_perfil_caja">
 			<li><a class="js-nav" href="#" data-element-term="tweet-stats"
-				data-nav="profile"><strong>18</strong>Tweets</a>
+				data-nav="profile"><strong>X</strong>Tweets</a>
 			</li>
 			<li><a class="js-nav" href="http://localhost:8080/canarium/relacions?find=ByPersona&persona=${persona.id}" data-element-term="tweet-stats"
 				data-nav="profile"><strong>${persona.siguiendo}</strong>Siguiendo</a>
@@ -29,6 +29,9 @@
 </div>
 <div class="bloque">
 	<jsp:include page="/WEB-INF/views/personae/findPersonaeByUsuarioLike.jspx" />
+</div>
+<div class="bloque">
+	<jsp:include page="/WEB-INF/views/tags/list.jspx" />
 </div>
 <div class="bloque footer">
 	<ul>

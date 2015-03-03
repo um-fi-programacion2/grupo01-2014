@@ -1,8 +1,17 @@
 package ar.edu.um.canarium.servicio;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
@@ -11,6 +20,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import ar.edu.um.canarium.domain.Configuracion;
 import ar.edu.um.canarium.domain.Mensaje;
 import ar.edu.um.canarium.domain.MensajeTag;
 import ar.edu.um.canarium.domain.Persona;
@@ -36,6 +46,7 @@ public class Servicio {
 			
 			sessionObj.setAttribute("persona",persona);
 			sessionObj.setAttribute("usuario",usuario);
+			sessionObj.setAttribute("tags",tagValorados());
 			
 			return persona;
 		/*}else{
@@ -164,5 +175,73 @@ public class Servicio {
 		mensajeTag.setVersion(0);
 		return mensajeTag;
 	}
+	
+	public static List<Mensaje> reemplazarTags(List<Mensaje> lista)
+	{
+		
+		
+		return lista;
+		
+	}
+	
+	public static Map<String, Integer> tagValorados()
+	{
+		List<Configuracion> dias = Configuracion.findConfiguracionsByAtributoLike("dias").getResultList();
+		Integer dia = Integer.valueOf(dias.get(0).getValor());
+		
+		Calendar fecha = Calendar.getInstance();
+		fecha.add(Calendar.DATE, dia);
+        //Busco Los Mensajes
+		//List<Mensaje> mensajes = Mensaje.findAllMensajes(); //tengo que cambiar por los mensajes por fecha.
+		
+		List<Mensaje> mensajes = Mensaje.findMensajesByFechaGreaterThan(fecha.getTime()).getResultList();
+		
+		List<Tag> tags = new ArrayList<Tag>();
+		
+		for (Mensaje mensaje : mensajes) {
+			
+			String[] partes = mensaje.getDescripcion().split("\\s+");
+			
+			for (String mens : partes) {
+				//Me fijo si el mensaje tiene tags.
+				if(mens.contains("#")){
+					Tag tag = new Tag();
+					tag.setDescripcion(mens);
+					tags.add(tag);
+				}
+			}
+			
+		}
+		
+		Map<String, Integer> tagContador = new HashMap<String,Integer>();
+		
+		for (Tag tag : tags) {
+			Integer i = tagContador.get(tag.getDescripcion().toString());
+			if (i ==  null) {
+		           i = 0;
+			}
+			tagContador.put(tag.getDescripcion().toString(), i+1);
+		}
+		
+		tagContador = sortByValues(tagContador);
+		
+		return tagContador;
+		
+	}
+	
+	public static <K, V extends Comparable<V>> Map<K, V> sortByValues(final Map<K, V> map) {
+	    Comparator<K> valueComparator =  new Comparator<K>() {
+	        public int compare(K k1, K k2) {
+	            int compare = map.get(k2).compareTo(map.get(k1));
+	            if (compare == 0) return 1;
+	            else return compare;
+	        }
+	    };
+	    Map<K, V> sortedByValues = new TreeMap<K, V>(valueComparator);
+	    sortedByValues.putAll(map);
+	    return sortedByValues;
+	}
+	
+
 	
 }

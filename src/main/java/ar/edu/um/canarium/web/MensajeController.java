@@ -140,7 +140,12 @@ public class MensajeController {
 				}
 		}
         
+        
+        
+        
         todos.addAll(mios);
+        
+        //todos = Servicio.reemplazarTags(todos);
         
         //Los ordeno
         Collections.sort(todos, new Comparator(){
