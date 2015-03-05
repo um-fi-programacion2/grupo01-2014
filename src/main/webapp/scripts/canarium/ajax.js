@@ -179,57 +179,21 @@ $(document).ready(function(){
 			url: url,
 			data: {},
 			success: function(data) {
-				var datoHTML = "";
-				$.each(data, function(i, val){
-					var theDate = new Date(val.fecha);
-					dateString = theDate.toString();
-					
-					if(val.republicado == 0){
-						datoHTML+= mensajeHTML(val,logueado);
-					}else{
-						datoHTML+= republicadoHTML(val,logueado);
-					}
-					/*datoHTML += 
-						"<div class='cuenta mensajes'>"+
-							"<div class='informacion_cuenta'>"+
-								"<div class='contenido_cuenta lista'>"+
-									"<a href='/canarium/personae/"+val.persona.id+"'>"+
-										"<img class='avatar size48' src='http://localhost:8080/canarium/personae/"+val.persona.id+"/image' />"+ 
-										"<b	class='nombre_completo'>"+val.persona.persona.firstName+" "+val.persona.persona.lastName+"</b>" +
-										"<small class='perfil_link'><b>@"+val.persona.usuario+"</b> "+dateString+"</small>"+
-									"</a><br>"+
-										val.descripcion+
-									"<div class='lista-acciones'>";
-										//if(val.republicado == 0){
-											if(logueado != val.persona.id){
-											datoHTML += 
-											"<div class='accion-republicar'>"+
-												"<a href='#' title='Republicar' id='botonRepublicar' data-id='"+val.id+"'>"+
-													"<span class='glyphicon glyphicon-retweet' aria-hidden='true'></span>"+
-												"</a>"+
-											"</div>";
-											}else{
-											datoHTML +=
-											"<div class='accion-editar'>"+
-												"<a href='#' title='Editar' id='botonEditar' data-id='"+val.id+"'>"+
-													"<span class='glyphicon glyphicon-edit' aria-hidden='true'></span>"+
-												"</a>"+
-											"</div>"+
-											"<div class='accion-borrar'>"+
-												"<a href='#' title='Borrar' id='botonBorrar' data-id='"+val.id+"'>"+
-													"<span class='glyphicon glyphicon-trash' aria-hidden='true'></span>"+
-												"</a>"+
-											"</div>";
-											}
-										//}else{
-										//	datoHTML += "<small class='perfil_link'><b>Republicado</b></small>";
-										//}
-									datoHTML +=
-									"</div>"+
-								"</div>"+
-							"</div>"+
-						"</div>";*/
-				});
+				if(data.length != 0){
+					var datoHTML = "";
+					$.each(data, function(i, val){
+						var theDate = new Date(val.fecha);
+						dateString = theDate.toString();
+						
+						if(val.republicado == 0){
+							datoHTML+= mensajeHTML(val,logueado);
+						}else{
+							datoHTML+= republicadoHTML(val,logueado);
+						}
+					});
+				}else{
+					var datoHTML = "<div style='text-align: center;'><h3>No hay Mensajes</h3></div>";
+				}
 				$("#muro_mensajes").html(datoHTML);
 			}
 		});

@@ -17,6 +17,11 @@
 		<util:load-scripts/>
 		<bootstrap-util:load-scripts-bootstrap />
 		
+		<spring:url value="/resources/scripts/canarium/ajax.js" var="ajax"/>
+		<script src="${ajax}" type="text/javascript">
+        	<!-- required for FF3 and Opera -->
+    	</script>
+    	
 		<spring:message code="application_name" htmlEscape="false" var="app_name"/>
 		<title>
             <spring:message arguments="${app_name}" code="welcome_h3"/>

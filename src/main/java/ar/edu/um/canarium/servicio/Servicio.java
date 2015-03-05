@@ -187,8 +187,10 @@ public class Servicio {
 	public static Map<String, Integer> tagValorados()
 	{
 		List<Configuracion> dias = Configuracion.findConfiguracionsByAtributoLike("dias").getResultList();
-		Integer dia = Integer.valueOf(dias.get(0).getValor());
-		
+		Integer dia = -4;
+		if(!dias.isEmpty()){
+			dia = Integer.valueOf(dias.get(0).getValor());
+		}
 		Calendar fecha = Calendar.getInstance();
 		fecha.add(Calendar.DATE, dia);
         //Busco Los Mensajes

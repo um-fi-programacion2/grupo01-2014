@@ -12,7 +12,6 @@
   <spring:url value="/resources/spring/Spring-Dojo.js" var="spring_dojo_url"/>
   <spring:url value="/resources/images/favicon.ico" var="favicon"/>
   
-  <spring:url value="/resources/scripts/canarium/ajax.js" var="ajax"/>
   
   <link href="${tundra_url}" rel="stylesheet" type="text/css"/>
   <link href="${roo_css_url}" media="screen" rel="stylesheet" type="text/css"/>
@@ -93,10 +92,6 @@
     <spring:url value="/resources/scripts/jquery/i18n/jquery.validate-${jqueryLocale}.js" var="jquery_validate_i18n_js_url"/>
     <script src="${jquery_validate_i18n_js_url}" type="text/javascript">
         <!--required for FF3 and Opera-->
-    </script>
-    
-    <script src="${ajax}" type="text/javascript">
-        <!-- required for FF3 and Opera -->
     </script>
     
 </jsp:root>
